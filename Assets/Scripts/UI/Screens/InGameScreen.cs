@@ -8,4 +8,10 @@ public class InGameScreen : ScreenBase
     {
         App.gameManager.StartSceneUnloading("Level1");
     }
+
+    public override void Show()
+    {
+        base.Show();
+
+    }
 }
