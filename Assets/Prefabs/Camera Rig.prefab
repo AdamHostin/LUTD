@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxClampPos: {x: 25, y: 100, z: 25}
   minClampPos: {x: -25, y: 0, z: -25}
-  minClampZoom: {x: 0, y: -100, z: -100}
+  minClampZoom: {x: 0, y: 30, z: -30}
   maxClampZoom: {x: 0, y: 100, z: 100}
   cameraTransform: {fileID: 3205433769915155720}
   movementTime: 5
@@ -54,8 +54,7 @@ MonoBehaviour:
   fastSpeed: 3
   rotationAmount: 1
   zoomAmount: {x: 0, y: -10, z: 10}
-  newPos: {x: 0, y: 0, z: 0}
-  newZoom: {x: 0, y: 0, z: 0}
+  mouseRotationConst: 5
 --- !u!1 &3205433769915155733
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,7 +68,7 @@ GameObject:
   - component: {fileID: 3205433769915155722}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -28,6 +28,7 @@ public class CustomCameraController : MonoBehaviour
     [SerializeField] float fastSpeed;
     [SerializeField] float rotationAmount;
     [SerializeField] Vector3 zoomAmount;
+    [SerializeField] float mouseRotationConst = 5f;
     float movementSpeed;
 
     Vector3 newPos;
@@ -38,7 +39,6 @@ public class CustomCameraController : MonoBehaviour
     Vector3 dragCurrentPos;
     Vector3 rotateStartPos;
     Vector3 rotateCurrentPos;
-
 
     void Start()
     {
@@ -51,11 +51,60 @@ public class CustomCameraController : MonoBehaviour
     {
         HandleKeyMovement();
         HandleMouseMovement();
+
+        newZoom =  ClampVector3(newZoom, minClampZoom, maxClampZoom);
+        newPos = ClampVector3(newPos, minClampPos, maxClampPos);
+
+        transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * movementTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
+        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
     }
 
     private void HandleMouseMovement()
     {
-        return;
+        //pohyb
+        if (Input.GetMouseButtonDown(0))
+        {
+            Plane plane = new Plane(Vector3.up, Vector3.zero);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            float entry;
+            if (plane.Raycast(ray, out entry))
+            {
+                dragStartPos = ray.GetPoint(entry);
+            }
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            Plane plane = new Plane(Vector3.up, Vector3.zero);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            float entry;
+            if (plane.Raycast(ray, out entry))
+            {
+                newPos = transform.position + dragStartPos - ray.GetPoint(entry);
+            }
+        }
+
+        //zoom
+        if (Input.mouseScrollDelta.y != 0) newZoom += zoomAmount * Input.mouseScrollDelta.y;
+
+        //rotacia
+        if (Input.GetMouseButtonDown(2))
+        {
+            Debug.Log("print");
+            rotateStartPos = Input.mousePosition;
+        }
+        if (Input.GetMouseButton(2))
+        {
+            rotateCurrentPos = Input.mousePosition;
+            Vector3 diff = rotateStartPos - rotateCurrentPos;
+            rotateStartPos = rotateCurrentPos;
+
+            newRotation *= Quaternion.Euler(Vector3.up * (-diff.x/mouseRotationConst)); 
+        }
+
     }
 
     private void HandleKeyMovement()
@@ -69,7 +118,7 @@ public class CustomCameraController : MonoBehaviour
         {
             //(Verical position change * speed) + (horizontal position change * speed)
             newPos += (transform.forward * Input.GetAxisRaw("Vertical") * movementSpeed) + (transform.right * Input.GetAxisRaw("Horizontal") * movementSpeed);
-            newPos = ClampVector3(newPos, minClampPos, maxClampPos);
+            
             
         }
 
@@ -82,13 +131,8 @@ public class CustomCameraController : MonoBehaviour
         {
             if (Input.GetAxisRaw("Camera Zoom") > 0) newZoom += zoomAmount;
             else newZoom -= zoomAmount;
-            ClampVector3(newZoom, minClampZoom, maxClampZoom);
+            
         }
-
-        
-        transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * movementTime);        
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
-        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
 
     }
 
