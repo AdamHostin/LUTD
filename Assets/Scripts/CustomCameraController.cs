@@ -93,7 +93,7 @@ public class CustomCameraController : MonoBehaviour
         //rotacia
         if (Input.GetMouseButtonDown(2))
         {
-            Debug.Log("print");
+            
             rotateStartPos = Input.mousePosition;
         }
         if (Input.GetMouseButton(2))
