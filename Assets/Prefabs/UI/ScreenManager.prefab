@@ -299,6 +299,36 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6477128463685853717, guid: 10b83223d51deb94f96a9e6c52f813ee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477128463685853717, guid: 10b83223d51deb94f96a9e6c52f813ee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477128463685853717, guid: 10b83223d51deb94f96a9e6c52f813ee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477128463685853717, guid: 10b83223d51deb94f96a9e6c52f813ee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1322477912208052687}
+    - target: {fileID: 6477128463685853717, guid: 10b83223d51deb94f96a9e6c52f813ee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HidePauseScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477128463685853717, guid: 10b83223d51deb94f96a9e6c52f813ee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10b83223d51deb94f96a9e6c52f813ee, type: 3}
 --- !u!224 &1465277098114511014 stripped

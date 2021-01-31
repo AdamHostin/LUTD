@@ -5,12 +5,18 @@ using UnityEngine;
 public class ScreenManager : MonoBehaviour
 {
     private ScreenBase[] screens;
+    private GameState gameState;
 
     private void Start()
     {
         App.screenManager = this;
         screens = GetComponentsInChildren<ScreenBase>(true);
         Show<MenuScreen>();
+    }
+
+    private void Update()
+    {
+        PauseMenuScreenSwitch();
     }
 
     public void Show<T>()
@@ -35,5 +41,29 @@ public class ScreenManager : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public enum GameState { menu, running, paused }
+
+    public void SetGameState(GameState gameState)
+    {
+        this.gameState = gameState;
+    }
+
+    private void PauseMenuScreenSwitch()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (gameState == GameState.running)
+                Show<PauseMenuScreen>();
+            else if (gameState == GameState.paused)
+                Hide<PauseMenuScreen>();
+        }
+    }
+
+    //Funkcia pre button v PauseMenuScreene
+    public void HidePauseScreen()
+    {
+        Hide<PauseMenuScreen>();
     }
 }
