@@ -43,3 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5167681de968cc84d98b60d85e012258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnPoints: []
+  timeBetweenWaves: 1
