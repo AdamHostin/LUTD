@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class Enemy
 {
-    private int attack = 1;
-    private int hp = 10;
+    private int attack;
+    private int hp;
     private Base target;
 
-    public Enemy()
+    public Enemy(int hp, int attack)
     {
+        this.hp = hp;
+        this.attack = attack;
         target = App.levelManager.GetPlayerBase();
     }
 

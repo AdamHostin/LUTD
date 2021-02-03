@@ -22,7 +22,7 @@ public class SpawnPointBehaviour : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Enemy enemyModel = new Enemy();
+        
         int idx = model.GetEnemyIndex();
         if (idx < 0)
         {
@@ -31,9 +31,6 @@ public class SpawnPointBehaviour : MonoBehaviour
             return;
         }
         GameObject enemyObject = Instantiate(prefabs[idx],transform);
-        enemyObject.GetComponent<EnemyBehaviour>().Initialize(enemyModel);
-       
-
 
     }
 

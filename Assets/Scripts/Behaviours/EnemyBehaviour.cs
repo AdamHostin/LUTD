@@ -11,13 +11,23 @@ public class EnemyBehaviour : MonoBehaviour
     private Enemy model;
     private Rigidbody rb;
 
-    public void Initialize(Enemy model)
+    [SerializeField] int hp;
+    [SerializeField] int attack;
+
+    private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
-        this.model = model;
+        
+        model = new Enemy(hp,attack);
         agent.destination = this.model.GetTargetPosition();
     }
+
+    private void Start()
+    {
+        
+    }
+
 
     public void StartAttack()
     {
