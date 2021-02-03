@@ -8,6 +8,7 @@ public class Enemy
     private int attack = 1;
     private int hp = 10;
     private Base target;
+    private int range = 1;
 
     public Enemy()
     {
