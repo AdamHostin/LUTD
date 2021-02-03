@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartInWave: 1
-  frequency: 1
+  frequency: 3
   prefabs:
   - {fileID: 185837405227817069, guid: 52e5b058a18b7a343801b54d65f27076, type: 3}
   - {fileID: 2161341512742411191, guid: a1e2ec3374456fd42a8642023514faac, type: 3}
