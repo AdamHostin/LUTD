@@ -6,14 +6,14 @@ public class PauseMenuScreen : ScreenBase
 {
     public override void Show()
     {
-        App.screenManager.SetGameState(ScreenManager.GameState.paused);
+        App.screenManager.SetGameState(GameState.paused);
         Time.timeScale = 0;
         base.Show();
     }
 
     public override void Hide()
     {
-        App.screenManager.SetGameState(ScreenManager.GameState.running);
+        App.screenManager.SetGameState(GameState.running);
         Time.timeScale = 1;
         base.Hide();
     }

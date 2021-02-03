@@ -6,13 +6,13 @@ public class MenuScreen : ScreenBase
 {
     public override void Show()
     {
-        App.screenManager.SetGameState(ScreenManager.GameState.menu);
+        App.screenManager.SetGameState(GameState.menu);
         base.Show();
     }
 
     public override void Hide()
     {
-        App.screenManager.SetGameState(ScreenManager.GameState.running);
+        App.screenManager.SetGameState(GameState.running);
         base.Hide();
     }
 

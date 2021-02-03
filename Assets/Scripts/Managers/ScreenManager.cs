@@ -43,8 +43,6 @@ public class ScreenManager : MonoBehaviour
         }
     }
 
-    public enum GameState { menu, running, paused }
-
     public void SetGameState(GameState gameState)
     {
         this.gameState = gameState;
