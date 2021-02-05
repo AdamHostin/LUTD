@@ -10,7 +10,7 @@ public class BaseBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        model = new Base(hp,transform.position);
+        model = new Base(hp,transform.position,this);
         App.levelManager.SetPlayerBase(model);
     }
 
@@ -20,5 +20,11 @@ public class BaseBehaviour : MonoBehaviour
         {
             other.gameObject.GetComponent<EnemyBehaviour>().StartAttack();
         }
+    }
+
+    public void DestroyBase()
+    {
+        //TODO: play SFX
+        Destroy(gameObject);
     }
 }

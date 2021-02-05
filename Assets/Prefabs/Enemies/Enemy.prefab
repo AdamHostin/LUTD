@@ -131,7 +131,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 15
-  attack: 10
+  attack: 0
+  attackFrequency: 0.5
+  attackRange: 5
 --- !u!54 &9040236619484005066
 Rigidbody:
   m_ObjectHideFlags: 0

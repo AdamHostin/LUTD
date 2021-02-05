@@ -43,9 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2739e85efc8ad7246812835c649ff6c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartInWave: 1
+  startInWave: 1
+  activeWaveCount: 1
+  difficultyScaler: 1
   frequency: 3
+  preWavePrefab: {fileID: 0}
+  preWaveCount: 0
   prefabs:
   - {fileID: 185837405227817069, guid: 52e5b058a18b7a343801b54d65f27076, type: 3}
   - {fileID: 2161341512742411191, guid: a1e2ec3374456fd42a8642023514faac, type: 3}
   enemyCount: 1900000005000000
+  postWavePrefab: {fileID: 3486530619332230324, guid: 72245b8284efc70439ee037a7f5d7915,
+    type: 3}
+  postWaveCount: 1

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
+//TODO: change enemies so they can attack units and other destructible objects
+//TODO: add enemy types soo they can destruct some objects(windovs) in the map
 public class EnemyBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
 
     private NavMeshAgent agent;
     private Enemy model;
@@ -13,24 +15,37 @@ public class EnemyBehaviour : MonoBehaviour
 
     [SerializeField] int hp;
     [SerializeField] int attack;
+    [SerializeField] float attackFrequency;
+    [SerializeField] float attackRange;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        rb = GetComponent<Rigidbody>();
-        
+        rb = GetComponent<Rigidbody>();        
         model = new Enemy(hp,attack);
         agent.destination = this.model.GetTargetPosition();
-    }
-
-    private void Start()
-    {
-        
     }
 
 
     public void StartAttack()
     {
-        agent.isStopped = true;
+        StartCoroutine(AproachingTarget());
+    }
+
+    IEnumerator AproachingTarget()
+    {
+        while (Vector3.Distance(model.GetTargetPosition(), transform.position) > attackRange) yield return null;
+        model.state = EnemyState.attacking;
+        StartCoroutine(Attacking());
+    }
+
+    IEnumerator Attacking()
+    {
+        while (model.state == EnemyState.attacking)
+        {
+            yield return new WaitForSeconds(attackFrequency);
+            model.AttackBase();
+        }
+        agent.isStopped = false;
     }
 }

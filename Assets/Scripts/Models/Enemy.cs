@@ -8,17 +8,28 @@ public class Enemy
     private int attack;
     private int hp;
     private Base target;
+    public EnemyState state;
 
     public Enemy(int hp, int attack)
     {
         this.hp = hp;
         this.attack = attack;
         target = App.levelManager.GetPlayerBase();
+        state = EnemyState.moving;
     }
 
-    private void AttackBase()
+    public void AttackBase()
     {
-        target?.ResolveAttack(attack);
+        if (target == null)
+        {
+            state = EnemyState.moving;
+            return;
+        }
+        if (target?.ResolveAttack(attack) == false)
+        {
+            target = null;
+        }
+
     }
 
     public Vector3 GetTargetPosition()

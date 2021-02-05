@@ -12,8 +12,8 @@ public class LevelManager : MonoBehaviour
     public List<SpawnPointBehaviour> SpawnPoints = new List<SpawnPointBehaviour>();
     public float timeBetweenWaves = 10f;
 
-    public class WaveEvent : UnityEvent<int>{}
-    public WaveEvent waveEvent = new WaveEvent();
+    public class StartWaveEvent : UnityEvent<int>{}
+    public StartWaveEvent startWaveEvent = new StartWaveEvent();
 
     private void Awake()
     {
@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour
     IEnumerator StartWave()
     {
         yield return new WaitForSeconds(timeBetweenWaves);
-        waveEvent.Invoke(currentWave);
+        startWaveEvent.Invoke(currentWave);
     }
 
 
