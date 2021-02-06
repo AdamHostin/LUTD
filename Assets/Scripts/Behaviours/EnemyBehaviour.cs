@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 //TODO: change enemies so they can attack units and other destructible objects
 //TODO: add enemy types soo they can destruct some objects(windovs) in the map
+//TODO: enemies should be able to die
 public class EnemyBehaviour : MonoBehaviour
 {
 

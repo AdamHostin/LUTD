@@ -8,12 +8,15 @@ public class LevelManager : MonoBehaviour
 {
     private Base playerBase;    
     private int currentWave = 1;
+    private int countOfEnemiesInCurrentWawe = 0;
 
-    public List<SpawnPointBehaviour> SpawnPoints = new List<SpawnPointBehaviour>();
-    public float timeBetweenWaves = 10f;
+    [SerializeField] private float timeBetweenWaves = 10f;
+    [SerializeField] private int waveCount = 1;
 
-    public class StartWaveEvent : UnityEvent<int>{}
-    public StartWaveEvent startWaveEvent = new StartWaveEvent();
+    public class PrepareWaveStartEvent : UnityEvent<int>{}
+    public PrepareWaveStartEvent prepareWaveStartEvent = new PrepareWaveStartEvent();
+
+    public UnityEvent startWaveEvent = new UnityEvent();
 
     private void Awake()
     {
@@ -31,8 +34,12 @@ public class LevelManager : MonoBehaviour
     }
     IEnumerator StartWave()
     {
+        prepareWaveStartEvent.Invoke(currentWave);
+        //TODO: ask Matej how to call back listeners
+
         yield return new WaitForSeconds(timeBetweenWaves);
-        startWaveEvent.Invoke(currentWave);
+
+        startWaveEvent.Invoke();
     }
 
 
@@ -46,6 +53,25 @@ public class LevelManager : MonoBehaviour
         this.playerBase = playerBase;
     }
 
+    public void AddEnemies(int enemyCount)
+    {
+        countOfEnemiesInCurrentWawe += enemyCount; 
+    }
 
+    public void EnemyDied()
+    {
+        countOfEnemiesInCurrentWawe--;
+        if (countOfEnemiesInCurrentWawe > 0) return;
+        EndWave();
+    }
+
+    void EndWave()
+    {
+        //Heandle end of wave
+        currentWave++;
+        if (currentWave > waveCount) Debug.Log("Level end Success");
+        else StartCoroutine(StartWave());
+    }
+    
 
 }

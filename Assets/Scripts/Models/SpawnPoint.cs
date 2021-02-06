@@ -5,6 +5,10 @@ namespace Models
 {
     public class SpawnPoint
     {
+        public int startWave;
+        public int countOfWaves;
+
+        public int currentTotalCountOfEnemies;
         public float frequency;
         public Vector3 pos;
         public SpawnPointState state;
@@ -15,10 +19,10 @@ namespace Models
         private int preWaveEnemyCount;
         private int postWaveEnemyCount;
 
-        public int currentTotalCountOfEnemies;
+       
         private List<int> currentEnemyCount;
 
-        public SpawnPoint(float frequency, Vector3 pos, List<int> enemyCount, int preWaveEnemyCount, int postWaveEnemyCount)
+        public SpawnPoint(float frequency, Vector3 pos, List<int> enemyCount, int preWaveEnemyCount, int postWaveEnemyCount, int startWave, int countOfWaves)
         {
             this.frequency = frequency;
             this.pos = pos;
@@ -27,6 +31,9 @@ namespace Models
 
             this.preWaveEnemyCount = preWaveEnemyCount;
             this.postWaveEnemyCount = postWaveEnemyCount;
+
+            this.startWave = startWave;
+            this.countOfWaves = countOfWaves;
         }
 
         public void ChangeState(SpawnPointState newState)
@@ -49,6 +56,17 @@ namespace Models
             }
         }
 
+        public int GetCountOfEnemiesToSpawnInWawe()
+        {
+            return totalCountOfEnemies + preWaveEnemyCount + postWaveEnemyCount;
+        }
+
+        public bool IsActiveInThisWawe(int wave)
+        {
+            if ((wave >= startWave) && (wave < startWave + countOfWaves)) return true;
+            else return false;
+        }
+
         public bool isOutOfEnemies()
         {
             if (currentTotalCountOfEnemies <= 0) return true;
@@ -61,14 +79,9 @@ namespace Models
             preWaveEnemyCount = (int)(preWaveEnemyCount * scaler);
             postWaveEnemyCount = (int)(postWaveEnemyCount * scaler);
         }
-
-        
-
-
+       
         public int GetEnemyIndex()
         {
-            if (currentTotalCountOfEnemies <= 0) return -1;
-
             float x = Random.Range(0.0f, 1.0f);
             float y = 0f;
             for (int i = 0; i < enemyCount.Count; i++)
@@ -82,9 +95,9 @@ namespace Models
                     return i;
                 }
             }
-            Debug.Log("be carefull with recursion dummy");
-            if (currentTotalCountOfEnemies != 0) return GetEnemyIndex();
-            else return -1;
+
+            //just in case
+            return 0;
         }
     }
 }

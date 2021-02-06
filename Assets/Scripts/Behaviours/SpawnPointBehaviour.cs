@@ -11,6 +11,7 @@ public class SpawnPointBehaviour : MonoBehaviour
     
     [SerializeField] private int startInWave;
     [SerializeField] private int activeWaveCount;
+    //TODO: resolve if scaler should be property of level manager
     [SerializeField] private float difficultyScaler;
     [SerializeField] private float frequency;
 
@@ -32,14 +33,13 @@ public class SpawnPointBehaviour : MonoBehaviour
     private void Awake()
     {
         if (enemyCount.Count > prefabs.Count) Debug.LogError("Missing prefabs on SpawnPoint");
-        App.levelManager.startWaveEvent.AddListener(Initialize);
-        this.model = new SpawnPoint(frequency, transform.position,enemyCount,preWaveCount, postWaveCount);
+        App.levelManager.prepareWaveStartEvent.AddListener(PrepareWave);
+        this.model = new SpawnPoint(frequency, transform.position,enemyCount,preWaveCount, postWaveCount,startInWave, activeWaveCount);
     }
 
     private void SpawnEnemy()
     {
 
-        Debug.Log("Curent state " + model.state.ToString() + "enemies to spawn left " + model.currentTotalCountOfEnemies);
         switch (model.state)
         {
             case SpawnPointState.prewave:
@@ -80,12 +80,28 @@ public class SpawnPointBehaviour : MonoBehaviour
 
     }
 
-    public void Initialize(int wave)
+    public void PrepareWave(int wave)
     {
-        if (wave < startInWave) return;
+        if (wave == model.startWave) App.levelManager.startWaveEvent.AddListener(StartSpawning);
+        if (model.IsActiveInThisWawe(wave))
+        {
+            //TODO: if scaler stays property of spawnpoint move it to model
+            if (wave != model.startWave) model.ScaleEnemyCount(difficultyScaler);
+            App.levelManager.AddEnemies(model.GetCountOfEnemiesToSpawnInWawe());
+        }
+        if(wave >= (model.startWave + model.countOfWaves))
+        {
+            App.levelManager.startWaveEvent.RemoveListener(StartSpawning);
+            App.levelManager.prepareWaveStartEvent.RemoveListener(PrepareWave);
+        }
 
+             
         model.ChangeState(SpawnPointState.prewave);
-        
+
+    }
+
+    public void StartSpawning()
+    {    
         InvokeRepeating("SpawnEnemy", 0, model.frequency);
     }
 
