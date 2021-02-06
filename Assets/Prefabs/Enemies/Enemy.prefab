@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 15
-  attack: 0
+  attack: 20
   attackFrequency: 0.5
   attackRange: 5
 --- !u!54 &9040236619484005066

@@ -65,13 +65,18 @@ public class LevelManager : MonoBehaviour
         EndWave();
     }
 
-    void EndWave()
+    private void EndWave()
     {
         //Heandle end of wave
         currentWave++;
-        if (currentWave > waveCount) Debug.Log("Level end Success");
+        if (currentWave > waveCount) EndLevel(true);
         else StartCoroutine(StartWave());
     }
     
+    public void EndLevel(bool res)
+    {
+        if (res) Debug.Log("Level end Success");
+        else Debug.Log("Level end failure");
+    }
 
 }

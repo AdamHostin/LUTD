@@ -23,7 +23,7 @@ namespace Models
             if ( hp <= 0 )
             {
                 if (behaviour != null) behaviour.DestroyBase();
-                App.levelManager.SetPlayerBase(null);
+                App.levelManager.EndLevel(false);
                 return false;
             }
 
