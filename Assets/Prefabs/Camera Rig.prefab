@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ebf4353edcbe07459758b2d59e87491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxClampPos: {x: 25, y: 100, z: 25}
-  minClampPos: {x: -25, y: 0, z: -25}
+  maxClampPos: {x: 100, y: 100, z: 100}
+  minClampPos: {x: -100, y: 0, z: -100}
   minClampZoom: {x: 0, y: 30, z: -30}
   maxClampZoom: {x: 0, y: 100, z: 100}
   cameraTransform: {fileID: 3205433769915155720}
