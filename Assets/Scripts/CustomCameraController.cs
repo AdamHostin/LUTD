@@ -94,7 +94,10 @@ public class CustomCameraController : MonoBehaviour
         //zoom
         if (Input.mouseScrollDelta.y != 0)
         {
-            if (Camera.main.orthographic) Camera.main.orthographicSize -= ortograficZoom * Input.mouseScrollDelta.y;
+            if (Camera.main.orthographic) Camera.main.orthographicSize = Mathf.Clamp(
+                    Camera.main.orthographicSize - ortograficZoom * Input.mouseScrollDelta.y,
+                    minOrtograficSize,
+                    maxOrtograficSize);
             else newZoom += zoomAmount * Input.mouseScrollDelta.y;
         }
         //rotacia
@@ -138,7 +141,10 @@ public class CustomCameraController : MonoBehaviour
         {
             if (Camera.main.orthographic)
             {
-                if (Input.GetAxisRaw("Camera Zoom") > 0) Camera.main.orthographicSize += ortograficZoom;
+                if (Input.GetAxisRaw("Camera Zoom") > 0) Camera.main.orthographicSize = Mathf.Clamp(
+                        Camera.main.orthographicSize + ortograficZoom,
+                        minOrtograficSize,
+                        maxOrtograficSize);
                 else Camera.main.orthographicSize -= ortograficZoom;
             }
             else
