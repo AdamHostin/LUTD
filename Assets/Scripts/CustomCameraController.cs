@@ -124,7 +124,7 @@ public class CustomCameraController : MonoBehaviour
 
         if (Input.GetAxisRaw("Camera Rotation") != 0 )
         {
-            newRotation *= Quaternion.Euler(Vector3.up * Input.GetAxisRaw("Camera Rotation") * rotationAmount);            
+            newRotation *= Quaternion.Euler(-Vector3.up * Input.GetAxisRaw("Camera Rotation") * rotationAmount);            
         }
 
         if (Input.GetAxisRaw("Camera Zoom") != 0)
