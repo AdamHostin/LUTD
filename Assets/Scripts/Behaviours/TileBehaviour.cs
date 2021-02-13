@@ -7,10 +7,17 @@ public class TileBehaviour : MonoBehaviour
     Tile model;
     [SerializeField]
     private float verticalSpawnOffset = 0.5f;
+    private bool isOccupied = false;
 
     private void Awake()
     {
         model = new Tile(transform.position, this);
+    }
+
+    public void OnMouseDown()
+    {
+        if (App.player.canPlace && !isOccupied)
+            App.player.PlaceUnit(GetSpawnPosition());
     }
 
     public Vector3 GetSpawnPosition()

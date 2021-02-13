@@ -5,10 +5,27 @@ using UnityEngine;
 public class UnitCard : MonoBehaviour
 {
     [SerializeField]
-    GameObject unitPrefab;
+    GameObject unitPrefab = null;
+    [SerializeField]
+    int cost = 0;
 
-    public GameObject GetUnitPrefab()
+    public void SetUnitPrefab()
     {
-        return unitPrefab;
+        if (unitPrefab)
+        {
+            App.player.SetUnitPrefab(unitPrefab, cost);
+        }
+        else
+            Debug.LogError("UnitCard: unit prefab not set");
+    }
+
+    public void Highlight()
+    {
+        //highlight the card
+    }
+
+    public void Dehighlight()
+    {
+        //opposite
     }
 }
