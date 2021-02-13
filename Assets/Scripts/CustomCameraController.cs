@@ -19,6 +19,8 @@ public class CustomCameraController : MonoBehaviour
     public Vector3 minClampZoom;
     public Vector3 maxClampZoom;
 
+    public float minOrtograficSize = 0;
+    public float maxOrtograficSize = 30;
 
 
     [SerializeField] Transform cameraTransform;
@@ -28,6 +30,7 @@ public class CustomCameraController : MonoBehaviour
     [SerializeField] float fastSpeed;
     [SerializeField] float rotationAmount;
     [SerializeField] Vector3 zoomAmount;
+    [SerializeField] float ortograficZoom = 1f;
     [SerializeField] float mouseRotationConst = 5f;
     float movementSpeed;
 
@@ -57,7 +60,8 @@ public class CustomCameraController : MonoBehaviour
 
         transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * movementTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
-        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
+        if (!Camera.main.orthographic)
+            cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
     }
 
     private void HandleMouseMovement()
@@ -88,8 +92,14 @@ public class CustomCameraController : MonoBehaviour
         }
 
         //zoom
-        if (Input.mouseScrollDelta.y != 0) newZoom += zoomAmount * Input.mouseScrollDelta.y;
-
+        if (Input.mouseScrollDelta.y != 0)
+        {
+            if (Camera.main.orthographic) Camera.main.orthographicSize = Mathf.Clamp(
+                    Camera.main.orthographicSize - ortograficZoom * Input.mouseScrollDelta.y,
+                    minOrtograficSize,
+                    maxOrtograficSize);
+            else newZoom += zoomAmount * Input.mouseScrollDelta.y;
+        }
         //rotacia
         if (Input.GetMouseButtonDown(2))
         {
@@ -124,14 +134,24 @@ public class CustomCameraController : MonoBehaviour
 
         if (Input.GetAxisRaw("Camera Rotation") != 0 )
         {
-            newRotation *= Quaternion.Euler(Vector3.up * Input.GetAxisRaw("Camera Rotation") * rotationAmount);            
+            newRotation *= Quaternion.Euler(-Vector3.up * Input.GetAxisRaw("Camera Rotation") * rotationAmount);            
         }
 
         if (Input.GetAxisRaw("Camera Zoom") != 0)
         {
-            if (Input.GetAxisRaw("Camera Zoom") > 0) newZoom += zoomAmount;
-            else newZoom -= zoomAmount;
-            
+            if (Camera.main.orthographic)
+            {
+                if (Input.GetAxisRaw("Camera Zoom") > 0) Camera.main.orthographicSize = Mathf.Clamp(
+                        Camera.main.orthographicSize + ortograficZoom,
+                        minOrtograficSize,
+                        maxOrtograficSize);
+                else Camera.main.orthographicSize -= ortograficZoom;
+            }
+            else
+            {
+                if (Input.GetAxisRaw("Camera Zoom") > 0) newZoom += zoomAmount;
+                else newZoom -= zoomAmount;
+            }
         }
 
     }

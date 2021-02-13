@@ -48,12 +48,15 @@ MonoBehaviour:
   minClampPos: {x: -100, y: 0, z: -100}
   minClampZoom: {x: 0, y: 30, z: -30}
   maxClampZoom: {x: 0, y: 100, z: 100}
+  minOrtograficSize: 0
+  maxOrtograficSize: 30
   cameraTransform: {fileID: 3205433769915155720}
   movementTime: 5
   normalSpeed: 0.5
   fastSpeed: 3
   rotationAmount: 1
   zoomAmount: {x: 0, y: -10, z: 10}
+  ortograficZoom: 1
   mouseRotationConst: 5
 --- !u!1 &3205433769915155733
 GameObject:
@@ -113,7 +116,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: 0
   m_CullingMask:
