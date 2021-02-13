@@ -17,7 +17,24 @@ public class TileBehaviour : MonoBehaviour
     public void OnMouseDown()
     {
         if (App.player.canPlace && !isOccupied)
+        {
             App.player.PlaceUnit(GetSpawnPosition());
+            isOccupied = true;
+            //Add dehighlight
+        } 
+    }
+
+    public void OnMouseEnter()
+    {
+        if (App.player.canPlace && !isOccupied)
+        {
+            //Add highlight
+        }
+    }
+
+    public void OnMouseExit()
+    {
+        //Add dehighlight
     }
 
     public Vector3 GetSpawnPosition()
