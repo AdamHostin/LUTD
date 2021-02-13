@@ -83,6 +83,7 @@ public class UnitModel
         {
             //TODO: something
             unitLvl++;
+            Debug.Log("Current lvl " + unitLvl);
         }
         
     }

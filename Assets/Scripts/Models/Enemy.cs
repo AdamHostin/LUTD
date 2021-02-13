@@ -51,6 +51,7 @@ public class Enemy
 
     public int GetDamage(int damage)
     {
+        if (behaviour == null) return 0;
         hp -= damage;
         if (hp > 0) return 0;
         Debug.Log("Enemy death");

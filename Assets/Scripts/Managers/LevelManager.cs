@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour
     {
         prepareWaveStartEvent.Invoke(currentWave);
         //TODO: ask Matej how to call back listeners
-
+        Debug.Log(countOfEnemiesInCurrentWawe);
         yield return new WaitForSeconds(timeBetweenWaves);
 
         startWaveEvent.Invoke();

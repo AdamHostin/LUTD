@@ -51,7 +51,6 @@ public class UnitBehaviour : MonoBehaviour
         while (model.state == UnitState.shooting)
         {
             model.shoot();
-            Debug.Log("shooting");
             yield return new WaitForSeconds(timeBetweenHits);
         }
     }

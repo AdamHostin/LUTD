@@ -16,11 +16,10 @@ public class GameManager : MonoBehaviour
         AsyncOperation loading = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         while (!loading.isDone)
         {
-            Debug.Log(loading.progress * 100 + "%");
+            //Debug.Log(loading.progress * 100 + "%");
             yield return null;
         }
 
-        Debug.Log("Scene " + sceneName + " loaded");
     }
 
     IEnumerator UnloadSelectedScene(string sceneName)
@@ -32,7 +31,6 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("Scene " + sceneName + " unloaded");
     }
 
     public void StartSceneLoading(string sceneName)

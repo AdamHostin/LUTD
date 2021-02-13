@@ -60,6 +60,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         //TODO: do some magic
         //TODO: resolve with animation
+        agent.isStopped = true;
         yield return new WaitForSeconds(0.5f);
         model.behaviour = null;
         Destroy(gameObject);
