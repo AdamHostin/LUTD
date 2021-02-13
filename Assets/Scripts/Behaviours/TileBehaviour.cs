@@ -11,14 +11,14 @@ public class TileBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        model = new Tile(transform.position, this);
+        model = new Tile(GetComponentInChildren<Transform>().position + new Vector3(0, verticalSpawnOffset, 0), this);
     }
 
     public void OnMouseDown()
     {
         if (App.player.canPlace && !isOccupied)
         {
-            App.player.PlaceUnit(GetSpawnPosition());
+            App.player.PlaceUnit(model.GetSpawnPosition());
             isOccupied = true;
             //Add dehighlight
         } 
@@ -35,11 +35,5 @@ public class TileBehaviour : MonoBehaviour
     public void OnMouseExit()
     {
         //Add dehighlight
-    }
-
-    public Vector3 GetSpawnPosition()
-    {
-        //Second part will be deleted when model has pivot up in the center
-        return GetComponentInChildren<Transform>().position + new Vector3(0, verticalSpawnOffset, 0);
     }
 }

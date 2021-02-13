@@ -5,11 +5,16 @@ using UnityEngine;
 public class Tile
 {
     private TileBehaviour behaviour;
-    private Vector3 position;
+    private Vector3 spawnPosition;
 
     public Tile(Vector3 position, TileBehaviour behaviour)
     {
-        this.position = position;
+        this.spawnPosition = position;
         this.behaviour = behaviour;
+    }
+
+    public Vector3 GetSpawnPosition()
+    {
+        return spawnPosition;
     }
 }
