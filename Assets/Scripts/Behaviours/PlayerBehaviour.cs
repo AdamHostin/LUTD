@@ -32,6 +32,6 @@ public class PlayerBehaviour : Player
         Instantiate(pickedUnitPrefab, position, Quaternion.identity);
         coins -= tempCost;
         canPlace = false;
-        App.unitCardManager.DehighlightAll();
+        App.unitCardManager.SwitchToCard(null);
     }
 }

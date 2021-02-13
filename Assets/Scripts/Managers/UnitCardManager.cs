@@ -4,19 +4,28 @@ using UnityEngine;
 
 public class UnitCardManager : MonoBehaviour
 {
-    private UnitCard[] unitCards;
+    UnitCard activeCard = null;
 
-    private void Start()
+    private void Awake()
     {
         App.unitCardManager = this;
-        unitCards = GetComponentsInChildren<UnitCard>(true);
     }
 
-    public void DehighlightAll()
+    public void SwitchToCard(UnitCard newCard)
     {
-        foreach (UnitCard card in unitCards)
+        activeCard?.Dehighlight();
+        
+        if (newCard != null)
         {
-            card.Dehighlight();
+            newCard.Highlight();
+            activeCard = newCard;
         }
+        else
+            activeCard = null;
+    }
+
+    public UnitCard GetActiveCard()
+    {
+        return activeCard;
     }
 }
