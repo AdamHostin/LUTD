@@ -11,7 +11,7 @@ public class UnitCard : MonoBehaviour
 
     public void OnClicked()
     {
-        if (App.unitCardManager.GetActiveCard() == this)
+        if (!App.unitCardManager.GetActiveCard() == this)
         {
             App.unitCardManager.SwitchToCard(this);
             SetUnitPrefab();
