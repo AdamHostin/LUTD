@@ -16,6 +16,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     [SerializeField] int hp;
     [SerializeField] int attack;
+    [SerializeField] int xp;
     [SerializeField] float attackFrequency;
     [SerializeField] float attackRange;
 
@@ -23,7 +24,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();        
-        model = new Enemy(hp,attack);
+        model = new Enemy(hp,attack,xp,this);
         agent.destination = this.model.GetTargetPosition();
     }
 
@@ -48,5 +49,24 @@ public class EnemyBehaviour : MonoBehaviour
             model.AttackBase();
         }
         agent.isStopped = false;
+    }
+
+    public void StartDying()
+    {
+        StartCoroutine(Die());
+    }
+
+    IEnumerator Die()
+    {
+        //TODO: do some magic
+        //TODO: resolve with animation
+        yield return new WaitForSeconds(0.5f);
+        model.behaviour = null;
+        Destroy(gameObject);
+    }
+
+    public Enemy GetModel()
+    {
+        return model;
     }
 }
