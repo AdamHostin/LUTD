@@ -8,4 +8,5 @@ public class App
     public static GameManager gameManager;
     public static LevelManager levelManager;
     public static PlayerBehaviour player;
+    public static UnitCardManager unitCardManager;
 }

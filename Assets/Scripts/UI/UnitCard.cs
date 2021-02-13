@@ -8,6 +8,24 @@ public class UnitCard : MonoBehaviour
     GameObject unitPrefab = null;
     [SerializeField]
     int cost = 0;
+    bool isOn = false;
+
+    public void OnClicked()
+    {
+        if (!isOn)
+        {
+            App.unitCardManager.DehighlightAll();
+            Highlight();
+            SetUnitPrefab();
+            isOn = true;
+        }
+        else
+        {
+            Dehighlight();
+            App.player.canPlace = false;
+            isOn = false;
+        }
+    }
 
     public void SetUnitPrefab()
     {
@@ -21,11 +39,11 @@ public class UnitCard : MonoBehaviour
 
     public void Highlight()
     {
-        //highlight the card
+        //Add highlight the card
     }
 
     public void Dehighlight()
     {
-        //opposite
+        //Add dehighlight the card
     }
 }
