@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CameraIgnoreLayers : MonoBehaviour
 {
-    void Start()
+    public string[] layers;
+    void Awake()
     {
-        Camera camera = GetComponent<Camera>();
-        camera.eventMask = LayerMask.GetMask("Default", "UI", "CInteractable");
+        Camera.main.eventMask = LayerMask.GetMask(layers);
     }
 }
