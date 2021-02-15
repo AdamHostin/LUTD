@@ -14,7 +14,7 @@ public class UnitBehaviour : MonoBehaviour
 
     float timeBetweenHits = 0.5f;
 
-    //TODO: add unit to activeUnitListInLvlManager?
+    //TODO: add unit to activeUnitList in LevelManager?
     private void Awake()
     {
         model = new UnitModel(hp, attack, range, transform.position ,xpToNxtLvl, this);
@@ -28,11 +28,11 @@ public class UnitBehaviour : MonoBehaviour
     public void StartShooting()
     {
         if (model.state == UnitState.shooting) return;
-        StartCoroutine(Shoottng());
+        StartCoroutine(Shooting());
     }
 
     //This will change once we'll have some animations 
-    IEnumerator Shoottng()
+    IEnumerator Shooting()
     {
         model.state = UnitState.shooting;
         while (model.state == UnitState.shooting)
