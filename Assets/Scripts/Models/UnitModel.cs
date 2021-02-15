@@ -75,16 +75,17 @@ public class UnitModel
                if(hit.transform.tag == "Enemy") return e;
             }
         }
-        state = UnitState.idle;
         return null;
     }
-
-    public void shoot()
+    // returns true if enemy was hit 
+    public bool shoot()
     {
         Enemy target = GetTarget();
-        if (target == null) return;
+        if (target == null) return false;
 
         Addxp(target.GetDamage(attack));
+
+        return true;
     }
 
     void Addxp(int xp)

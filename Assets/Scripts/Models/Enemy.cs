@@ -51,10 +51,10 @@ public class Enemy
 
     public int GetDamage(int damage)
     {
-        if (behaviour == null) return 0;
+        if (state==EnemyState.Dying) return 0;
         hp -= damage;
         if (hp > 0) return 0;
-        Debug.Log("Enemy death");
+        state = EnemyState.Dying;
         App.levelManager.EnemyDied();
         behaviour.StartDying();
         return xp;
