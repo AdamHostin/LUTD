@@ -9,19 +9,6 @@ using UnityEngine;
 public class CustomCameraController : MonoBehaviour
 {
 
-    // nie som si uplne isty ci to chcem robit takto
-    // mozno by bolo vhodne aby sa tieto 4 atributy ziskavali z lvl managera
-    // pripadne ak by velkost levelov bola konstantna moze to zostat aj tu
-    // clamp rig position
-    public Vector3 maxClampPos;
-    public Vector3 minClampPos;
-    // clamp camera local position
-    public Vector3 minClampZoom;
-    public Vector3 maxClampZoom;
-
-    public float minOrtograficSize = 0;
-    public float maxOrtograficSize = 30;
-
 
     [SerializeField] Transform cameraTransform;
 
@@ -43,8 +30,26 @@ public class CustomCameraController : MonoBehaviour
     Vector3 rotateStartPos;
     Vector3 rotateCurrentPos;
 
-    void Start()
+
+    Vector3 maxClampPos;
+    Vector3 minClampPos;
+    Vector3 minClampZoom;
+    Vector3 maxClampZoom;
+
+    float minOrtograficSize;
+    float maxOrtograficSize;
+
+
+    void OnEnable()
     {
+
+        maxClampPos = App.CameraManager.maxClampPos;
+        minClampPos = App.CameraManager.minClampPos;
+        minClampZoom = App.CameraManager.minClampZoom;
+        maxClampZoom = App.CameraManager.maxClampZoom;
+        minOrtograficSize = App.CameraManager.minOrtograficSize;
+        maxOrtograficSize = App.CameraManager.maxOrtograficSize;
+
         newPos = transform.position;
         newRotation = transform.rotation;
         newZoom = cameraTransform.localPosition;

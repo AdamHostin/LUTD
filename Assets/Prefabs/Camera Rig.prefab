@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3205433769311885893}
   - component: {fileID: 8193735879472525323}
+  - component: {fileID: 4311566008494122115}
   m_Layer: 0
   m_Name: Camera Rig
   m_TagString: Untagged
@@ -39,17 +40,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3205433769311885892}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ebf4353edcbe07459758b2d59e87491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxClampPos: {x: 100, y: 100, z: 100}
-  minClampPos: {x: -100, y: 0, z: -100}
-  minClampZoom: {x: 0, y: 30, z: -30}
-  maxClampZoom: {x: 0, y: 100, z: 100}
-  minOrtograficSize: 0
-  maxOrtograficSize: 30
   cameraTransform: {fileID: 3205433769915155720}
   movementTime: 5
   normalSpeed: 0.5
@@ -58,6 +53,24 @@ MonoBehaviour:
   zoomAmount: {x: 0, y: -10, z: 10}
   ortograficZoom: 1
   mouseRotationConst: 5
+--- !u!114 &4311566008494122115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3205433769311885892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a21f23678eaa334db6995309ee8f717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxClampPos: {x: 0, y: 0, z: 0}
+  minClampPos: {x: 0, y: 0, z: 0}
+  maxClampZoom: {x: 0, y: 0, z: 0}
+  minClampZoom: {x: 0, y: 0, z: 0}
+  minOrtograficSize: 0
+  maxOrtograficSize: 0
 --- !u!1 &3205433769915155733
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,6 +82,7 @@ GameObject:
   - component: {fileID: 3205433769915155720}
   - component: {fileID: 3205433769915155723}
   - component: {fileID: 3205433769915155722}
+  - component: {fileID: 2089194556843022386}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -117,7 +131,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 11
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -141,3 +155,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3205433769915155733}
   m_Enabled: 0
+--- !u!114 &2089194556843022386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3205433769915155733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e1ac20fe8401047bbf0175e0a62a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layers:
+  - Default
+  - UI
+  - CInteractable
