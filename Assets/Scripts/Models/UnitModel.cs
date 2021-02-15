@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UnitModel
 {
     int hp;
     int attack;
+    float range;
+
     int unitLvl = 0;
     int unitxp = 0;
 
@@ -14,22 +17,31 @@ public class UnitModel
 
     Vector3 gunPos;
     UnitBehaviour behaviour;
+    UnitTriggerAdapter adapter;
+
+    public class RangeChangeEvent : UnityEvent<float> { }
+    public RangeChangeEvent rangeChangeEvent = new RangeChangeEvent();
 
 
     public UnitState state;
 
-    
-
-
-    public UnitModel(int hp, int attack, Vector3 gunPos ,List<int> xpToNxtLvl, UnitBehaviour behaviour)
+    public UnitModel(int hp, int attack, float range ,Vector3 gunPos ,List<int> xpToNxtLvl, UnitBehaviour behaviour)
     {
         this.hp = hp;
         this.attack = attack;
+        this.range = range;
         this.xpToNxtLvl = xpToNxtLvl;
         this.gunPos = gunPos;
         this.behaviour = behaviour;
         state = UnitState.idle;
         
+    }
+
+    public void SetAdapter(UnitTriggerAdapter adapter)
+    {
+        this.adapter = adapter;
+        rangeChangeEvent.AddListener(adapter.SetNewRange);
+        rangeChangeEvent.Invoke(range);
     }
 
     public void AddEnemy(Enemy enemy)

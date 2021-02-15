@@ -17,25 +17,12 @@ public class UnitBehaviour : MonoBehaviour
     //TODO: add unit to activeUnitListInLvlManager?
     private void Awake()
     {
-        gameObject.GetComponent<SphereCollider>().radius = range;
-        model = new UnitModel(hp, attack, transform.position ,xpToNxtLvl, this);
+        model = new UnitModel(hp, attack, range, transform.position ,xpToNxtLvl, this);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public UnitModel GetModel()
     {
-        if (other.tag == "Enemy")
-        {
-           
-            model.AddEnemy(other.gameObject.GetComponent<EnemyBehaviour>().GetModel());
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Enemy")
-        {
-            model.SubstractEnemy(other.gameObject.GetComponent<EnemyBehaviour>().GetModel());
-        }
+        return model;
     }
 
     public void StartShooting()
@@ -54,4 +41,5 @@ public class UnitBehaviour : MonoBehaviour
             yield return new WaitForSeconds(timeBetweenHits);
         }
     }
+
 }
