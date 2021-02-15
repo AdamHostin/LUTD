@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnitCard : MonoBehaviour
 {
@@ -34,11 +35,11 @@ public class UnitCard : MonoBehaviour
 
     public void Highlight()
     {
-        //Add highlight the card
+        GetComponent<Image>().material.color = new Color32(0, 255, 255, 255);
     }
 
     public void Dehighlight()
     {
-        //Add dehighlight the card
+        GetComponent<Image>().material.color = new Color32(255, 255, 255, 255);
     }
 }
