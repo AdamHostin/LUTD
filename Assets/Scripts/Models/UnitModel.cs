@@ -78,7 +78,7 @@ public class UnitModel
         return null;
     }
     // returns true if enemy was hit 
-    public bool shoot()
+    public bool Shoot()
     {
         Enemy target = GetTarget();
         if (target == null) return false;
