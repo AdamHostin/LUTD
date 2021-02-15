@@ -22,12 +22,13 @@ public class UnitCard : MonoBehaviour
         if (!App.unitCardManager.GetActiveCard() == this)
         {
             App.unitCardManager.SwitchToCard(this);
-            App.player.SetUnitPrefab(unitPrefab, cost);
+            App.player.SetUnitPrefab(unitPrefab, transparentUnitPrefab, cost);
         }
         else
         {
             App.unitCardManager.SwitchToCard(null);
             App.player.canPlace = false;
+            App.player.DeleteTransparentUnit();
         }
     }
 
