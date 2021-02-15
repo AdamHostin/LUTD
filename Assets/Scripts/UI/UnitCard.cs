@@ -7,30 +7,28 @@ public class UnitCard : MonoBehaviour
     [SerializeField]
     GameObject unitPrefab = null;
     [SerializeField]
+    GameObject transparentUnitPrefab = null;
+    [SerializeField]
     int cost = 0;
+
+    private void Start()
+    {
+        if (unitPrefab == null) Debug.LogError("UnitCard: unit prefab not set");
+        if (transparentUnitPrefab == null) Debug.LogError("UnitCard: transparent unit prefab not set");
+    }
 
     public void OnClicked()
     {
         if (!App.unitCardManager.GetActiveCard() == this)
         {
             App.unitCardManager.SwitchToCard(this);
-            SetUnitPrefab();
+            App.player.SetUnitPrefab(unitPrefab, cost);
         }
         else
         {
             App.unitCardManager.SwitchToCard(null);
             App.player.canPlace = false;
         }
-    }
-
-    public void SetUnitPrefab()
-    {
-        if (unitPrefab)
-        {
-            App.player.SetUnitPrefab(unitPrefab, cost);
-        }
-        else
-            Debug.LogError("UnitCard: unit prefab not set");
     }
 
     public void Highlight()
