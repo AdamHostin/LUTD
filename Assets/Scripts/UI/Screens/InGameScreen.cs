@@ -14,4 +14,11 @@ public class InGameScreen : ScreenBase
         base.Show();
 
     }
+
+    public override void Hide()
+    {
+        base.Hide();
+        App.CameraManager.DisableCamera();
+
+    }
 }

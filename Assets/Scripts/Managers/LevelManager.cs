@@ -6,10 +6,20 @@ using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour
 {
-    private Base playerBase;    
+    private Base playerBase;
     private int currentWave = 1;
     private int countOfEnemiesInCurrentWawe = 0;
 
+    [Header("Level boundrees setting")]
+    [SerializeField] Vector3 maxClampPos;
+    [SerializeField] Vector3 minClampPos;
+    [SerializeField] Vector3 minClampZoom;
+    [SerializeField] Vector3 maxClampZoom;
+
+    [SerializeField] float minOrtograficSize;
+    [SerializeField] float maxOrtograficSize;
+
+    [Header("Wave setting")]
     [SerializeField] private float timeBetweenWaves = 10f;
     [SerializeField] private int waveCount = 1;
 
@@ -23,6 +33,10 @@ public class LevelManager : MonoBehaviour
         App.levelManager = this;
         App.screenManager.Hide<MenuScreen>();
         App.screenManager.Show<InGameScreen>();
+        App.CameraManager.SetNewWorlBoundrees(maxClampPos,minClampPos,
+                                              maxClampZoom, minClampZoom, 
+                                              minOrtograficSize,maxOrtograficSize);
+        App.CameraManager.EnableCamera();
         
 
     }
