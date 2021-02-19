@@ -70,9 +70,10 @@ GameObject:
   - component: {fileID: 6794945933057900308}
   - component: {fileID: 4858713583628323050}
   - component: {fileID: -5225998483232972682}
+  - component: {fileID: 5744978760603780438}
   m_Layer: 9
   m_Name: BaseUnit
-  m_TagString: Untagged
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,7 +166,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d33c387bd195047b75ad6a4456f559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  hp: 5
+  toxicityResistance: 100
   attack: 25
   range: 5
   xpToNxtLvl: 
+--- !u!208 &5744978760603780438
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8223158930512319377}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.25, y: 1, z: 0.25}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

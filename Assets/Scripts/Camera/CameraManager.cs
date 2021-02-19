@@ -20,6 +20,7 @@ public class CameraManager : MonoBehaviour
                              Vector3 maxClampZoom, Vector3 minClampZoom,
                              float minOrtograficSize, float maxOrtograficSize)
     {
+        Debug.Log("Set");
         this.maxClampPos = maxClampPos;
         this.minClampPos = minClampPos;
         this.maxClampZoom = maxClampZoom;
@@ -30,6 +31,7 @@ public class CameraManager : MonoBehaviour
 
     public void EnableCamera()
     {
+        Debug.Log("enable camera");
         cameraController.enabled = true;
     }
 

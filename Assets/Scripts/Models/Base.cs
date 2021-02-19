@@ -2,7 +2,7 @@
 
 namespace Models
 {
-    public class Base
+    public class Base : IDamagable
     {
         private int hp;
         private BaseBehaviour behaviour;
@@ -14,10 +14,11 @@ namespace Models
             this.hp = hp;
             this.pos = pos;
             this.behaviour = behaviour;
-        }
+            App.levelManager.SetPlayerBase(this);
+        }     
 
         //if base was destroyed return false
-        public bool ResolveAttack(int attack)
+        public bool GetDamage(int attack, int infection = 0)
         {
             hp -= attack;
             if ( hp <= 0 )
@@ -28,6 +29,23 @@ namespace Models
             }
 
             return true;
+        }
+
+        public Vector3 GetPosition()
+        {
+            return pos;
+        }
+
+
+
+        public void UnsubscribeToDeathEvent(Enemy enemy)
+        {
+
+        }
+
+        public void SubscribeToDeathEvent(Enemy enemy)
+        {
+            
         }
     }
 }

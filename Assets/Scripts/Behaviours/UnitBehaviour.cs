@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Models;
 
-public class UnitBehaviour : MonoBehaviour
+public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
 {
-    private UnitModel model;
+    private Unit model;
     [SerializeField] int hp;
+    [SerializeField] int toxicityResistance;
     [SerializeField] int attack;
     [SerializeField] float range;
 
@@ -17,10 +19,15 @@ public class UnitBehaviour : MonoBehaviour
     //TODO: add unit to activeUnitList in LevelManager?
     private void Awake()
     {
-        model = new UnitModel(hp, attack, range, transform.position ,xpToNxtLvl, this);
+        model = new Unit(hp, toxicityResistance, attack, range, transform.position ,xpToNxtLvl, this);
     }
 
-    public UnitModel GetModel()
+    public IDamagable GetDamagableModel()
+    {
+        return model;
+    }
+
+    public Unit GetModel()
     {
         return model;
     }
@@ -40,6 +47,19 @@ public class UnitBehaviour : MonoBehaviour
             model.Shoot();
             yield return new WaitForSeconds(timeBetweenHits);
         }
+    }
+
+    public void Die()
+    {
+        //TODO: play SFX
+        Destroy(gameObject);
+    }
+
+    public void GetInfected()
+    {
+        //TODO: turn unit into a zombie
+        App.levelManager.AddEnemies();
+        Debug.Log("I am a zobie now");
     }
 
 }

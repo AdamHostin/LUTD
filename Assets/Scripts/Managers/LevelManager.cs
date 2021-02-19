@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Models;
 using UnityEngine.Events;
+using UnityEngine.AI;
 
 public class LevelManager : MonoBehaviour
 {
     private Base playerBase;
+    private List<Unit> units =  new List<Unit>();
+    private List<IDamagable> obstacles = new List<IDamagable>();
+
     private int currentWave = 1;
     private int countOfEnemiesInCurrentWawe = 0;
 
@@ -49,13 +53,32 @@ public class LevelManager : MonoBehaviour
     IEnumerator StartWave()
     {
         prepareWaveStartEvent.Invoke(currentWave);
-        //TODO: ask Matej how to call back listeners
+
         Debug.Log(countOfEnemiesInCurrentWawe);
         yield return new WaitForSeconds(timeBetweenWaves);
 
         startWaveEvent.Invoke();
     }
 
+    public void AddUnit(Unit unit)
+    {
+        units.Add(unit);
+    }
+
+    public void SubstractUnit(Unit unit)
+    {
+        units.Remove(unit);
+    }
+
+    public void AddObstacke(IDamagable obstacle)
+    {
+        obstacles.Add(obstacle);
+    }
+
+    public void SubstractObstacle(IDamagable obstacle)
+    {
+        obstacles.Remove(obstacle);
+    }
 
     public Base GetPlayerBase()
     {
@@ -67,7 +90,7 @@ public class LevelManager : MonoBehaviour
         this.playerBase = playerBase;
     }
 
-    public void AddEnemies(int enemyCount)
+    public void AddEnemies(int enemyCount=1)
     {
         countOfEnemiesInCurrentWawe += enemyCount; 
     }
