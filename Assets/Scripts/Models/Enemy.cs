@@ -42,11 +42,34 @@ namespace Models
             this.behaviour = behaviour;
             this.attackables = attackables;
 
-            //TODO: cast sphere
-            //TODO: change Target searching
             damagablesInAwarenessRange.Add(App.levelManager.GetPlayerBase());
             SetNewTarget(GetNxtTarget());
             state = EnemyState.moving;
+            App.levelManager.damagablePlacedEvent.AddListener(ResponseOnDamagablePlaced);
+            CheckDamagablesOnSpawn();
+        }
+
+        private void CheckDamagablesOnSpawn()
+        {
+            Collider[] colls = Physics.OverlapSphere(GetPosition(), awarenessRange);
+            foreach (var coll in colls)
+            {
+                foreach (var attackableTag in attackables)
+                {
+                    if (coll.transform.tag == attackableTag)
+                    {
+                        AddDamagable(coll.GetComponent<IDamagableBehaviour>().GetDamagableModel());
+                    }
+                }
+            }
+        }
+
+        public void ResponseOnDamagablePlaced(IDamagable damagable)
+        {
+            if (Vector3.Distance(damagable.GetPosition(),GetPosition()) < awarenessRange)
+            {
+                AddDamagable(damagable);
+            }
         }
 
         public void SetAttackRangeAdapter(EnemyRangeTriggerAdapter adapter)
@@ -66,7 +89,6 @@ namespace Models
         private void SetNewTarget(IDamagable damagable)
         {
             target = damagable;
-            Debug.Log(target.GetType());
             behaviour.agent.SetDestination(GetTargetPosition());
         }
 
@@ -98,27 +120,17 @@ namespace Models
 
         public bool IsBlocked()
         {
-           /*
-            NavMeshHit hit;
-            Vector3 targetPos = target.GetPosition();
-            targetPos.y = GetPosition().y;
-
-            return NavMesh.Raycast(GetPosition(), targetPos, out hit, NavMesh.AllAreas);
-            */
             RaycastHit hit;
             Vector3 targetPos = target.GetPosition();
             targetPos.y = GetPosition().y;
             Ray sight = new Ray(GetPosition(), (targetPos - GetPosition()));
             if (Physics.Raycast(sight, out hit))
             {
-                Debug.Log("i hit " + hit.transform.tag);
                 foreach (var item in attackables) if (item == hit.transform.tag) return false;
             }
             return true;
-            //*/
         }
 
-        //TODO: using switch on state change?
         public void ChangeState(EnemyState newState)
         {
             state = newState;

@@ -29,6 +29,8 @@ public class LevelManager : MonoBehaviour
 
     public class PrepareWaveStartEvent : UnityEvent<int>{}
     public PrepareWaveStartEvent prepareWaveStartEvent = new PrepareWaveStartEvent();
+    public class DamagablePlacedEvent : UnityEvent<IDamagable> { }
+    public DamagablePlacedEvent damagablePlacedEvent = new DamagablePlacedEvent();
 
     public UnityEvent startWaveEvent = new UnityEvent();
 
@@ -54,7 +56,6 @@ public class LevelManager : MonoBehaviour
     {
         prepareWaveStartEvent.Invoke(currentWave);
 
-        Debug.Log(countOfEnemiesInCurrentWawe);
         yield return new WaitForSeconds(timeBetweenWaves);
 
         startWaveEvent.Invoke();

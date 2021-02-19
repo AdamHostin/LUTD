@@ -111,7 +111,7 @@ namespace Models
         {
             hp -= attack;
             toxicityResistance -= infection;
-            Debug.Log("Unit infection: " + toxicityResistance + " Unit hp: " + hp);
+            //Debug.Log("Unit infection: " + toxicityResistance + " Unit hp: " + hp);
             if (hp <= 0)
             {
                 if (behaviour != null) behaviour.Die();
