@@ -45,6 +45,7 @@ public class PlayerBehaviour : Player
 
     public void DeleteTransparentUnit()
     {
-        transparentUnitTransform.position = new Vector3(1000, 1000, 1000);
+        if (transparentUnitTransform)
+            transparentUnitTransform.position = new Vector3(1000, 1000, 1000);
     }
 }
