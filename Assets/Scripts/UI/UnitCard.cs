@@ -39,11 +39,11 @@ public class UnitCard : MonoBehaviour
 
     public void Highlight()
     {
-        GetComponent<Image>().material.color = new Color32(0, 255, 255, 255);
+        GetComponent<Image>().color = new Color32(0, 255, 255, 255);
     }
 
     public void Dehighlight()
     {
-        GetComponent<Image>().material.color = new Color32(255, 255, 255, 255);
+        GetComponent<Image>().color = new Color32(255, 255, 255, 255);
     }
 }
