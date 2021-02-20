@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 306, y: 172}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2653071111790323041
 CanvasRenderer:
@@ -145,6 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 8223158930512319377, guid: 64a4ebca7bfab974ab1637883b36e31c,
     type: 3}
+  transparentUnitPrefab: {fileID: 0}
   cost: 0
 --- !u!1 &4976097879414469744
 GameObject:
