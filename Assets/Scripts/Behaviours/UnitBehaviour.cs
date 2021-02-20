@@ -10,11 +10,17 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     [SerializeField] int toxicityResistance;
     [SerializeField] int attack;
     [SerializeField] float range;
+    [SerializeField] float timeBetweenHits = 0.5f;
 
     [SerializeField] List<int> xpToNxtLvl;
 
+    public BarController hpBar;
+    public BarController toxicityBar;
+    public BarController xpBar;
 
-    float timeBetweenHits = 0.5f;
+
+
+
 
     //TODO: add unit to activeUnitList in LevelManager?
     private void Awake()

@@ -154,6 +154,7 @@ namespace Models
 
         public void Attack()
         {
+            Debug.Log("Enemy attack is " + attack);
             if (target?.GetDamage(attack, toxicity) == false)
             {
                 target = null;

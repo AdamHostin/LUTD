@@ -136,9 +136,9 @@ MonoBehaviour:
   agent: {fileID: 0}
   hp: 200
   attack: 20
-  toxicity: 0
-  xp: 0
-  attackFrequency: 0.5
+  toxicity: 15
+  xp: 25
+  attackFrequency: 1.5
   attackRange: 1
   awarenessRange: 4
   attackableTags:
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8936f834d54a0be4a848f6d3c88dd063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seconds: 0.5
+  seconds: 1
 --- !u!1 &1967845568327895229
 GameObject:
   m_ObjectHideFlags: 0

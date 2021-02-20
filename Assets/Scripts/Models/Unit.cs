@@ -8,7 +8,9 @@ namespace Models
     public class Unit : IDamagable
     {
         int hp;
+        int maxHp;
         int toxicityResistance;
+        int maxToxicityResistance;
         int attack;
         float range;
 
@@ -32,14 +34,18 @@ namespace Models
 
         public Unit(int hp, int toxicityResistance, int attack, float range, Vector3 gunPos, List<int> xpToNxtLvl, UnitBehaviour behaviour)
         {
-            this.hp = hp;
-            this.toxicityResistance = toxicityResistance;
+            this.hp = maxHp = hp;
+            this.toxicityResistance = maxToxicityResistance = toxicityResistance;
             this.attack = attack;
             this.range = range;
             this.xpToNxtLvl = xpToNxtLvl;
             this.gunPos = gunPos;
             this.behaviour = behaviour;
             state = UnitState.idle;
+
+            behaviour.hpBar.OnUIUpdate(1f, maxHp, maxHp);
+            behaviour.toxicityBar.OnUIUpdate(0f, toxicityResistance, toxicityResistance);
+            behaviour.xpBar.OnUIUpdate(1f, 0, xpToNxtLvl[1]);
 
         }
 
@@ -96,22 +102,25 @@ namespace Models
 
         void Addxp(int xp)
         {
-            if (unitLvl == xpToNxtLvl.Count) return;
+            if (unitLvl == xpToNxtLvl.Count-1) return;
             unitxp += xp;
-            if (unitxp >= xpToNxtLvl[unitLvl])
+            if (unitxp >= xpToNxtLvl[unitLvl+1])
             {
                 //TODO: something
                 unitLvl++;
                 Debug.Log("Current lvl " + unitLvl);
             }
+            behaviour.xpBar.OnUIUpdate(((float)(unitxp-xpToNxtLvl[unitLvl]) / (xpToNxtLvl[unitLvl + 1] - xpToNxtLvl[unitLvl])), unitxp, xpToNxtLvl[unitLvl + 1]);
 
         }
 
         public bool GetDamage(int damage, int infection = 0)
         {
-            hp -= attack;
+            hp -= damage;
             toxicityResistance -= infection;
             //Debug.Log("Unit infection: " + toxicityResistance + " Unit hp: " + hp);
+            behaviour.hpBar.OnUIUpdate(((float)hp / maxHp),hp,maxHp);
+            behaviour.toxicityBar.OnUIUpdate(((float)(maxToxicityResistance - toxicityResistance + Mathf.Epsilon ) / maxToxicityResistance),  toxicityResistance, maxToxicityResistance);
             if (hp <= 0)
             {
                 if (behaviour != null) behaviour.Die();

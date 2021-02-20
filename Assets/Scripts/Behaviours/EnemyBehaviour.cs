@@ -41,7 +41,6 @@ public class EnemyBehaviour : MonoBehaviour
     {
         while (model.IsBlocked())
         {
-            Debug.Log("bullshit?");
             yield return new WaitForSeconds(0.25f);
         }
         model.ChangeState(EnemyState.attacking);
