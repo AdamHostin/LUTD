@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerBehaviour : Player
 {
     GameObject pickedUnitPrefab;
-    GameObject transparentUnitInstance;
     Transform transparentUnitTransform;
     public bool canPlace = false;
     public int tempCost = 0;
@@ -15,15 +14,14 @@ public class PlayerBehaviour : Player
         App.player = this;
     }
 
-    public void SetUnitPrefab(GameObject prefab, GameObject transparentPrefab, int cost)
+    public void SetUnitPrefab(GameObject prefab, GameObject transparentUnit, int cost)
     {
         pickedUnitPrefab = prefab;
         if (cost <= coins)
         {
             canPlace = true;
             tempCost = cost;
-            transparentUnitInstance = Instantiate(transparentPrefab);
-            transparentUnitTransform = transparentUnitInstance.GetComponent<Transform>();
+            transparentUnitTransform = transparentUnit.GetComponent<Transform>();
         }
         else
         {
@@ -47,6 +45,6 @@ public class PlayerBehaviour : Player
 
     public void DeleteTransparentUnit()
     {
-        Destroy(transparentUnitInstance);
+        transparentUnitTransform.position = new Vector3(1000, 1000, 1000);
     }
 }
