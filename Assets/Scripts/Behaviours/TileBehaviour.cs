@@ -28,12 +28,7 @@ public class TileBehaviour : MonoBehaviour
     {
         if (App.player.canPlace && !isOccupied)
         {
-            //Add highlight
+            App.player.SetTransparentUnitPosition(model.GetSpawnPosition());
         }
-    }
-
-    public void OnMouseExit()
-    {
-        //Add dehighlight
     }
 }
