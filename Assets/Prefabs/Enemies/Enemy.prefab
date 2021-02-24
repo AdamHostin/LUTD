@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 7585588287406787859}
   - component: {fileID: 8783496636491018926}
   - component: {fileID: 1641927394538836039}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AwarnessColl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 8468694863389677238}
   - component: {fileID: 7585805875679837765}
   - component: {fileID: 7162744589611613495}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AttackColl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
