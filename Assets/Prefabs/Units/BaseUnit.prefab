@@ -204,6 +204,81 @@ PrefabInstance:
       propertyPath: m_Name
       value: StatusBarCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2057853888570076828, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: postFix
+      value: Hp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057853888570076828, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.key0.r
+      value: 0.8301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057853888570076828, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.key0.g
+      value: 0.090067655
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057853888570076828, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.key0.b
+      value: 0.090067655
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057853888570076828, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057853888570076828, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.key1.g
+      value: 0.58722156
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057853888570076828, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.key1.b
+      value: 0.07075471
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057853888570076828, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.key2.r
+      value: 0.10279457
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057853888570076828, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.key2.g
+      value: 0.6226415
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057853888570076828, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.key2.b
+      value: 0.106965445
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057853888570076828, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.ctime1
+      value: 41634
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057853888570076828, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.ctime2
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057853888570076828, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.m_NumColorKeys
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057853888570076828, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057853888570076828, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.ctime0
+      value: 20046
+      objectReference: {fileID: 0}
     - target: {fileID: 2425149411124603858, guid: 632893f4d69c1b443a79f090a5a38821,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -218,6 +293,41 @@ PrefabInstance:
         type: 3}
       propertyPath: isTextVisible
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841187241528489584, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.key1.r
+      value: 0.20392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841187241528489584, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.key1.g
+      value: 0.6039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841187241528489584, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.key1.b
+      value: 0.19607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841187241528489584, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238082952107235039, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238082952107235039, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.key1.g
+      value: 0.9882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238082952107235039, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: frontBarColorGradient.key1.b
+      value: 0.003921569
       objectReference: {fileID: 0}
     - target: {fileID: 8473596428232807313, guid: 632893f4d69c1b443a79f090a5a38821,
         type: 3}

@@ -13,12 +13,16 @@ public class BarController : MonoBehaviour
     [SerializeField] bool isFullOnStart;
     [SerializeField] bool isTextVisible;
     [SerializeField] bool isXpBar;
+    [SerializeField] string postFix;
+    [SerializeField] float Speed;
     [SerializeField] Image frontBar;
     [SerializeField] Image backBar;
     [SerializeField] Color32 addColor;
     [SerializeField] Color32 subColor;
-    [SerializeField] float Speed;
-    [SerializeField] TextMeshProUGUI text;
+    [SerializeField] TextMeshProUGUI text;    
+    [SerializeField] Gradient frontBarColorGradient;
+    [Tooltip("in Frames")]
+    [SerializeField] int barChangeFrequency = 1;
     private float currentVal;
 
     private void Start()
@@ -27,12 +31,14 @@ public class BarController : MonoBehaviour
         {
             frontBar.fillAmount = 1f;
             backBar.fillAmount = 1f;
+            frontBar.color = frontBarColorGradient.Evaluate(frontBar.fillAmount);
             currentVal = 1f;
         }
         else
         {
             frontBar.fillAmount = 0f;
             backBar.fillAmount = 0f;
+            frontBar.color = frontBarColorGradient.Evaluate(frontBar.fillAmount);
             currentVal = 0f;
         }
     }
@@ -54,13 +60,14 @@ public class BarController : MonoBehaviour
 
     private void ChangeText(int newVal, int maxVal)
     {
-        text.text = newVal + " / " + maxVal;        
+        text.text = newVal + " / " + maxVal + " " + postFix;        
     }
 
     private void SubBarAmmount(float newBarVal)
     {
         backBar.color = subColor;
         frontBar.fillAmount = Mathf.Clamp(newBarVal, 0f, 1f);
+        frontBar.color = frontBarColorGradient.Evaluate(frontBar.fillAmount);
         StartCoroutine(SubBarOverTime());
     }
 
@@ -69,7 +76,7 @@ public class BarController : MonoBehaviour
         while (backBar.fillAmount > frontBar.fillAmount)
         {           
             backBar.fillAmount = Mathf.Lerp(backBar.fillAmount, 0, Speed * Time.deltaTime);
-            yield return 1;
+            yield return barChangeFrequency;
         }
     }
 
@@ -86,7 +93,8 @@ public class BarController : MonoBehaviour
         while (backBar.fillAmount > frontBar.fillAmount)
         {
             frontBar.fillAmount = Mathf.Lerp(frontBar.fillAmount, 1, Speed * Time.deltaTime);
-            yield return 1;
+            frontBar.color = frontBarColorGradient.Evaluate(frontBar.fillAmount);
+            yield return barChangeFrequency;
         }        
     }
 }
