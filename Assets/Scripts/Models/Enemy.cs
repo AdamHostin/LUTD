@@ -112,6 +112,8 @@ namespace Models
 
         public void OnDamagableAttackRangeEnter(IDamagable damagable)
         {
+            if (state == EnemyState.dying) return;
+            
             if (damagable == target)
             {
                 behaviour.StartAttack();
@@ -145,6 +147,8 @@ namespace Models
                     break;
                 case EnemyState.dying:
                     behaviour.agent.isStopped = true;
+                    damagablesInAwarenessRange.Clear();
+                    target = null;
                     break;
                 default:
                     break;
@@ -154,14 +158,10 @@ namespace Models
 
         public void Attack()
         {
-            Debug.Log("Enemy attack is " + attack);
-            if (target?.GetDamage(attack, toxicity) == false)
+            if ((target==null) || (target?.GetDamage(attack, toxicity) == false))
             {
-                target = null;
-                ChangeState(EnemyState.moving);
-                
+                ChangeState(EnemyState.moving);                
             }
-
         }
 
         public Vector3 GetTargetPosition()
@@ -189,10 +189,11 @@ namespace Models
 
         public void OnDamagableInAwarenessRangeDeath(IDamagable damagable)
         {
+            if (state == EnemyState.dying) return;
             damagablesInAwarenessRange.Remove(damagable);
             if (damagable == target)
             {
-                SetNewTarget(GetNxtTarget());
+                ChangeState(EnemyState.moving);
             }
                       
         }
@@ -217,14 +218,12 @@ namespace Models
 
 
         private IDamagable GetNxtTarget()
-        {
-            
+        {            
             if (damagablesInAwarenessRange.Count > 0)
             {
                 float dist = float.MaxValue;
                 int bestIndex = 0;
                 NavMeshPath path = new NavMeshPath();
-
                 for (int i = 0; i < damagablesInAwarenessRange.Count; i++)
                 {
                     NavMesh.CalculatePath(GetPosition(), damagablesInAwarenessRange[i].GetPosition(), NavMesh.AllAreas, path);
@@ -238,7 +237,6 @@ namespace Models
                 }
                 return damagablesInAwarenessRange[bestIndex];
             }
-
             return App.levelManager.GetPlayerBase();
         }
     }

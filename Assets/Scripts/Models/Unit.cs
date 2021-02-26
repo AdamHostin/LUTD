@@ -118,20 +118,33 @@ namespace Models
         {
             hp -= damage;
             toxicityResistance -= infection;
-            //Debug.Log("Unit infection: " + toxicityResistance + " Unit hp: " + hp);
-            behaviour.hpBar.OnUIUpdate(((float)hp / maxHp),hp,maxHp);
-            behaviour.toxicityBar.OnUIUpdate(((float)(maxToxicityResistance - toxicityResistance + Mathf.Epsilon ) / maxToxicityResistance),  toxicityResistance, maxToxicityResistance);
+            
             if (hp <= 0)
             {
-                if (behaviour != null) behaviour.Die();
-                onDamagableDeath.Invoke(this);
+                if (behaviour != null)
+                {
+                    behaviour.Die();
+                    onDamagableDeath.Invoke(this);
+                }
                 return false;
+            }
+            else
+            {
+                behaviour.hpBar.OnUIUpdate(((float)hp / maxHp), hp, maxHp);
             }
             if (toxicityResistance <= 0)
             {
-                if (behaviour != null) behaviour.GetInfected();
-                onDamagableDeath.Invoke(this);
+                if (behaviour != null)
+                {
+                    behaviour.GetInfected();
+                    onDamagableDeath.Invoke(this);
+                }
                 return false;
+            }
+            else
+            {
+                behaviour.toxicityBar.OnUIUpdate(((float)(maxToxicityResistance - toxicityResistance + Mathf.Epsilon) / maxToxicityResistance), toxicityResistance, maxToxicityResistance);
+
             }
 
             return true;
