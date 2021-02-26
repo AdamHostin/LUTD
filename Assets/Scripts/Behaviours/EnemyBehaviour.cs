@@ -24,12 +24,13 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] float awarenessRange;
     [SerializeField] string[] attackableTags;
 
+    public GameObject target;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();        
         model = new Enemy(hp, attack, attackRange, awarenessRange, toxicity , xp, attackableTags, this);
-        agent.destination = this.model.GetTargetPosition();
     }
 
     public void StartAttack()
@@ -42,6 +43,7 @@ public class EnemyBehaviour : MonoBehaviour
         while (model.IsBlocked())
         {
             yield return new WaitForSeconds(0.25f);
+            if (target == null) yield break;
         }
         model.ChangeState(EnemyState.attacking);
         StartCoroutine(Attacking());
@@ -52,7 +54,7 @@ public class EnemyBehaviour : MonoBehaviour
         while (model.state == EnemyState.attacking)
         {
             yield return new WaitForSeconds(attackFrequency);
-            model.Attack();
+            if (model.state == EnemyState.attacking) model.Attack();
         }
         agent.isStopped = false;
     }

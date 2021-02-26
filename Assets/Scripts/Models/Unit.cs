@@ -47,6 +47,7 @@ namespace Models
             behaviour.toxicityBar.OnUIUpdate(0f, toxicityResistance, toxicityResistance);
             behaviour.xpBar.OnUIUpdate(1f, 0, xpToNxtLvl[1]);
 
+            
         }
 
         public void SetAdapter(UnitTriggerAdapter adapter)
@@ -54,33 +55,32 @@ namespace Models
             //this.adapter = adapter;
             rangeChangeEvent.AddListener(adapter.SetNewRange);
             rangeChangeEvent.Invoke(range);
+            OnUnitPlace();
         }
 
         public void AddEnemy(Enemy enemy)
         {
-            enemiesInRange.Add(enemy);
-            behaviour.StartShooting();
-
+            if (!enemiesInRange.Contains(enemy))
+            {
+                enemiesInRange.Add(enemy);
+                enemy.enemyDeathEvent.AddListener(SubstractEnemy);
+                behaviour.StartShooting();
+            }            
         }
 
         public void SubstractEnemy(Enemy enemy)
         {
             enemiesInRange.Remove(enemy);
+            enemy.enemyDeathEvent.RemoveListener(SubstractEnemy);
             if (enemiesInRange.Count == 0) state = UnitState.idle;
-        }
-
-        bool Enemycheck(Enemy e)
-        {
-            return (e.behaviour == null);
         }
 
         public Enemy GetTarget()
         {
             RaycastHit hit;
-            enemiesInRange.RemoveAll(Enemycheck);
             foreach (Enemy e in enemiesInRange)
             {
-
+                if (e.state == EnemyState.dying) continue;
                 Ray shootingRay = new Ray(gunPos, (e.GetPosition() - gunPos));
                 if (Physics.Raycast(shootingRay, out hit))
                 {
@@ -167,13 +167,27 @@ namespace Models
 
         public void OnUnitPlace()
         {
-
+            App.levelManager.damagablePlacedEvent.Invoke(this);
+            CheckEnemiesOnPlace();
         }
 
         public void OnUnitPick()
         {
             behaviour.gameObject.SetActive(false);
             onDamagableDeath.Invoke(this);
+        }
+
+        private void CheckEnemiesOnPlace()
+        {
+            Collider[] colls = Physics.OverlapSphere(GetPosition(), range);
+            foreach (var coll in colls)
+            {                
+                if (coll.transform.tag == "Enemy")
+                {
+                    AddEnemy(coll.GetComponent<EnemyBehaviour>().GetModel());
+                }
+                
+            }
         }
     }
 }

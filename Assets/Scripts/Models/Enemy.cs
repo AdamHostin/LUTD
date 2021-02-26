@@ -29,6 +29,8 @@ namespace Models
 
         public class RangeChangeEvent : UnityEvent<float> { }
         public RangeChangeEvent awarenessRangeChangeEvent = new RangeChangeEvent();
+        public class EnemyDeathEvent : UnityEvent<Enemy> { }
+        public EnemyDeathEvent enemyDeathEvent = new EnemyDeathEvent();
         public RangeChangeEvent attackRangeChangeEvent = new RangeChangeEvent();
 
         public Enemy(int hp, int attack, float attackRange, float awarenessRange, int toxicity, int xp , string[] attackables ,EnemyBehaviour behaviour)
@@ -43,8 +45,7 @@ namespace Models
             this.attackables = attackables;
 
             damagablesInAwarenessRange.Add(App.levelManager.GetPlayerBase());
-            SetNewTarget(GetNxtTarget());
-            state = EnemyState.moving;
+            ChangeState(EnemyState.moving);
             App.levelManager.damagablePlacedEvent.AddListener(ResponseOnDamagablePlaced);
             CheckDamagablesOnSpawn();
         }
@@ -100,8 +101,8 @@ namespace Models
                 damagablesInAwarenessRange.Add(damagable);
                 damagable.SubscribeToDeathEvent(this);
             }
-            
-            SetNewTarget(GetNxtTarget());
+
+            if (state == EnemyState.moving) SetNewTarget(GetNxtTarget());
         }
 
         public void SubstractDamagable(IDamagable damagable)
@@ -148,7 +149,11 @@ namespace Models
                 case EnemyState.dying:
                     behaviour.agent.isStopped = true;
                     damagablesInAwarenessRange.Clear();
+                    enemyDeathEvent.Invoke(this);
                     target = null;
+                    App.levelManager.damagablePlacedEvent.RemoveListener(ResponseOnDamagablePlaced);
+                    App.levelManager.EnemyDied();
+                    behaviour.StartDying();
                     break;
                 default:
                     break;
@@ -181,9 +186,7 @@ namespace Models
             if (state==EnemyState.dying) return 0;
             hp -= damage;
             if (hp > 0) return 0;
-            ChangeState(EnemyState.dying);
-            App.levelManager.EnemyDied();
-            behaviour.StartDying();
+            ChangeState(EnemyState.dying);            
             return xp;
         }
 

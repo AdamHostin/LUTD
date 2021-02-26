@@ -6,7 +6,9 @@ using Models;
 public class BaseBehaviour : MonoBehaviour, IDamagableBehaviour
 {
     Base model;
-    public int hp;
+    [SerializeField] private int hp;
+
+    public BarController hpBar;
 
     private void Awake()
     {
