@@ -127,13 +127,15 @@ namespace Models
         {
             hp -= damage;
             toxicityResistance -= infection;
-            
+
             if (hp <= 0)
             {
                 if (behaviour != null)
                 {
-                    behaviour.Die();
+                    
                     onDamagableDeath.Invoke(this);
+                    
+                    behaviour.Die();
                 }
                 return false;
             }
@@ -144,9 +146,9 @@ namespace Models
             if (toxicityResistance <= 0)
             {
                 if (behaviour != null)
-                {
-                    behaviour.GetInfected();
+                {                   
                     onDamagableDeath.Invoke(this);
+                    behaviour.GetInfected();
                 }
                 return false;
             }
@@ -155,7 +157,6 @@ namespace Models
                 behaviour.toxicityBar.OnUIUpdate(((float)(maxToxicityResistance - toxicityResistance) / maxToxicityResistance), toxicityResistance, maxToxicityResistance);
 
             }
-
             return true;
         }
 

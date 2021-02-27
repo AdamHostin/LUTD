@@ -126,8 +126,10 @@ namespace Models
             RaycastHit hit;
             Vector3 targetPos = target.GetPosition();
             targetPos.y = GetPosition().y;
+            //ignore layer 5 (UI), 8 (Enemy), 10 (CUinteractable)
+            int mask = ~((1<<5) | (1<<8) | (1<<10));
             Ray sight = new Ray(GetPosition(), (targetPos - GetPosition()));
-            if (Physics.Raycast(sight, out hit))
+            if (Physics.Raycast(sight, out hit, Mathf.Infinity, mask ))
             {
                 foreach (var item in attackables) if (item == hit.transform.tag) return false;
             }

@@ -75,7 +75,7 @@ public class BarController : MonoBehaviour
     {
         while (backBar.fillAmount > frontBar.fillAmount)
         {           
-            backBar.fillAmount = Mathf.Lerp(backBar.fillAmount, 0, Speed * Time.deltaTime);
+            backBar.fillAmount = Mathf.Lerp(backBar.fillAmount, 0, speed * Time.deltaTime);
             yield return barChangeFrequency;
         }
     }
@@ -92,7 +92,7 @@ public class BarController : MonoBehaviour
     {
         while (backBar.fillAmount > frontBar.fillAmount)
         {
-            frontBar.fillAmount = Mathf.Lerp(frontBar.fillAmount, 1, Speed * Time.deltaTime);
+            frontBar.fillAmount = Mathf.Lerp(frontBar.fillAmount, 1, speed * Time.deltaTime);
             frontBar.color = frontBarColorGradient.Evaluate(frontBar.fillAmount);
             yield return barChangeFrequency;
         }        

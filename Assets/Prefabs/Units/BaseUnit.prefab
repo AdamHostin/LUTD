@@ -279,6 +279,11 @@ PrefabInstance:
       propertyPath: frontBarColorGradient.ctime0
       value: 20046
       objectReference: {fileID: 0}
+    - target: {fileID: 2057853888570076828, guid: 632893f4d69c1b443a79f090a5a38821,
+        type: 3}
+      propertyPath: speed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2425149411124603858, guid: 632893f4d69c1b443a79f090a5a38821,
         type: 3}
       propertyPath: m_AnchoredPosition.y

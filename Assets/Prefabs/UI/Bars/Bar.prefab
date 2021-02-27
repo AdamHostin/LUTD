@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7340758654667336683}
   - component: {fileID: 2574506193048958260}
   - component: {fileID: 4066692526787472633}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 7164972001469264762}
   - component: {fileID: 4832814723583053797}
   - component: {fileID: 9132865511479798887}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BackgroundImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 5840292072418317077}
   - component: {fileID: 6438219542897324987}
   - component: {fileID: 2229314186566380288}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 4856638234934674917}
   - component: {fileID: 537288866475793579}
   - component: {fileID: 1924930214498465383}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +428,7 @@ MonoBehaviour:
   isTextVisible: 0
   isXpBar: 0
   postFix: 
-  Speed: 0.5
+  speed: 0
   frontBar: {fileID: 2386820034503812576}
   backBar: {fileID: 8303364612549452283}
   addColor:
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 6842444539235739446}
   - component: {fileID: 8185266980857145555}
   - component: {fileID: 8303364612549452283}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BackBarImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +553,7 @@ GameObject:
   - component: {fileID: 5291982513819217481}
   - component: {fileID: 2034420918579723078}
   - component: {fileID: 2386820034503812576}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: FrontBarImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}

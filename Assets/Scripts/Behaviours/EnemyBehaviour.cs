@@ -5,9 +5,6 @@ using UnityEngine.AI;
 using Models;
 
 
-//TODO: change enemies so they can attack units and other destructible objects
-//TODO: add enemy types soo they can destruct some objects(windovs) in the map
-//TODO: enemies should be able to die
 public class EnemyBehaviour : MonoBehaviour
 {
 
@@ -56,7 +53,6 @@ public class EnemyBehaviour : MonoBehaviour
             yield return new WaitForSeconds(attackFrequency);
             if (model.state == EnemyState.attacking) model.Attack();
         }
-        agent.isStopped = false;
     }
 
     public void StartDying()
