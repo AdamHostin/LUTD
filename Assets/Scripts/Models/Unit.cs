@@ -104,13 +104,22 @@ namespace Models
         {
             if (unitLvl == xpToNxtLvl.Count-1) return;
             unitxp += xp;
+            Mathf.Clamp(unitxp, 0, xpToNxtLvl[xpToNxtLvl.Count - 1]);
             if (unitxp >= xpToNxtLvl[unitLvl+1])
             {
                 //TODO: something
                 unitLvl++;
                 Debug.Log("Current lvl " + unitLvl);
             }
-            behaviour.xpBar.OnUIUpdate(((float)(unitxp-xpToNxtLvl[unitLvl]) / (xpToNxtLvl[unitLvl + 1] - xpToNxtLvl[unitLvl])), unitxp, xpToNxtLvl[unitLvl + 1]);
+            if (unitLvl == xpToNxtLvl.Count-1)
+            {
+                behaviour.xpBar.OnUIUpdate(1f, unitxp, xpToNxtLvl[unitLvl]);
+            }
+            else
+            {
+                behaviour.xpBar.OnUIUpdate(((float)(unitxp - xpToNxtLvl[unitLvl]) / (xpToNxtLvl[unitLvl + 1] - xpToNxtLvl[unitLvl])), unitxp, xpToNxtLvl[unitLvl + 1]);
+
+            }
 
         }
 
