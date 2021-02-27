@@ -14,7 +14,7 @@ public class BarController : MonoBehaviour
     [SerializeField] bool isTextVisible;
     [SerializeField] bool isXpBar;
     [SerializeField] string postFix;
-    [SerializeField] float Speed;
+    [SerializeField] float speed;
     [SerializeField] Image frontBar;
     [SerializeField] Image backBar;
     [SerializeField] Color32 addColor;

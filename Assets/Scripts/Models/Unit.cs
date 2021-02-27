@@ -152,7 +152,7 @@ namespace Models
             }
             else
             {
-                behaviour.toxicityBar.OnUIUpdate(((float)(maxToxicityResistance - toxicityResistance + Mathf.Epsilon) / maxToxicityResistance), toxicityResistance, maxToxicityResistance);
+                behaviour.toxicityBar.OnUIUpdate(((float)(maxToxicityResistance - toxicityResistance) / maxToxicityResistance), toxicityResistance, maxToxicityResistance);
 
             }
 
