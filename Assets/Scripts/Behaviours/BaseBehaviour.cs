@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Models;
 
-public class BaseBehaviour : MonoBehaviour
+public class BaseBehaviour : MonoBehaviour, IDamagableBehaviour
 {
     Base model;
-    public int hp;
+    [SerializeField] private int hp;
+
+    public BarController hpBar;
 
     private void Awake()
     {
         model = new Base(hp, transform.position, this);
-        App.levelManager.SetPlayerBase(model);
     }
 
     public void DestroyBase()
@@ -20,9 +21,14 @@ public class BaseBehaviour : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public IDamagable GetDamagableModel()
+    {
+        return model;
+    }
+
     public Base GetModel()
     {
         return model;
     }
-        
+
 }

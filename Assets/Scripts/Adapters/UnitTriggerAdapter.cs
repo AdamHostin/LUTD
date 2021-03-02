@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Models;
 
 public class UnitTriggerAdapter : MonoBehaviour
 {
-    UnitModel model;
+    Unit model;
     SphereCollider coll;
 
     
