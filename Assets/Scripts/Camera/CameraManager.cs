@@ -28,15 +28,9 @@ public class CameraManager : MonoBehaviour
         this.maxOrtograficSize = maxOrtograficSize;
     }
 
-    public void EnableCamera()
-    {
-        cameraController.enabled = true;
-    }
+    public void EnableCamera() => cameraController.enabled = true;
 
-    public void DisableCamera()
-    {
-        cameraController.enabled = false;
-    }
+    public void DisableCamera() => cameraController.enabled = false;
 
 
 }
