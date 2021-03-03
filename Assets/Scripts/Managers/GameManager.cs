@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
         AsyncOperation loading = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         while (!loading.isDone)
         {
-            //Debug.Log(loading.progress * 100 + "%");
             yield return null;
         }
 
@@ -31,7 +30,6 @@ public class GameManager : MonoBehaviour
         AsyncOperation loading = SceneManager.UnloadSceneAsync(sceneName);
         while (!loading.isDone)
         {
-            Debug.Log(loading.progress * 100 + "%");
             yield return null;
         }
 
