@@ -16,6 +16,8 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] int attack;
     [SerializeField] int toxicity;
     [SerializeField] int xp;
+    [SerializeField] int minCoins;
+    [SerializeField] int maxCoins;
     [SerializeField] float attackFrequency;
     [SerializeField] float attackRange;
     [SerializeField] float awarenessRange;
@@ -27,7 +29,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();        
-        model = new Enemy(hp, attack, attackRange, awarenessRange, toxicity , xp, attackableTags, this);
+        model = new Enemy(hp, attack, attackRange, awarenessRange, toxicity , xp, Random.Range(minCoins,maxCoins) ,attackableTags, this);
     }
 
     public void StartAttack()
