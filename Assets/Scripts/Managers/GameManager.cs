@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Models;
 
 public class GameManager : MonoBehaviour
 {
+    public DefaultPlayerValues defaultVals;
+
     private void Start()
     {
         App.gameManager = this;
         StartCoroutine(LoadSelectedScene("UIScene"));
+        App.player = new Player(defaultVals.coins, defaultVals.vaccines);
     }
 
     IEnumerator LoadSelectedScene(string sceneName)

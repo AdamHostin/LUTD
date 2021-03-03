@@ -15,6 +15,7 @@ namespace Models
         private int maxHp;
         private int hp;
         private int xp;
+        private int coins;
         private float attackRange;
         private float awarenessRange;
         private IDamagable target = null;
@@ -33,12 +34,13 @@ namespace Models
         public EnemyDeathEvent enemyDeathEvent = new EnemyDeathEvent();
         public RangeChangeEvent attackRangeChangeEvent = new RangeChangeEvent();
 
-        public Enemy(int hp, int attack, float attackRange, float awarenessRange, int toxicity, int xp , string[] attackables ,EnemyBehaviour behaviour)
+        public Enemy(int hp, int attack, float attackRange, float awarenessRange, int toxicity, int xp, int coins, string[] attackables ,EnemyBehaviour behaviour)
         {
             this.hp = hp;
             this.attack = attack;
             this.toxicity = toxicity;
             this.xp = xp;
+            this.coins = coins;
             this.attackRange = attackRange;
             this.awarenessRange = awarenessRange;
             this.behaviour = behaviour;
@@ -155,6 +157,7 @@ namespace Models
                     target = null;
                     App.levelManager.damagablePlacedEvent.RemoveListener(ResponseOnDamagablePlaced);
                     App.levelManager.EnemyDied();
+                    App.player.EarnCoins(coins);
                     behaviour.StartDying();
                     break;
                 default:
