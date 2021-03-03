@@ -24,6 +24,9 @@ namespace Models
         UnitBehaviour behaviour;
         //UnitTriggerAdapter adapter;
 
+        //For relocating
+        GameObject transparentSelf;
+
         public class RangeChangeEvent : UnityEvent<float> { }
         public RangeChangeEvent rangeChangeEvent = new RangeChangeEvent();
         public class DamagableDeathEvent : UnityEvent<IDamagable> { }
@@ -198,6 +201,11 @@ namespace Models
                 }
                 
             }
+        }
+
+        public void SetTransparentSelf(GameObject transparentSelf)
+        {
+            this.transparentSelf = transparentSelf;
         }
     }
 }

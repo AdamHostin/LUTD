@@ -13,7 +13,8 @@ namespace Models
         
 
         GameObject pickedUnitPrefab;
-        Transform transparentUnitTransform;
+        GameObject transparentUnit;
+
         private bool canPlace = false;
 
         public Player(int coins, int vaccines)
@@ -48,7 +49,7 @@ namespace Models
             {
                 canPlace = true;
                 tempCost = cost;
-                transparentUnitTransform = transparentUnit.GetComponent<Transform>();
+                this.transparentUnit = transparentUnit;
             }
             else
             {
@@ -58,7 +59,7 @@ namespace Models
 
         public void PlaceUnit(Vector3 position)
         {
-            App.levelManager.InstatiateUnit(pickedUnitPrefab, position);
+            App.levelManager.InstatiateUnit(pickedUnitPrefab, position, transparentUnit);
             SpendCoins(tempCost);
             canPlace = false;
             App.unitCardManager.SwitchToCard(null);
@@ -67,12 +68,12 @@ namespace Models
 
         public void SetTransparentUnitPosition(Vector3 position)
         {
-            transparentUnitTransform.position = position;
+            transparentUnit.transform.position = position;
         }
 
         public void DeleteTransparentUnit()
         {
-            transparentUnitTransform.position = new Vector3(1000, 1000, 1000);
+            transparentUnit.transform.position = new Vector3(1000, 1000, 1000);
             canPlace = false;
         }
 
