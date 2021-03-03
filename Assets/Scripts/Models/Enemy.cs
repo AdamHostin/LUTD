@@ -86,7 +86,7 @@ namespace Models
         {
             awarenessRangeChangeEvent.AddListener(adapter.SetNewRange);
             adapter.SetAttackables(attackables);
-            attackRangeChangeEvent.Invoke(awarenessRange);
+            awarenessRangeChangeEvent.Invoke(awarenessRange);
         }
 
         private void SetNewTarget(IDamagable damagable)
@@ -232,11 +232,15 @@ namespace Models
                 float dist = float.MaxValue;
                 int bestIndex = 0;
                 NavMeshPath path = new NavMeshPath();
+                NavMeshHit hit;
                 for (int i = 0; i < damagablesInAwarenessRange.Count; i++)
-                {
-                    NavMesh.CalculatePath(GetPosition(), damagablesInAwarenessRange[i].GetPosition(), NavMesh.AllAreas, path);
+                {                    
+                    if (!NavMesh.SamplePosition(damagablesInAwarenessRange[i].GetPosition(), out hit, 1.0f, NavMesh.AllAreas)) continue;
+                    
+                    NavMesh.CalculatePath(GetPosition(), hit.position, NavMesh.AllAreas, path);
 
                     float newDist = RemainingDistance(path.corners);
+
                     if (newDist < dist)
                     {
                         dist = newDist;
