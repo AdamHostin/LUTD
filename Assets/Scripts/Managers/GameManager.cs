@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Models;
 
 public class GameManager : MonoBehaviour
 {
+    public DefaultPlayerValues defaultVals;
+
     private void Start()
     {
         App.gameManager = this;
         StartCoroutine(LoadSelectedScene("UIScene"));
+        App.player = new Player(defaultVals.coins, defaultVals.vaccines);
     }
 
     IEnumerator LoadSelectedScene(string sceneName)
@@ -16,7 +20,6 @@ public class GameManager : MonoBehaviour
         AsyncOperation loading = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         while (!loading.isDone)
         {
-            //Debug.Log(loading.progress * 100 + "%");
             yield return null;
         }
 
@@ -27,7 +30,6 @@ public class GameManager : MonoBehaviour
         AsyncOperation loading = SceneManager.UnloadSceneAsync(sceneName);
         while (!loading.isDone)
         {
-            Debug.Log(loading.progress * 100 + "%");
             yield return null;
         }
 

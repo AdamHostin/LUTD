@@ -15,6 +15,7 @@ namespace Models
         private int maxHp;
         private int hp;
         private int xp;
+        private int coins;
         private float attackRange;
         private float awarenessRange;
         private IDamagable target = null;
@@ -33,12 +34,13 @@ namespace Models
         public EnemyDeathEvent enemyDeathEvent = new EnemyDeathEvent();
         public RangeChangeEvent attackRangeChangeEvent = new RangeChangeEvent();
 
-        public Enemy(int hp, int attack, float attackRange, float awarenessRange, int toxicity, int xp , string[] attackables ,EnemyBehaviour behaviour)
+        public Enemy(int hp, int attack, float attackRange, float awarenessRange, int toxicity, int xp, int coins, string[] attackables ,EnemyBehaviour behaviour)
         {
             this.hp = hp;
             this.attack = attack;
             this.toxicity = toxicity;
             this.xp = xp;
+            this.coins = coins;
             this.attackRange = attackRange;
             this.awarenessRange = awarenessRange;
             this.behaviour = behaviour;
@@ -84,7 +86,7 @@ namespace Models
         {
             awarenessRangeChangeEvent.AddListener(adapter.SetNewRange);
             adapter.SetAttackables(attackables);
-            attackRangeChangeEvent.Invoke(awarenessRange);
+            awarenessRangeChangeEvent.Invoke(awarenessRange);
         }
 
         private void SetNewTarget(IDamagable damagable)
@@ -155,6 +157,7 @@ namespace Models
                     target = null;
                     App.levelManager.damagablePlacedEvent.RemoveListener(ResponseOnDamagablePlaced);
                     App.levelManager.EnemyDied();
+                    App.player.EarnCoins(coins);
                     behaviour.StartDying();
                     break;
                 default:
@@ -229,11 +232,15 @@ namespace Models
                 float dist = float.MaxValue;
                 int bestIndex = 0;
                 NavMeshPath path = new NavMeshPath();
+                NavMeshHit hit;
                 for (int i = 0; i < damagablesInAwarenessRange.Count; i++)
-                {
-                    NavMesh.CalculatePath(GetPosition(), damagablesInAwarenessRange[i].GetPosition(), NavMesh.AllAreas, path);
+                {                    
+                    if (!NavMesh.SamplePosition(damagablesInAwarenessRange[i].GetPosition(), out hit, 1.0f, NavMesh.AllAreas)) continue;
+                    
+                    NavMesh.CalculatePath(GetPosition(), hit.position, NavMesh.AllAreas, path);
 
                     float newDist = RemainingDistance(path.corners);
+
                     if (newDist < dist)
                     {
                         dist = newDist;

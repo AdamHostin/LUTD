@@ -16,7 +16,7 @@ public class TileBehaviour : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (App.player.canPlace && !isOccupied)
+        if (App.player.CanPlace() && !isOccupied)
         {
             App.player.PlaceUnit(model.GetSpawnPosition());
             isOccupied = true;
@@ -26,7 +26,7 @@ public class TileBehaviour : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        if (App.player.canPlace && !isOccupied)
+        if (App.player.CanPlace() && !isOccupied)
         {
             App.player.SetTransparentUnitPosition(model.GetSpawnPosition());
         }

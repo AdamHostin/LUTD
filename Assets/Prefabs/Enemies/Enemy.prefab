@@ -138,6 +138,8 @@ MonoBehaviour:
   attack: 20
   toxicity: 15
   xp: 25
+  minCoins: 1
+  maxCoins: 5
   attackFrequency: 1.5
   attackRange: 1
   awarenessRange: 4
@@ -145,6 +147,7 @@ MonoBehaviour:
   - Unit
   - Base
   - Obstacle
+  target: {fileID: 0}
 --- !u!54 &9040236619484005066
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -32,7 +32,6 @@ public class UnitCard : MonoBehaviour
         else
         {
             App.unitCardManager.SwitchToCard(null);
-            App.player.canPlace = false;
             App.player.DeleteTransparentUnit();
         }
     }
