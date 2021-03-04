@@ -428,7 +428,7 @@ MonoBehaviour:
   isTextVisible: 0
   isXpBar: 0
   postFix: 
-  speed: 0
+  speed: 0.5
   frontBar: {fileID: 2386820034503812576}
   backBar: {fileID: 8303364612549452283}
   addColor:
