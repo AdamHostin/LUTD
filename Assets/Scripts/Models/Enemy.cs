@@ -36,7 +36,7 @@ namespace Models
 
         public Enemy(int hp, int attack, float attackRange, float awarenessRange, int toxicity, int xp, int coins, string[] attackables ,EnemyBehaviour behaviour)
         {
-            this.hp = hp;
+            this.hp = this.maxHp = hp;
             this.attack = attack;
             this.toxicity = toxicity;
             this.xp = xp;
@@ -45,6 +45,8 @@ namespace Models
             this.awarenessRange = awarenessRange;
             this.behaviour = behaviour;
             this.attackables = attackables;
+
+            behaviour.hpBar.OnUIUpdate(1f, hp, maxHp);
 
             damagablesInAwarenessRange.Add(App.levelManager.GetPlayerBase());
             ChangeState(EnemyState.moving);
@@ -190,7 +192,9 @@ namespace Models
         {
             if (state==EnemyState.dying) return 0;
             hp -= damage;
-            if (hp > 0) return 0;
+            Mathf.Clamp(hp, 0, maxHp);
+            behaviour.hpBar.OnUIUpdate((float)hp / maxHp, hp, maxHp);
+            if (hp > 0) return 0;            
             ChangeState(EnemyState.dying);            
             return xp;
         }
