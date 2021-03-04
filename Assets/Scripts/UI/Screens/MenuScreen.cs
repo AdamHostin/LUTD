@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class MenuScreen : ScreenBase
 {
-    [SerializeField]
-    string level1;
-    [SerializeField]
-    string testLevel;
-
     public override void Show()
     {
         App.screenManager.SetGameState(GameState.menu);
@@ -21,13 +16,8 @@ public class MenuScreen : ScreenBase
         base.Hide();
     }
 
-    public void StartButtonClicked()
+    public void PlayButtonClicked(string targetScene)
     {
-        App.gameManager.StartSceneLoading(level1);
-    }
-
-    public void TestLevelButtonClicked()
-    {
-        App.gameManager.StartSceneLoading(testLevel);
+        App.gameManager.StartSceneLoading(targetScene);
     }
 }
