@@ -23,6 +23,10 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] float awarenessRange;
     [SerializeField] string[] attackableTags;
 
+   
+    [Header("programing stuf")]
+    public BarController hpBar;
+    [Tooltip("Wimbly wombly timey wimey")]
     public GameObject target;
 
     private void Awake()
