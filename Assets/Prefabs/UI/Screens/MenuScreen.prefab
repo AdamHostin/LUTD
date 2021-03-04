@@ -120,14 +120,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1480378606424248249}
-        m_MethodName: TestLevelButtonClicked
-        m_Mode: 1
+        m_MethodName: PlayButtonClicked
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Level1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1480378605699272304
@@ -447,8 +447,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66a74d2af13be2c40be7eeac60f89f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level1: Level1
-  testLevel: Level1
 --- !u!1 &1480378607175239117
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,14 +567,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1480378606424248249}
-        m_MethodName: StartButtonClicked
-        m_Mode: 1
+        m_MethodName: PlayButtonClicked
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Level1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &4968894849082695521
