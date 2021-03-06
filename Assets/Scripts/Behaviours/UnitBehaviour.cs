@@ -11,6 +11,7 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     [SerializeField] int attack;
     [SerializeField] float range;
     [SerializeField] float timeBetweenHits = 0.5f;
+    [SerializeField] GameObject zombiePrefab;
 
     [SerializeField] List<int> xpToNxtLvl;
 
@@ -58,15 +59,19 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
 
     public void Die()
     {
+        gameObject.tag = "Untagged";
         //TODO: play SFX
         Destroy(gameObject);
     }
 
     public void GetInfected()
     {
-        //TODO: turn unit into a zombie
+        //TODO: play SFX
+        gameObject.tag = "Untagged";
         App.levelManager.AddEnemies();
+        Instantiate(zombiePrefab,transform.position, Quaternion.identity);
         Debug.Log("I am a zobie now");
+        Destroy(gameObject);
     }
 
     private void OnMouseDown()

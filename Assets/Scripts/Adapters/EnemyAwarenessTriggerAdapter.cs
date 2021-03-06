@@ -30,8 +30,9 @@ public class EnemyAwarenessTriggerAdapter : MonoBehaviour
         {
             if (other.tag == item)
             {
-                model.AddDamagable(other.gameObject.GetComponent<IDamagableBehaviour>().GetDamagableModel());
-                break;
+                IDamagableBehaviour damagable = other.gameObject.GetComponent<IDamagableBehaviour>();
+                if (damagable == null) continue;
+                model.AddDamagable(damagable.GetDamagableModel());      
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 namespace Models
@@ -10,12 +11,17 @@ namespace Models
         private int coins;
         private int vaccines;
         private int tempCost = 0;
-        
+        private bool canPlace = false;
 
         GameObject pickedUnitPrefab;
         GameObject transparentUnit;
 
         private PlayerState playerState = PlayerState.idle;
+
+        public class UpdatePlayerUIEvent : UnityEvent<int> { }
+        public UpdatePlayerUIEvent updateCoinsUIEvent = new UpdatePlayerUIEvent();
+        //from where payer gets theeese???
+        public UpdatePlayerUIEvent updateVaccinesUIEvent = new UpdatePlayerUIEvent();
 
         public Player(int coins, int vaccines)
         {
@@ -23,23 +29,29 @@ namespace Models
             this.vaccines = vaccines;
         }
 
-        public void ReInitPlayer(DefaultPlayerValues defaultVals)
+        public void ReInitPlayer(int coins, int vaccines)
         {
-            this.coins = defaultVals.coins;
-            this.vaccines = defaultVals.vaccines;
+            this.coins = coins;
+            this.vaccines = vaccines;
         }
-        
+        public void SetPlayerInfoUI(PlayerInfoPanelController playerInfoPanelController)
+        {
+            updateCoinsUIEvent.AddListener(playerInfoPanelController.UpdateCoinText);
+            updateVaccinesUIEvent.AddListener(playerInfoPanelController.UpdateVaccineText);
+            updateVaccinesUIEvent.Invoke(this.vaccines);
+            updateCoinsUIEvent.Invoke(this.coins);
+        }
 
         public void EarnCoins(int coins)
         {
             this.coins += coins;
-            Debug.Log("coins: " + this.coins);
+            updateCoinsUIEvent.Invoke(this.coins);
         }
 
         public void SpendCoins(int coins)
         {
             this.coins -= coins;
-            Debug.Log("coins: " + this.coins);
+            updateCoinsUIEvent.Invoke(this.coins);
         }
 
         public void SetUnitPrefab(GameObject prefab, GameObject transparentUnit, int cost)

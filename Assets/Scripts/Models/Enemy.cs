@@ -36,7 +36,7 @@ namespace Models
 
         public Enemy(int hp, int attack, float attackRange, float awarenessRange, int toxicity, int xp, int coins, string[] attackables ,EnemyBehaviour behaviour)
         {
-            this.hp = hp;
+            this.hp = this.maxHp = hp;
             this.attack = attack;
             this.toxicity = toxicity;
             this.xp = xp;
@@ -45,6 +45,8 @@ namespace Models
             this.awarenessRange = awarenessRange;
             this.behaviour = behaviour;
             this.attackables = attackables;
+
+            behaviour.hpBar.OnUIUpdate(1f, hp, maxHp);
 
             damagablesInAwarenessRange.Add(App.levelManager.GetPlayerBase());
             ChangeState(EnemyState.moving);
@@ -86,7 +88,7 @@ namespace Models
         {
             awarenessRangeChangeEvent.AddListener(adapter.SetNewRange);
             adapter.SetAttackables(attackables);
-            attackRangeChangeEvent.Invoke(awarenessRange);
+            awarenessRangeChangeEvent.Invoke(awarenessRange);
         }
 
         private void SetNewTarget(IDamagable damagable)
@@ -190,7 +192,9 @@ namespace Models
         {
             if (state==EnemyState.dying) return 0;
             hp -= damage;
-            if (hp > 0) return 0;
+            Mathf.Clamp(hp, 0, maxHp);
+            behaviour.hpBar.OnUIUpdate((float)hp / maxHp, hp, maxHp);
+            if (hp > 0) return 0;            
             ChangeState(EnemyState.dying);            
             return xp;
         }
@@ -232,11 +236,15 @@ namespace Models
                 float dist = float.MaxValue;
                 int bestIndex = 0;
                 NavMeshPath path = new NavMeshPath();
+                NavMeshHit hit;
                 for (int i = 0; i < damagablesInAwarenessRange.Count; i++)
-                {
-                    NavMesh.CalculatePath(GetPosition(), damagablesInAwarenessRange[i].GetPosition(), NavMesh.AllAreas, path);
+                {                    
+                    if (!NavMesh.SamplePosition(damagablesInAwarenessRange[i].GetPosition(), out hit, 1.0f, NavMesh.AllAreas)) continue;
+                    
+                    NavMesh.CalculatePath(GetPosition(), hit.position, NavMesh.AllAreas, path);
 
                     float newDist = RemainingDistance(path.corners);
+
                     if (newDist < dist)
                     {
                         dist = newDist;
