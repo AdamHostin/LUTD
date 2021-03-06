@@ -44,6 +44,7 @@ namespace Models
 
         public void SetUnitPrefab(GameObject prefab, GameObject transparentUnit, int cost)
         {
+            DeleteTransparentUnit(false);
             pickedUnitPrefab = prefab;
             if (cost <= coins)
             {
@@ -62,11 +63,12 @@ namespace Models
             App.levelManager.InstatiateUnit(pickedUnitPrefab, position, transparentUnit);
             SpendCoins(tempCost);
             App.unitCardManager.SwitchToCard(null);
-            DeleteTransparentUnit();
+            DeleteTransparentUnit(true);
         }
 
         public void SetUnitToRelocate(GameObject unit, GameObject transparentUnit)
         {
+            DeleteTransparentUnit(false);
             pickedUnitPrefab = unit;
             this.transparentUnit = transparentUnit;
             playerState = PlayerState.relocating;
@@ -82,10 +84,12 @@ namespace Models
             transparentUnit.transform.position = position;
         }
 
-        public void DeleteTransparentUnit()
+        public void DeleteTransparentUnit(bool changeState)
         {
-            transparentUnit.transform.position = new Vector3(1000, 1000, 1000);
-            playerState = PlayerState.idle;
+            if (transparentUnit)
+                transparentUnit.transform.position = new Vector3(1000, 1000, 1000);
+            if (changeState)
+                playerState = PlayerState.idle;
         }
 
         public bool ComparePlayerState(PlayerState state)

@@ -82,16 +82,15 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
 
                 if (App.player.GetPickedUnit() != this.gameObject)
                 {
-                    App.player.GetPickedUnit().GetComponent<UnitBehaviour>().DeselectUnit();
+                    App.player.GetPickedUnit().GetComponent<UnitBehaviour>().DeselectUnit(false);
                     SelectUnit();
                 }
                 else
-                    DeselectUnit();
+                    DeselectUnit(true);
             }
             else
             {
                 App.unitCardManager.SwitchToCard(null);
-                App.player.DeleteTransparentUnit();
                 SelectUnit();
             }
         }
@@ -103,15 +102,15 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
         //TODO: add unit highlight
     }
 
-    public void DeselectUnit()
+    public void DeselectUnit(bool changeState)
     {
-        App.player.DeleteTransparentUnit();
+        App.player.DeleteTransparentUnit(changeState);
         //TODO: add dehighlight
     }
 
     public void Relocate(Vector3 targetPosition)
     {
         transform.position = targetPosition;
-        DeselectUnit();
+        DeselectUnit(true);
     }
 }

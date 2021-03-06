@@ -26,7 +26,6 @@ public class TileBehaviour : MonoBehaviour
             else if (App.player.ComparePlayerState(PlayerState.relocating))
             {
                 App.player.GetPickedUnit().GetComponent<UnitBehaviour>().Relocate(model.GetSpawnPosition());
-                App.player.DeleteTransparentUnit();
             }
         } 
     }

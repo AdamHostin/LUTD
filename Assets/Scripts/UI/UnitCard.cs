@@ -25,9 +25,9 @@ public class UnitCard : MonoBehaviour
     public void OnClicked()
     {
         if (App.player.ComparePlayerState(PlayerState.relocating))
-            App.player.GetPickedUnit().GetComponent<UnitBehaviour>().DeselectUnit();
+            App.player.GetPickedUnit().GetComponent<UnitBehaviour>().DeselectUnit(false);
 
-        if (!App.unitCardManager.GetActiveCard() == this)
+        if (App.unitCardManager.GetActiveCard() != this)
         {
             App.unitCardManager.SwitchToCard(this);
             App.player.SetUnitPrefab(unitPrefab, transparentUnit, cost);
@@ -35,7 +35,7 @@ public class UnitCard : MonoBehaviour
         else
         {
             App.unitCardManager.SwitchToCard(null);
-            App.player.DeleteTransparentUnit();
+            App.player.DeleteTransparentUnit(true);
         }
     }
 
