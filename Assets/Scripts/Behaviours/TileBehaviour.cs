@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TileBehaviour : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class TileBehaviour : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (!isOccupied)
+        if (!isOccupied && !EventSystem.current.IsPointerOverGameObject())
         {
             if (App.player.ComparePlayerState(PlayerState.placing))
             {
@@ -32,7 +33,7 @@ public class TileBehaviour : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        if (!App.player.ComparePlayerState(PlayerState.idle) && !isOccupied)
+        if (!App.player.ComparePlayerState(PlayerState.idle) && !isOccupied && !EventSystem.current.IsPointerOverGameObject())
         {
             App.player.SetTransparentUnitPosition(model.GetSpawnPosition());
         }

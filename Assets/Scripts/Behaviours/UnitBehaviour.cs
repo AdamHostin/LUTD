@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Models;
+using UnityEngine.EventSystems;
 
 public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
 {
@@ -76,7 +77,7 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
 
     private void OnMouseDown()
     {
-        if (isRelocatable && App.levelManager.CompareLevelState(LevelState.betweenWave))
+        if (isRelocatable && App.levelManager.CompareLevelState(LevelState.betweenWave) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (App.player.ComparePlayerState(PlayerState.idle))
             {
