@@ -207,6 +207,11 @@ namespace Models
         {
             this.transparentSelf = transparentSelf;
         }
+
+        public GameObject GetTransparentSelf()
+        {
+            return transparentSelf;
+        }
     }
 }
 

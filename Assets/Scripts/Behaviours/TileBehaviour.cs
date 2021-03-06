@@ -16,17 +16,24 @@ public class TileBehaviour : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (App.player.CanPlace() && !isOccupied)
+        if (!isOccupied)
         {
-            App.player.PlaceUnit(model.GetSpawnPosition());
-            isOccupied = true;
-            //Add dehighlight
+            if (App.player.ComparePlayerState(PlayerState.placing))
+            {
+                App.player.PlaceUnit(model.GetSpawnPosition());
+                isOccupied = true;
+            }
+            else if (App.player.ComparePlayerState(PlayerState.relocating))
+            {
+                App.player.GetPickedUnit().GetComponent<UnitBehaviour>().Relocate(model.GetSpawnPosition());
+                App.player.DeleteTransparentUnit();
+            }
         } 
     }
 
     public void OnMouseEnter()
     {
-        if (App.player.CanPlace() && !isOccupied)
+        if (!App.player.ComparePlayerState(PlayerState.idle) && !isOccupied)
         {
             App.player.SetTransparentUnitPosition(model.GetSpawnPosition());
         }

@@ -18,7 +18,8 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     public BarController toxicityBar;
     public BarController xpBar;
 
-
+    [SerializeField]
+    private bool isRelocatable;
 
 
 
@@ -68,4 +69,49 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
         Debug.Log("I am a zobie now");
     }
 
+    private void OnMouseDown()
+    {
+        if (isRelocatable && App.levelManager.CompareLevelState(LevelState.betweenWave))
+        {
+            if (App.player.ComparePlayerState(PlayerState.idle))
+            {
+                SelectUnit();
+            }
+            else if (App.player.ComparePlayerState(PlayerState.relocating))
+            {
+
+                if (App.player.GetPickedUnit() != this.gameObject)
+                {
+                    App.player.GetPickedUnit().GetComponent<UnitBehaviour>().DeselectUnit();
+                    SelectUnit();
+                }
+                else
+                    DeselectUnit();
+            }
+            else
+            {
+                App.unitCardManager.SwitchToCard(null);
+                App.player.DeleteTransparentUnit();
+                SelectUnit();
+            }
+        }
+    }
+
+    public void SelectUnit()
+    {
+        App.player.SetUnitToRelocate(this.gameObject, model.GetTransparentSelf());
+        //TODO: add unit highlight
+    }
+
+    public void DeselectUnit()
+    {
+        App.player.DeleteTransparentUnit();
+        //TODO: add dehighlight
+    }
+
+    public void Relocate(Vector3 targetPosition)
+    {
+        transform.position = targetPosition;
+        DeselectUnit();
+    }
 }

@@ -15,7 +15,7 @@ namespace Models
         GameObject pickedUnitPrefab;
         GameObject transparentUnit;
 
-        private bool canPlace = false;
+        private PlayerState playerState = PlayerState.idle;
 
         public Player(int coins, int vaccines)
         {
@@ -47,13 +47,13 @@ namespace Models
             pickedUnitPrefab = prefab;
             if (cost <= coins)
             {
-                canPlace = true;
+                playerState = PlayerState.placing;
                 tempCost = cost;
                 this.transparentUnit = transparentUnit;
             }
             else
             {
-                canPlace = false;
+                playerState = PlayerState.idle;
             }
         }
 
@@ -61,9 +61,20 @@ namespace Models
         {
             App.levelManager.InstatiateUnit(pickedUnitPrefab, position, transparentUnit);
             SpendCoins(tempCost);
-            canPlace = false;
             App.unitCardManager.SwitchToCard(null);
             DeleteTransparentUnit();
+        }
+
+        public void SetUnitToRelocate(GameObject unit, GameObject transparentUnit)
+        {
+            pickedUnitPrefab = unit;
+            this.transparentUnit = transparentUnit;
+            playerState = PlayerState.relocating;
+        }
+
+        public GameObject GetPickedUnit()
+        {
+            return pickedUnitPrefab;
         }
 
         public void SetTransparentUnitPosition(Vector3 position)
@@ -74,12 +85,17 @@ namespace Models
         public void DeleteTransparentUnit()
         {
             transparentUnit.transform.position = new Vector3(1000, 1000, 1000);
-            canPlace = false;
+            playerState = PlayerState.idle;
         }
 
-        public bool CanPlace()
+        public bool ComparePlayerState(PlayerState state)
         {
-            return canPlace;
+            return playerState == state ? true : false;
+        }
+
+        public void SetPlayerState(PlayerState state)
+        {
+            playerState = state;
         }
     }
 }

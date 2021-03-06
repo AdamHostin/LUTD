@@ -12,6 +12,8 @@ public class LevelManager : MonoBehaviour
     private int currentWave = 1;
     private int countOfEnemiesInCurrentWawe = 0;
 
+    private LevelState levelState = LevelState.betweenWave;      //Set to betweenWave fot testing
+
     [Header("Level boundrees setting")]
     [SerializeField] Vector3 maxClampPos;
     [SerializeField] Vector3 minClampPos;
@@ -101,4 +103,13 @@ public class LevelManager : MonoBehaviour
         unit.GetComponent<UnitBehaviour>().GetModel().SetTransparentSelf(transparentSelf);
     }
 
+    public void SetLevelState(LevelState state)
+    {
+        levelState = state;
+    }
+
+    public bool CompareLevelState(LevelState state)
+    {
+        return levelState == state ? true : false;
+    }
 }

@@ -24,6 +24,9 @@ public class UnitCard : MonoBehaviour
 
     public void OnClicked()
     {
+        if (App.player.ComparePlayerState(PlayerState.relocating))
+            App.player.GetPickedUnit().GetComponent<UnitBehaviour>().DeselectUnit();
+
         if (!App.unitCardManager.GetActiveCard() == this)
         {
             App.unitCardManager.SwitchToCard(this);
