@@ -77,27 +77,42 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
 
     private void OnMouseDown()
     {
-        if (isRelocatable && App.levelManager.CompareLevelState(LevelState.betweenWave) && !EventSystem.current.IsPointerOverGameObject())
+        if (App.levelManager.CompareLevelState(LevelState.betweenWave) && !EventSystem.current.IsPointerOverGameObject())
         {
-            if (App.player.ComparePlayerState(PlayerState.idle))
+            if (isRelocatable)
             {
-                SelectUnit();
-            }
-            else if (App.player.ComparePlayerState(PlayerState.relocating))
-            {
-
-                if (App.player.GetPickedUnit() != this.gameObject)
+                if (App.player.ComparePlayerState(PlayerState.idle))
                 {
-                    App.player.GetPickedUnit().GetComponent<UnitBehaviour>().DeselectUnit(false);
                     SelectUnit();
                 }
+                else if (App.player.ComparePlayerState(PlayerState.relocating))
+                {
+
+                    if (App.player.GetPickedUnit() != this.gameObject)
+                    {
+                        App.player.GetPickedUnit().GetComponent<UnitBehaviour>().DeselectUnit(false);
+                        SelectUnit();
+                    }
+                    else
+                        DeselectUnit(true);
+                }
                 else
-                    DeselectUnit(true);
+                {
+                    App.unitCardManager.SwitchToCard(null);
+                    SelectUnit();
+                }
             }
-            else
+            else 
             {
-                App.unitCardManager.SwitchToCard(null);
-                SelectUnit();
+                if (App.player.ComparePlayerState(PlayerState.relocating))
+                {
+                    App.player.GetPickedUnit().GetComponent<UnitBehaviour>().DeselectUnit(true);
+                }
+                else if (App.player.ComparePlayerState(PlayerState.placing))
+                {
+                    App.unitCardManager.SwitchToCard(null);
+                    App.player.DeleteTransparentUnit(true);
+                }
             }
         }
     }
