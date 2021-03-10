@@ -21,12 +21,13 @@ public class TileBehaviour : MonoBehaviour
         {
             if (App.player.ComparePlayerState(PlayerState.placing))
             {
-                App.player.PlaceUnit(model.GetSpawnPosition());
+                App.player.PlaceUnit(model.GetSpawnPosition(), this);
                 isOccupied = true;
             }
             else if (App.player.ComparePlayerState(PlayerState.relocating))
             {
-                App.player.GetPickedUnit().GetComponent<UnitBehaviour>().Relocate(model.GetSpawnPosition());
+                App.player.GetPickedUnit().GetComponent<UnitBehaviour>().Relocate(model.GetSpawnPosition(), this);
+                isOccupied = true;
             }
         } 
     }
@@ -37,5 +38,10 @@ public class TileBehaviour : MonoBehaviour
         {
             App.player.SetTransparentUnitPosition(model.GetSpawnPosition());
         }
+    }
+
+    public void SetOccupied(bool value)
+    {
+        isOccupied = value;
     }
 }

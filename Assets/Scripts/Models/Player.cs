@@ -70,9 +70,9 @@ namespace Models
             }
         }
 
-        public void PlaceUnit(Vector3 position)
+        public void PlaceUnit(Vector3 position, TileBehaviour tile)
         {
-            App.levelManager.InstatiateUnit(pickedUnitPrefab, position, transparentUnit);
+            App.levelManager.InstatiateUnit(pickedUnitPrefab, position, transparentUnit, tile);
             SpendCoins(tempCost);
             App.unitCardManager.SwitchToCard(null);
             DeleteTransparentUnit(true);

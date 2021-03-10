@@ -26,6 +26,7 @@ namespace Models
 
         //For relocating
         GameObject transparentSelf;
+        TileBehaviour currentTile;
 
         public class RangeChangeEvent : UnityEvent<float> { }
         public RangeChangeEvent rangeChangeEvent = new RangeChangeEvent();
@@ -211,6 +212,23 @@ namespace Models
         public GameObject GetTransparentSelf()
         {
             return transparentSelf;
+        }
+
+        public void SetCurrentTile(TileBehaviour tile)
+        {
+            this.currentTile = tile;
+        }
+
+        public TileBehaviour GetCurrentTile()
+        {
+            return currentTile;
+        }
+
+        public void SwitchToTile(TileBehaviour newTile)
+        {
+            currentTile.SetOccupied(false);
+            currentTile = newTile;
+            currentTile.SetOccupied(true);
         }
     }
 }

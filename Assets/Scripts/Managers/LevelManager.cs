@@ -97,10 +97,11 @@ public class LevelManager : MonoBehaviour
         else Debug.Log("Level end failure");
     }
 
-    public void InstatiateUnit(GameObject prefab, Vector3 position, GameObject transparentSelf)
+    public void InstatiateUnit(GameObject prefab, Vector3 position, GameObject transparentSelf, TileBehaviour tile)
     {
         GameObject unit = Instantiate(prefab, position, Quaternion.identity);
         unit.GetComponent<UnitBehaviour>().GetModel().SetTransparentSelf(transparentSelf);
+        unit.GetComponent<UnitBehaviour>().GetModel().SetCurrentTile(tile);
     }
 
     public void SetLevelState(LevelState state)

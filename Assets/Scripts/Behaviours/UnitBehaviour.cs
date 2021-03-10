@@ -129,9 +129,10 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
         //TODO: add dehighlight
     }
 
-    public void Relocate(Vector3 targetPosition)
+    public void Relocate(Vector3 targetPosition, TileBehaviour tile)
     {
         transform.position = targetPosition;
+        model.SwitchToTile(tile);
         DeselectUnit(true);
     }
 }
