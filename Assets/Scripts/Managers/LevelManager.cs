@@ -59,6 +59,11 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(timeBetweenWaves);
         levelState = LevelState.wave;
         App.player.StopRelocating();
+        if (countOfEnemiesInCurrentWawe == 0)
+        {
+            Debug.Log("!!!ALERT!!! WAVE WITH NO ENEMIES");
+            EndWave();
+        }
         startWaveEvent.Invoke();
     }
 
