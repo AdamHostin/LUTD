@@ -12,6 +12,8 @@ public class LevelManager : MonoBehaviour
     private int currentWave = 1;
     private int countOfEnemiesInCurrentWawe = 0;
 
+    private LevelState levelState = LevelState.betweenWave;      //Set to betweenWave fot testing
+
     [Header("Level boundrees setting")]
     [SerializeField] Vector3 maxClampPos;
     [SerializeField] Vector3 minClampPos;
@@ -55,7 +57,8 @@ public class LevelManager : MonoBehaviour
         prepareWaveStartEvent.Invoke(currentWave);
 
         yield return new WaitForSeconds(timeBetweenWaves);
-
+        levelState = LevelState.wave;
+        App.player.StopRelocating();
         startWaveEvent.Invoke();
     }
 
@@ -83,6 +86,7 @@ public class LevelManager : MonoBehaviour
 
     private void EndWave()
     {
+        levelState = LevelState.betweenWave;
         //Heandle end of wave
         currentWave++;
         if (currentWave > waveCount) EndLevel(true);
@@ -95,9 +99,21 @@ public class LevelManager : MonoBehaviour
         else Debug.Log("Level end failure");
     }
 
-    public void InstatiateUnit(GameObject prefab, Vector3 position)
+    public void InstatiateUnit(GameObject prefab, Vector3 position, GameObject transparentSelf, TileBehaviour tile)
     {
-        Instantiate(prefab, position, Quaternion.identity);
+        GameObject unit = Instantiate(prefab, position, Quaternion.identity);
+        Unit unitModel = unit.GetComponent<UnitBehaviour>().GetModel();
+        unitModel.SetTransparentSelf(transparentSelf);
+        unitModel.SetCurrentTile(tile);
     }
 
+    public void SetLevelState(LevelState state)
+    {
+        levelState = state;
+    }
+
+    public bool CompareLevelState(LevelState state)
+    {
+        return levelState == state ? true : false;
+    }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Models;
+using UnityEngine.EventSystems;
 
 public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
 {
@@ -19,7 +20,8 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     public BarController toxicityBar;
     public BarController xpBar;
 
-
+    [SerializeField]
+    private bool isRelocatable;
 
 
 
@@ -73,4 +75,66 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
         Destroy(gameObject);
     }
 
+    private void OnMouseDown()
+    {
+        if (App.levelManager.CompareLevelState(LevelState.betweenWave) && !EventSystem.current.IsPointerOverGameObject())
+        {
+            if (isRelocatable)
+            {
+                if (App.player.ComparePlayerState(PlayerState.idle))
+                {
+                    SelectUnit();
+                }
+                else if (App.player.ComparePlayerState(PlayerState.relocating))
+                {
+
+                    if (App.player.GetPickedUnit() != this.gameObject)
+                    {
+                        App.player.GetPickedUnit().GetComponent<UnitBehaviour>().DeselectUnit(false);
+                        SelectUnit();
+                    }
+                    else
+                        DeselectUnit(true);
+                }
+                else
+                {
+                    App.unitCardManager.SwitchToCard(null);
+                    SelectUnit();
+                }
+            }
+            else 
+            {
+                if (App.player.ComparePlayerState(PlayerState.relocating))
+                {
+                    App.player.GetPickedUnit().GetComponent<UnitBehaviour>().DeselectUnit(true);
+                }
+                else if (App.player.ComparePlayerState(PlayerState.placing))
+                {
+                    App.unitCardManager.SwitchToCard(null);
+                    App.player.DeleteTransparentUnit(true);
+                }
+            }
+        }
+    }
+
+    public void SelectUnit()
+    {
+        App.player.SetUnitToRelocate(this.gameObject, model.GetTransparentSelf());
+        //TODO: add unit highlight
+    }
+
+    public void DeselectUnit(bool changeState)
+    {
+        App.player.DeleteTransparentUnit(changeState);
+        //TODO: add dehighlight
+    }
+
+    public void Relocate(Vector3 targetPosition, TileBehaviour tile)
+    {
+        model.OnUnitPick();
+        transform.position = targetPosition;
+        model.OnUnitPlace();
+        model.SwitchToTile(tile);
+        DeselectUnit(true);
+    }
 }

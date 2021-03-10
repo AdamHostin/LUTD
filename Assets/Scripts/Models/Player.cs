@@ -14,8 +14,9 @@ namespace Models
         private bool canPlace = false;
 
         GameObject pickedUnitPrefab;
-        Transform transparentUnitTransform;
-        
+        GameObject transparentUnit;
+
+        private PlayerState playerState = PlayerState.idle;
 
         public class UpdatePlayerUIEvent : UnityEvent<int> { }
         public UpdatePlayerUIEvent updateCoinsUIEvent = new UpdatePlayerUIEvent();
@@ -55,42 +56,68 @@ namespace Models
 
         public void SetUnitPrefab(GameObject prefab, GameObject transparentUnit, int cost)
         {
+            DeleteTransparentUnit(false);
             pickedUnitPrefab = prefab;
             if (cost <= coins)
             {
-                canPlace = true;
+                playerState = PlayerState.placing;
                 tempCost = cost;
-                transparentUnitTransform = transparentUnit.GetComponent<Transform>();
+                this.transparentUnit = transparentUnit;
             }
             else
             {
-                canPlace = false;
+                playerState = PlayerState.idle;
             }
         }
 
-        public void PlaceUnit(Vector3 position)
+        public void PlaceUnit(Vector3 position, TileBehaviour tile)
         {
-            App.levelManager.InstatiateUnit(pickedUnitPrefab, position);
+            App.levelManager.InstatiateUnit(pickedUnitPrefab, position, transparentUnit, tile);
             SpendCoins(tempCost);
-            canPlace = false;
             App.unitCardManager.SwitchToCard(null);
-            DeleteTransparentUnit();
+            DeleteTransparentUnit(true);
+        }
+
+        public void SetUnitToRelocate(GameObject unit, GameObject transparentUnit)
+        {
+            DeleteTransparentUnit(false);
+            pickedUnitPrefab = unit;
+            this.transparentUnit = transparentUnit;
+            playerState = PlayerState.relocating;
+        }
+
+        public void StopRelocating()
+        {
+            if (playerState == PlayerState.relocating)
+                DeleteTransparentUnit(true);
+        }
+
+        public GameObject GetPickedUnit()
+        {
+            return pickedUnitPrefab;
         }
 
         public void SetTransparentUnitPosition(Vector3 position)
         {
-            transparentUnitTransform.position = position;
+            transparentUnit.transform.position = position;
         }
 
-        public void DeleteTransparentUnit()
+        public void DeleteTransparentUnit(bool changeState)
         {
-            transparentUnitTransform.position = new Vector3(1000, 1000, 1000);
-            canPlace = false;
+            if (transparentUnit)
+                transparentUnit.transform.position = new Vector3(1000, 1000, 1000);
+            if (changeState)
+                playerState = PlayerState.idle;
         }
 
-        public bool CanPlace()
+        public bool ComparePlayerState(PlayerState state)
         {
-            return canPlace;
+            return playerState == state ? true : false;
+        }
+
+        public void SetPlayerState(PlayerState state)
+        {
+            playerState = state;
         }
     }
 }

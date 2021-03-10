@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TileBehaviour : MonoBehaviour
 {
@@ -16,19 +17,31 @@ public class TileBehaviour : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (App.player.CanPlace() && !isOccupied)
+        if (!isOccupied && !EventSystem.current.IsPointerOverGameObject())
         {
-            App.player.PlaceUnit(model.GetSpawnPosition());
-            isOccupied = true;
-            //Add dehighlight
+            if (App.player.ComparePlayerState(PlayerState.placing))
+            {
+                App.player.PlaceUnit(model.GetSpawnPosition(), this);
+                isOccupied = true;
+            }
+            else if (App.player.ComparePlayerState(PlayerState.relocating))
+            {
+                App.player.GetPickedUnit().GetComponent<UnitBehaviour>().Relocate(model.GetSpawnPosition(), this);
+                isOccupied = true;
+            }
         } 
     }
 
     public void OnMouseEnter()
     {
-        if (App.player.CanPlace() && !isOccupied)
+        if (!App.player.ComparePlayerState(PlayerState.idle) && !isOccupied && !EventSystem.current.IsPointerOverGameObject())
         {
             App.player.SetTransparentUnitPosition(model.GetSpawnPosition());
         }
+    }
+
+    public void SetOccupied(bool value)
+    {
+        isOccupied = value;
     }
 }
