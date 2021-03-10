@@ -57,7 +57,8 @@ public class LevelManager : MonoBehaviour
         prepareWaveStartEvent.Invoke(currentWave);
 
         yield return new WaitForSeconds(timeBetweenWaves);
-
+        levelState = LevelState.wave;
+        App.player.StopRelocating();
         startWaveEvent.Invoke();
     }
 
@@ -85,6 +86,7 @@ public class LevelManager : MonoBehaviour
 
     private void EndWave()
     {
+        levelState = LevelState.betweenWave;
         //Heandle end of wave
         currentWave++;
         if (currentWave > waveCount) EndLevel(true);

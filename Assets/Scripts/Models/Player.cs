@@ -86,6 +86,12 @@ namespace Models
             playerState = PlayerState.relocating;
         }
 
+        public void StopRelocating()
+        {
+            if (playerState == PlayerState.relocating)
+                DeleteTransparentUnit(true);
+        }
+
         public GameObject GetPickedUnit()
         {
             return pickedUnitPrefab;
