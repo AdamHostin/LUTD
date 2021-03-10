@@ -187,7 +187,6 @@ namespace Models
 
         public void OnUnitPick()
         {
-            behaviour.gameObject.SetActive(false);
             onDamagableDeath.Invoke(this);
         }
 

@@ -131,7 +131,9 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
 
     public void Relocate(Vector3 targetPosition, TileBehaviour tile)
     {
+        model.OnUnitPick();
         transform.position = targetPosition;
+        model.OnUnitPlace();
         model.SwitchToTile(tile);
         DeselectUnit(true);
     }
