@@ -100,8 +100,9 @@ public class LevelManager : MonoBehaviour
     public void InstatiateUnit(GameObject prefab, Vector3 position, GameObject transparentSelf, TileBehaviour tile)
     {
         GameObject unit = Instantiate(prefab, position, Quaternion.identity);
-        unit.GetComponent<UnitBehaviour>().GetModel().SetTransparentSelf(transparentSelf);
-        unit.GetComponent<UnitBehaviour>().GetModel().SetCurrentTile(tile);
+        Unit unitModel = unit.GetComponent<UnitBehaviour>().GetModel();
+        unitModel.SetTransparentSelf(transparentSelf);
+        unitModel.SetCurrentTile(tile);
     }
 
     public void SetLevelState(LevelState state)
