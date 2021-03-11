@@ -13,6 +13,7 @@ namespace Models
         int maxToxicityResistance;
         int attack;
         float range;
+        float scaler;
 
         int unitLvl = 0;
         int unitxp = 0;
@@ -36,7 +37,7 @@ namespace Models
 
         public UnitState state;
 
-        public Unit(int hp, int toxicityResistance, int attack, float range, Vector3 gunPos, List<int> xpToNxtLvl, UnitBehaviour behaviour)
+        public Unit(int hp, int toxicityResistance, int attack, float range, Vector3 gunPos, float scaler, List<int> xpToNxtLvl, UnitBehaviour behaviour)
         {
             this.hp = maxHp = hp;
             this.toxicityResistance = maxToxicityResistance = toxicityResistance;
@@ -44,6 +45,7 @@ namespace Models
             this.range = range;
             this.xpToNxtLvl = xpToNxtLvl;
             this.gunPos = gunPos;
+            this.scaler = scaler;
             this.behaviour = behaviour;
             state = UnitState.idle;
 
@@ -111,20 +113,36 @@ namespace Models
             Mathf.Clamp(unitxp, 0, xpToNxtLvl[xpToNxtLvl.Count - 1]);
             if (unitxp >= xpToNxtLvl[unitLvl+1])
             {
-                //TODO: something
-                unitLvl++;
-                Debug.Log("Current lvl " + unitLvl);
+                LevelUp();
             }
-            if (unitLvl == xpToNxtLvl.Count-1)
-            {
-                behaviour.xpBar.OnUIUpdate(1f, unitxp, xpToNxtLvl[unitLvl]);
-            }
-            else
-            {
-                behaviour.xpBar.OnUIUpdate(((float)(unitxp - xpToNxtLvl[unitLvl]) / (xpToNxtLvl[unitLvl + 1] - xpToNxtLvl[unitLvl])), unitxp, xpToNxtLvl[unitLvl + 1]);
+            UpdateXpBar();
+            
+        }
 
-            }
+        void LevelUp()
+        {
+            //Improve hp
+            int newMaxHp = (int) Mathf.Ceil((scaler * maxHp));
+            if (newMaxHp > maxHp) hp += (newMaxHp - maxHp);
+            if (hp > newMaxHp) hp = newMaxHp;
+            maxHp = newMaxHp;
+            UpdateHpBar();
 
+            //Improve toxicity resistance
+            int newMaxToxicityResistance = (int)Mathf.Ceil((scaler * maxToxicityResistance));
+            if (newMaxToxicityResistance > maxToxicityResistance) hp += (newMaxToxicityResistance - maxToxicityResistance);
+            if (toxicityResistance > newMaxToxicityResistance) toxicityResistance = newMaxToxicityResistance;
+            maxToxicityResistance = newMaxToxicityResistance;
+            UpdateToxicityBar();
+
+            //Improve range
+            range *= scaler;
+            rangeChangeEvent.Invoke(range);
+            CheckEnemiesOnPlace();
+
+            unitLvl++;
+            UpdateXpBar();
+            Debug.Log("Current lvl " + unitLvl);
         }
 
         public bool GetDamage(int damage, int infection = 0)
@@ -145,7 +163,7 @@ namespace Models
             }
             else
             {
-                behaviour.hpBar.OnUIUpdate(((float)hp / maxHp), hp, maxHp);
+                UpdateHpBar();
             }
             if (toxicityResistance <= 0)
             {
@@ -158,10 +176,32 @@ namespace Models
             }
             else
             {
-                behaviour.toxicityBar.OnUIUpdate(((float)(maxToxicityResistance - toxicityResistance) / maxToxicityResistance), toxicityResistance, maxToxicityResistance);
-
+                UpdateToxicityBar();
             }
             return true;
+        }
+
+        void UpdateHpBar()
+        {
+            behaviour.hpBar.OnUIUpdate(((float)hp / maxHp), hp, maxHp);
+        }
+
+        void UpdateXpBar()
+        {
+            if (unitLvl == xpToNxtLvl.Count - 1)
+            {
+                behaviour.xpBar.OnUIUpdate(1f, unitxp, xpToNxtLvl[unitLvl]);
+            }
+            else
+            {
+                behaviour.xpBar.OnUIUpdate(((float)(unitxp - xpToNxtLvl[unitLvl]) / (xpToNxtLvl[unitLvl + 1] - xpToNxtLvl[unitLvl])), unitxp, xpToNxtLvl[unitLvl + 1]);
+
+            }
+        }
+
+        void UpdateToxicityBar()
+        {
+            behaviour.toxicityBar.OnUIUpdate(((float)(maxToxicityResistance - toxicityResistance) / maxToxicityResistance), toxicityResistance, maxToxicityResistance);
         }
 
         public Vector3 GetPosition()

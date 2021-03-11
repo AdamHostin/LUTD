@@ -171,6 +171,7 @@ MonoBehaviour:
   toxicityResistance: 100
   attack: 25
   range: 5
+  scaler: 1.5
   timeBetweenHits: 0.5
   zombiePrefab: {fileID: 185837405227817069, guid: 52e5b058a18b7a343801b54d65f27076,
     type: 3}

@@ -11,6 +11,8 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     [SerializeField] int toxicityResistance;
     [SerializeField] int attack;
     [SerializeField] float range;
+    [Tooltip("Value by which is maxhp, maxToxicityResistancce and range multiplyed on level up")]
+    [Range(1f,10f)] [SerializeField] float scaler = 1.5f;
     [SerializeField] float timeBetweenHits = 0.5f;
     [SerializeField] GameObject zombiePrefab;
 
@@ -28,7 +30,7 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     //TODO: add unit to activeUnitList in LevelManager?
     private void Awake()
     {
-        model = new Unit(hp, toxicityResistance, attack, range, transform.position ,xpToNxtLvl, this);
+        model = new Unit(hp, toxicityResistance, attack, range, transform.position, scaler ,xpToNxtLvl, this);
     }
 
     public IDamagable GetDamagableModel()
