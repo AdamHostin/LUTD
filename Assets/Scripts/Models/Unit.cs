@@ -141,7 +141,6 @@ namespace Models
             CheckEnemiesOnPlace();
 
             unitLvl++;
-            UpdateXpBar();
             Debug.Log("Current lvl " + unitLvl);
         }
 
