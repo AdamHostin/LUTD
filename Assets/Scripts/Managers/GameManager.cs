@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
 {
     public DefaultPlayerValues defaultVals;
 
+    [SerializeField]
+    private string[] levels;
+    private int sceneIndex = 0;
+
     private void Start()
     {
         App.gameManager = this;
@@ -35,6 +39,12 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void StartLoadingFirstScene()
+    {
+        sceneIndex = 1;
+        StartSceneLoading(levels[sceneIndex]);
+    }
+
     public void StartSceneLoading(string sceneName)
     {
         StartCoroutine(LoadSelectedScene(sceneName));
@@ -43,5 +53,11 @@ public class GameManager : MonoBehaviour
     public void StartSceneUnloading(string sceneName)
     {
         StartCoroutine(UnloadSelectedScene(sceneName));
+    }
+
+    public string GetNextLevel()
+    {
+        sceneIndex++;
+        return levels[sceneIndex];
     }
 }

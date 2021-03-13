@@ -7,6 +7,8 @@ public class ScreenManager : MonoBehaviour
     private ScreenBase[] screens;
     private GameState gameState;
 
+    private string sceneToUnload;
+
     private void Start()
     {
         App.screenManager = this;
@@ -63,5 +65,15 @@ public class ScreenManager : MonoBehaviour
     public void HidePauseScreen()
     {
         Hide<PauseMenuScreen>();
+    }
+
+    public void SetSceneToUnload(string scene)
+    {
+        sceneToUnload = scene;
+    }
+
+    public string GetSceneToUnload()
+    {
+        return sceneToUnload;
     }
 }
