@@ -18,6 +18,8 @@ namespace Models
         int unitLvl = 0;
         int unitxp = 0;
 
+        LayerMask layerMask;
+
         List<int> xpToNxtLvl;
         List<Enemy> enemiesInRange = new List<Enemy>();
 
@@ -53,12 +55,12 @@ namespace Models
             behaviour.toxicityBar.OnUIUpdate(0f, toxicityResistance, toxicityResistance);
             behaviour.xpBar.OnUIUpdate(1f, 0, xpToNxtLvl[1]);
 
-            
+            layerMask = 0;
+            layerMask = (1<<LayerMask.NameToLayer("Default") | 1<<LayerMask.NameToLayer("Enemy"));
         }
 
         public void SetAdapter(UnitTriggerAdapter adapter)
         {
-            //this.adapter = adapter;
             rangeChangeEvent.AddListener(adapter.SetNewRange);
             rangeChangeEvent.Invoke(range);
             OnUnitPlace();
@@ -88,9 +90,9 @@ namespace Models
             {
                 if (e.state == EnemyState.dying) continue;
                 Ray shootingRay = new Ray(gunPos, (e.GetPosition() - gunPos));
-                if (Physics.Raycast(shootingRay, out hit))
+                if (Physics.Raycast(shootingRay, out hit, layerMask))
                 {
-                    if (hit.transform.tag == "Enemy") return e;
+                    if (hit.collider.tag == "Enemy") return e;
                 }
             }
             return null;
