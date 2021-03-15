@@ -113,7 +113,8 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
                 else if (App.player.ComparePlayerState(PlayerState.placing))
                 {
                     App.unitCardManager.SwitchToCard(null);
-                    App.player.DeleteTransparentUnit(true);
+                    App.player.DeleteTransparentUnit();
+                    App.player.ChangeState(PlayerState.idle);
                 }
                 else if (App.player.ComparePlayerState(PlayerState.vaccinating))
                 {
@@ -132,7 +133,8 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
 
     public void DeselectUnit(bool changeState)
     {
-        App.player.DeleteTransparentUnit(changeState);
+        App.player.DeleteTransparentUnit();
+        App.player.ChangeState(PlayerState.idle);
         //TODO: add dehighlight
     }
 

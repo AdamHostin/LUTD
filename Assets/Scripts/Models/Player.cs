@@ -44,15 +44,15 @@ namespace Models
         {
             if (vaccines < 1) return;
             Debug.Log("Covid");
-            DeleteTransparentUnit(true);
-            playerState = PlayerState.vaccinating;
+            DeleteTransparentUnit();
+            ChangeState(PlayerState.vaccinating);
         }
 
         public void useVaccine()
         {
             vaccines--;
             updateVaccinesUIEvent.Invoke(vaccines);
-            playerState = PlayerState.idle;
+            ChangeState(PlayerState.idle);
         }
 
         public void SetPlayerInfoUI(PlayerInfoPanelController playerInfoPanelController)
@@ -77,7 +77,7 @@ namespace Models
 
         public void SetUnitPrefab(GameObject prefab, GameObject transparentUnit, int cost)
         {
-            DeleteTransparentUnit(false);
+            DeleteTransparentUnit();
             pickedUnitPrefab = prefab;
             if (cost <= coins)
             {
@@ -96,12 +96,13 @@ namespace Models
             App.levelManager.InstatiateUnit(pickedUnitPrefab, position, transparentUnit, tile);
             SpendCoins(tempCost);
             App.unitCardManager.SwitchToCard(null);
-            DeleteTransparentUnit(true);
+            DeleteTransparentUnit();
+            ChangeState(PlayerState.idle);
         }
 
         public void SetUnitToRelocate(GameObject unit, GameObject transparentUnit)
         {
-            DeleteTransparentUnit(false);
+            DeleteTransparentUnit();
             pickedUnitPrefab = unit;
             this.transparentUnit = transparentUnit;
             playerState = PlayerState.relocating;
@@ -110,7 +111,8 @@ namespace Models
         public void StopRelocating()
         {
             if (playerState == PlayerState.relocating)
-                DeleteTransparentUnit(true);
+                DeleteTransparentUnit();
+            ChangeState(PlayerState.idle);
         }
 
         public GameObject GetPickedUnit()
@@ -123,12 +125,15 @@ namespace Models
             transparentUnit.transform.position = position;
         }
 
-        public void DeleteTransparentUnit(bool changeState)
+        public void DeleteTransparentUnit()
         {
             if (transparentUnit)
                 transparentUnit.transform.position = new Vector3(1000, 1000, 1000);
-            if (changeState)
-                playerState = PlayerState.idle;
+        }
+
+        public void ChangeState(PlayerState targetState)
+        {
+            playerState = targetState;
         }
 
         public bool ComparePlayerState(PlayerState state)

@@ -35,7 +35,8 @@ public class UnitCard : MonoBehaviour
         else
         {
             App.unitCardManager.SwitchToCard(null);
-            App.player.DeleteTransparentUnit(true);
+            App.player.DeleteTransparentUnit();
+            App.player.ChangeState(PlayerState.idle);
         }
     }
 
