@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 
 namespace Models
@@ -16,17 +17,21 @@ namespace Models
         GameObject pickedUnitPrefab;
         GameObject transparentUnit;
 
-        private PlayerState playerState = PlayerState.idle;
+        public int vaccineEffectivnes;
+        public PlayerState playerState = PlayerState.idle;
 
         public class UpdatePlayerUIEvent : UnityEvent<int> { }
         public UpdatePlayerUIEvent updateCoinsUIEvent = new UpdatePlayerUIEvent();
         //from where payer gets theeese???
         public UpdatePlayerUIEvent updateVaccinesUIEvent = new UpdatePlayerUIEvent();
 
-        public Player(int coins, int vaccines)
+        public Player(int coins, int vaccines , int vaccineEffectivnes)
         {
             this.coins = coins;
             this.vaccines = vaccines;
+            this.vaccineEffectivnes = vaccineEffectivnes;
+            
+            
         }
 
         public void ReInitPlayer(int coins, int vaccines)
@@ -34,6 +39,22 @@ namespace Models
             this.coins = coins;
             this.vaccines = vaccines;
         }
+
+        public void StartVaccinating()
+        {
+            if (vaccines < 1) return;
+            Debug.Log("Covid");
+            DeleteTransparentUnit(true);
+            playerState = PlayerState.vaccinating;
+        }
+
+        public void useVaccine()
+        {
+            vaccines--;
+            updateVaccinesUIEvent.Invoke(vaccines);
+            playerState = PlayerState.idle;
+        }
+
         public void SetPlayerInfoUI(PlayerInfoPanelController playerInfoPanelController)
         {
             updateCoinsUIEvent.AddListener(playerInfoPanelController.UpdateCoinText);

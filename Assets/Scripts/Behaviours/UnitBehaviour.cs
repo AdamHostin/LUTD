@@ -115,6 +115,11 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
                     App.unitCardManager.SwitchToCard(null);
                     App.player.DeleteTransparentUnit(true);
                 }
+                else if (App.player.ComparePlayerState(PlayerState.vaccinating))
+                {
+                    Debug.Log("AfterCheck");
+                    if (model.Vaccinating()) App.player.useVaccine();
+                }
             }
         }
     }
@@ -139,4 +144,6 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
         model.SwitchToTile(tile);
         DeselectUnit(true);
     }
+
+
 }

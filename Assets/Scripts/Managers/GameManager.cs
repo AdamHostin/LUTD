@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     {
         App.gameManager = this;
         StartCoroutine(LoadSelectedScene("UIScene"));
-        App.player = new Player(defaultVals.coins, defaultVals.vaccines);
+        App.player = new Player(defaultVals.coins, defaultVals.vaccines, defaultVals.vaccineEffectivnes);
     }
 
     IEnumerator LoadSelectedScene(string sceneName)

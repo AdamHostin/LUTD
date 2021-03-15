@@ -4,6 +4,7 @@ using UnityEngine;
 using Models;
 using UnityEngine.Events;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
