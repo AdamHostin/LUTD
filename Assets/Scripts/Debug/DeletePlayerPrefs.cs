@@ -7,14 +7,10 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class DeletePlayerPrefs : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         File.Delete(Application.persistentDataPath + "/LUTD.data");
     }
 
-    private void Update()
-    {
-        
-    }
 
 }
