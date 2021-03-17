@@ -119,7 +119,7 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
             }
         }
 
-        if (App.player.ComparePlayerState(PlayerState.vaccinating))
+        if ((App.player.ComparePlayerState(PlayerState.vaccinating) && !EventSystem.current.IsPointerOverGameObject()))
         {
             model.Vaccinating();
         }
