@@ -25,6 +25,8 @@ namespace Models
         //from where payer gets theeese???
         public UpdatePlayerUIEvent updateVaccinesUIEvent = new UpdatePlayerUIEvent();
 
+        public UnityEvent vaccinationEndedEvent = new UnityEvent();
+
         public Player(int coins, int vaccines , int vaccineEffectivnes)
         {
             this.coins = coins;
@@ -53,6 +55,7 @@ namespace Models
             vaccines--;
             updateVaccinesUIEvent.Invoke(vaccines);
             ChangeState(PlayerState.idle);
+            vaccinationEndedEvent.Invoke();
         }
 
         public void SetPlayerInfoUI(PlayerInfoPanelController playerInfoPanelController)
@@ -77,6 +80,7 @@ namespace Models
 
         public void SetUnitPrefab(GameObject prefab, GameObject transparentUnit, int cost)
         {
+            vaccinationEndedEvent.Invoke();
             DeleteTransparentUnit();
             pickedUnitPrefab = prefab;
             if (cost <= coins)
