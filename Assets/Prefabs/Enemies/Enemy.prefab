@@ -143,7 +143,7 @@ MonoBehaviour:
   maxCoins: 5
   attackFrequency: 1.5
   attackRange: 1
-  awarenessRange: 4
+  awarenessRange: 10
   attackableTags:
   - Unit
   - Base

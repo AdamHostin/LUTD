@@ -270,6 +270,18 @@ namespace Models
             currentTile = newTile;
             currentTile.SetOccupied(true);
         }
+
+        public bool Vaccinating()
+        {
+            if (maxToxicityResistance == toxicityResistance) return false;
+
+            toxicityResistance += App.player.vaccineEffectivnes;
+            toxicityResistance = Mathf.Clamp(toxicityResistance, 0,maxToxicityResistance);
+            UpdateToxicityBar();
+            App.player.useVaccine();
+
+            return true;
+        }
     }
 }
 

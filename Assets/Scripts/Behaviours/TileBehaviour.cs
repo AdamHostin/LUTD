@@ -34,7 +34,7 @@ public class TileBehaviour : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        if (!App.player.ComparePlayerState(PlayerState.idle) && !isOccupied && !EventSystem.current.IsPointerOverGameObject())
+        if ((App.player.ComparePlayerState(PlayerState.relocating) || App.player.ComparePlayerState(PlayerState.placing)) && !isOccupied && !EventSystem.current.IsPointerOverGameObject())
         {
             App.player.SetTransparentUnitPosition(model.GetSpawnPosition());
         }
