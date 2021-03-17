@@ -42,7 +42,7 @@ namespace Models
 
         public void StartVaccinating()
         {
-            if (vaccines < 1) return;
+            if ((vaccines < 1)||(playerState == PlayerState.vaccinating)) return;
             Debug.Log("Covid");
             DeleteTransparentUnit();
             ChangeState(PlayerState.vaccinating);

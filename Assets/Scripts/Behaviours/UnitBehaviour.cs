@@ -116,12 +116,12 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
                     App.player.DeleteTransparentUnit();
                     App.player.ChangeState(PlayerState.idle);
                 }
-                else if (App.player.ComparePlayerState(PlayerState.vaccinating))
-                {
-                    Debug.Log("AfterCheck");
-                    if (model.Vaccinating()) App.player.useVaccine();
-                }
             }
+        }
+
+        if (App.player.ComparePlayerState(PlayerState.vaccinating))
+        {
+            model.Vaccinating();
         }
     }
 
