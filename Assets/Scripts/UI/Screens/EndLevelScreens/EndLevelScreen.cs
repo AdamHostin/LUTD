@@ -8,6 +8,7 @@ public class EndLevelScreen : ScreenBase
     {
         App.gameManager.StartSceneUnloading(App.screenManager.GetSceneToUnload());
         App.gameManager.StartSceneLoading(App.screenManager.GetSceneToUnload());
+        Time.timeScale = 1;
         Hide();
     }
 
