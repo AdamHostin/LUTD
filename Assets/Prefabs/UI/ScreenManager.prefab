@@ -191,6 +191,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1322477912208052684}
     m_Modifications:
+    - target: {fileID: 423821407242393971, guid: 1a94711768612ef41bf063ddc8d107c8,
+        type: 3}
+      propertyPath: m_text
+      value: Restart Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 706180466236125362, guid: 1a94711768612ef41bf063ddc8d107c8,
+        type: 3}
+      propertyPath: m_text
+      value: Next Level
+      objectReference: {fileID: 0}
     - target: {fileID: 2452221706013483313, guid: 1a94711768612ef41bf063ddc8d107c8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -296,6 +306,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2467271710670778577, guid: 1a94711768612ef41bf063ddc8d107c8,
+        type: 3}
+      propertyPath: m_text
+      value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688528330575597129, guid: 1a94711768612ef41bf063ddc8d107c8,
+        type: 3}
+      propertyPath: m_text
+      value: Level completed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3682987852382104169, guid: 1a94711768612ef41bf063ddc8d107c8,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.53333336
+      objectReference: {fileID: 0}
     - target: {fileID: 4477604864422499163, guid: 1a94711768612ef41bf063ddc8d107c8,
         type: 3}
       propertyPath: m_Name
@@ -365,6 +390,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PauseMenuScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 2434966593849570788, guid: 10b83223d51deb94f96a9e6c52f813ee,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4023134079169361969, guid: 10b83223d51deb94f96a9e6c52f813ee,
         type: 3}
@@ -516,6 +546,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1322477912208052684}
     m_Modifications:
+    - target: {fileID: 610068095046965297, guid: 93c2f98edff7fb248836534dcbe66707,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 48.950684
+      objectReference: {fileID: 0}
+    - target: {fileID: 610068095046965297, guid: 93c2f98edff7fb248836534dcbe66707,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -48.95044
+      objectReference: {fileID: 0}
     - target: {fileID: 4134226305046936900, guid: 93c2f98edff7fb248836534dcbe66707,
         type: 3}
       propertyPath: m_LocalPosition.x

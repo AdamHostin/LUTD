@@ -19,4 +19,13 @@ public class PauseMenuScreen : ScreenBase
         Time.timeScale = 1;
         base.Hide();
     }
+
+    public void HideToMenu()
+    {
+        App.screenManager.SetGameState(GameState.menu);
+        base.Hide();
+        App.screenManager.Hide<InGameScreen>();
+        App.screenManager.Show<MenuScreen>();
+        App.gameManager.StartCurrentSceneUnloading();
+    }
 }

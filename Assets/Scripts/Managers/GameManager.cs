@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private string[] levels;
     private int sceneIndex = 0;
     private PlayerData saveData;
+    private bool hasSave = false;
 
     private void Start()
     {
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
         if (saveData != null)
         {
             App.player = new Player(saveData.coins, saveData.vaccines, defaultVals.vaccineEffectivnes);
+            sceneIndex = saveData.sceneNumber;
+            hasSave = true;
         }
         else
         {
@@ -65,10 +68,21 @@ public class GameManager : MonoBehaviour
         StartCoroutine(UnloadSelectedScene(sceneName));
     }
 
+    public void StartCurrentSceneLoading()
+    {
+        StartCoroutine(LoadSelectedScene(levels[sceneIndex]));
+    }
+
+    public void StartCurrentSceneUnloading()
+    {
+        StartCoroutine(UnloadSelectedScene(levels[sceneIndex]));
+    }
+
     public string GetNextLevel()
     {
         sceneIndex++;
         App.SaveSystem.Save();
+        hasSave = true;
         return levels[sceneIndex];
     }
 
