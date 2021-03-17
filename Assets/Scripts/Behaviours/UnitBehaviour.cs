@@ -72,7 +72,8 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
         //TODO: play SFX
         gameObject.tag = "Untagged";
         App.levelManager.AddEnemies();
-        Instantiate(zombiePrefab,transform.position, Quaternion.identity);
+        GameObject zombie = Instantiate(zombiePrefab,transform.position, Quaternion.identity);
+        zombie.transform.parent = App.levelManager.transform;
         Debug.Log("I am a zobie now");
         Destroy(gameObject);
     }
