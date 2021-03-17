@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da85743aa657ed74191389fcaaf7a81f, type: 3}
   m_Name: DefaultPlayerVals
   m_EditorClassIdentifier: 
-  vaccines: 0
+  vaccines: 5
   coins: 10
+  vaccineEffectivnes: 10
