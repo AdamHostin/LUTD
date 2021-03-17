@@ -4,6 +4,8 @@ using UnityEngine;
 using Models;
 using UnityEngine.Events;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -50,7 +52,6 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(StartWave());
-
     }
     IEnumerator StartWave()
     {
@@ -100,13 +101,22 @@ public class LevelManager : MonoBehaviour
     
     public void EndLevel(bool res)
     {
-        if (res) Debug.Log("Level end Success");
-        else Debug.Log("Level end failure");
+        App.screenManager.SetSceneToUnload(SceneManager.GetSceneAt(2).name);
+        if (res) 
+        {
+            App.screenManager.Show<WinScreen>();
+        } 
+        else
+        {
+            Time.timeScale = 0f;
+            App.screenManager.Show<DeathScreen>();
+        }
     }
 
     public void InstatiateUnit(GameObject prefab, Vector3 position, GameObject transparentSelf, TileBehaviour tile)
     {
         GameObject unit = Instantiate(prefab, position, Quaternion.identity);
+        unit.transform.parent = transform;
         Unit unitModel = unit.GetComponent<UnitBehaviour>().GetModel();
         unitModel.SetTransparentSelf(transparentSelf);
         unitModel.SetCurrentTile(tile);

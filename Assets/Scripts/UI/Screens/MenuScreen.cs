@@ -16,8 +16,15 @@ public class MenuScreen : ScreenBase
         base.Hide();
     }
 
-    public void PlayButtonClicked(string targetScene)
+    public void PlayButtonClicked()
     {
-        App.gameManager.StartSceneLoading(targetScene);
+        App.gameManager.StartLoadingFirstScene();
+        Time.timeScale = 1;
+    }
+
+    public void TestLevelButtonClicked()
+    {
+        App.gameManager.StartSceneLoading("TestLevel");
+        Time.timeScale = 1;
     }
 }

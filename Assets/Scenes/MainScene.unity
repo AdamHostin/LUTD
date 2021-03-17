@@ -151,6 +151,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultVals: {fileID: 11400000, guid: 7a33fc3dd170ae440b7a6833e9a98f1d, type: 2}
+  levels:
+  - TestLevel
+  - Level1
 --- !u!4 &1839697029
 Transform:
   m_ObjectHideFlags: 0

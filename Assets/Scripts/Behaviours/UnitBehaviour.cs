@@ -72,7 +72,8 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
         //TODO: play SFX
         gameObject.tag = "Untagged";
         App.levelManager.AddEnemies();
-        Instantiate(zombiePrefab,transform.position, Quaternion.identity);
+        GameObject zombie = Instantiate(zombiePrefab,transform.position, Quaternion.identity);
+        zombie.transform.parent = App.levelManager.transform;
         Debug.Log("I am a zobie now");
         Destroy(gameObject);
     }
@@ -113,9 +114,15 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
                 else if (App.player.ComparePlayerState(PlayerState.placing))
                 {
                     App.unitCardManager.SwitchToCard(null);
-                    App.player.DeleteTransparentUnit(true);
+                    App.player.DeleteTransparentUnit();
+                    App.player.ChangeState(PlayerState.idle);
                 }
             }
+        }
+
+        if ((App.player.ComparePlayerState(PlayerState.vaccinating) && !EventSystem.current.IsPointerOverGameObject()))
+        {
+            model.Vaccinating();
         }
     }
 
@@ -127,7 +134,8 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
 
     public void DeselectUnit(bool changeState)
     {
-        App.player.DeleteTransparentUnit(changeState);
+        App.player.DeleteTransparentUnit();
+        App.player.ChangeState(PlayerState.idle);
         //TODO: add dehighlight
     }
 
@@ -139,4 +147,6 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
         model.SwitchToTile(tile);
         DeselectUnit(true);
     }
+
+
 }

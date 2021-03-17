@@ -242,7 +242,10 @@ namespace Models
                     if (!NavMesh.SamplePosition(damagablesInAwarenessRange[i].GetPosition(), out hit, 1.0f, NavMesh.AllAreas)) continue;
                     
                     NavMesh.CalculatePath(GetPosition(), hit.position, NavMesh.AllAreas, path);
-
+                    if (path.status!=NavMeshPathStatus.PathComplete)
+                    {
+                        continue;
+                    }
                     float newDist = RemainingDistance(path.corners);
 
                     if (newDist < dist)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 
 namespace Models
@@ -16,17 +17,23 @@ namespace Models
         GameObject pickedUnitPrefab;
         GameObject transparentUnit;
 
-        private PlayerState playerState = PlayerState.idle;
+        public int vaccineEffectivnes;
+        public PlayerState playerState = PlayerState.idle;
 
         public class UpdatePlayerUIEvent : UnityEvent<int> { }
         public UpdatePlayerUIEvent updateCoinsUIEvent = new UpdatePlayerUIEvent();
         //from where payer gets theeese???
         public UpdatePlayerUIEvent updateVaccinesUIEvent = new UpdatePlayerUIEvent();
 
-        public Player(int coins, int vaccines)
+        public UnityEvent vaccinationEndedEvent = new UnityEvent();
+
+        public Player(int coins, int vaccines , int vaccineEffectivnes)
         {
             this.coins = coins;
             this.vaccines = vaccines;
+            this.vaccineEffectivnes = vaccineEffectivnes;
+            
+            
         }
 
         public void ReInitPlayer(int coins, int vaccines)
@@ -34,6 +41,23 @@ namespace Models
             this.coins = coins;
             this.vaccines = vaccines;
         }
+
+        public void StartVaccinating()
+        {
+            if ((vaccines < 1)||(playerState == PlayerState.vaccinating)) return;
+            Debug.Log("Covid");
+            DeleteTransparentUnit();
+            ChangeState(PlayerState.vaccinating);
+        }
+
+        public void useVaccine()
+        {
+            vaccines--;
+            updateVaccinesUIEvent.Invoke(vaccines);
+            ChangeState(PlayerState.idle);
+            vaccinationEndedEvent.Invoke();
+        }
+
         public void SetPlayerInfoUI(PlayerInfoPanelController playerInfoPanelController)
         {
             updateCoinsUIEvent.AddListener(playerInfoPanelController.UpdateCoinText);
@@ -56,7 +80,8 @@ namespace Models
 
         public void SetUnitPrefab(GameObject prefab, GameObject transparentUnit, int cost)
         {
-            DeleteTransparentUnit(false);
+            vaccinationEndedEvent.Invoke();
+            DeleteTransparentUnit();
             pickedUnitPrefab = prefab;
             if (cost <= coins)
             {
@@ -75,12 +100,13 @@ namespace Models
             App.levelManager.InstatiateUnit(pickedUnitPrefab, position, transparentUnit, tile);
             SpendCoins(tempCost);
             App.unitCardManager.SwitchToCard(null);
-            DeleteTransparentUnit(true);
+            DeleteTransparentUnit();
+            ChangeState(PlayerState.idle);
         }
 
         public void SetUnitToRelocate(GameObject unit, GameObject transparentUnit)
         {
-            DeleteTransparentUnit(false);
+            DeleteTransparentUnit();
             pickedUnitPrefab = unit;
             this.transparentUnit = transparentUnit;
             playerState = PlayerState.relocating;
@@ -89,7 +115,8 @@ namespace Models
         public void StopRelocating()
         {
             if (playerState == PlayerState.relocating)
-                DeleteTransparentUnit(true);
+                DeleteTransparentUnit();
+            ChangeState(PlayerState.idle);
         }
 
         public GameObject GetPickedUnit()
@@ -102,12 +129,15 @@ namespace Models
             transparentUnit.transform.position = position;
         }
 
-        public void DeleteTransparentUnit(bool changeState)
+        public void DeleteTransparentUnit()
         {
             if (transparentUnit)
                 transparentUnit.transform.position = new Vector3(1000, 1000, 1000);
-            if (changeState)
-                playerState = PlayerState.idle;
+        }
+
+        public void ChangeState(PlayerState targetState)
+        {
+            playerState = targetState;
         }
 
         public bool ComparePlayerState(PlayerState state)
