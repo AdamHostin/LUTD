@@ -1,10 +1,14 @@
 ﻿using UnityEngine.Audio;
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
+    public Sound[] triggerIndependentSounds;
+    public float minTimeBetweenAmbient;
+    public float maxTimeBetweenAmbient;
 
     private void Awake()
     {
@@ -18,6 +22,20 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.loop = s.loop;
         }
+
+        foreach (Sound s in triggerIndependentSounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.outputAudioMixerGroup = s.output;
+            s.source.volume = s.volume;
+            s.source.loop = s.loop;
+        }
+    }
+
+    private void Start()
+    {
+        StartCoroutine(PlayAmbient());
     }
 
     public void Play(string name)
@@ -29,5 +47,14 @@ public class AudioManager : MonoBehaviour
             return;
         }
         s.source.Play();
+    }
+
+    IEnumerator PlayAmbient()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(UnityEngine.Random.Range(minTimeBetweenAmbient, maxTimeBetweenAmbient));
+            triggerIndependentSounds[UnityEngine.Random.Range(0, triggerIndependentSounds.Length)].source.Play();
+        }
     }
 }

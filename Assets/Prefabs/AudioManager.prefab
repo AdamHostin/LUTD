@@ -46,96 +46,106 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: UnitSpawn
-    clip: {fileID: 8300000, guid: fae48cd1022270b4390cc243f85a06b1, type: 3}
+    clip: {fileID: 0}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: UnitInfected
-    clip: {fileID: 8300000, guid: fae48cd1022270b4390cc243f85a06b1, type: 3}
+    clip: {fileID: 0}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: UnitDeath
-    clip: {fileID: 8300000, guid: fae48cd1022270b4390cc243f85a06b1, type: 3}
+    clip: {fileID: 0}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: UnitShoot
-    clip: {fileID: 8300000, guid: fae48cd1022270b4390cc243f85a06b1, type: 3}
+    clip: {fileID: 0}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: WaveStart
-    clip: {fileID: 8300000, guid: fae48cd1022270b4390cc243f85a06b1, type: 3}
+    clip: {fileID: 0}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: WaveEnd
-    clip: {fileID: 8300000, guid: fae48cd1022270b4390cc243f85a06b1, type: 3}
+    clip: {fileID: 0}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: EnemySpawn
-    clip: {fileID: 8300000, guid: fae48cd1022270b4390cc243f85a06b1, type: 3}
+    clip: {fileID: 0}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: EnemyDeath
-    clip: {fileID: 8300000, guid: fae48cd1022270b4390cc243f85a06b1, type: 3}
+    clip: {fileID: 0}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: LevelCompleted
-    clip: {fileID: 8300000, guid: fae48cd1022270b4390cc243f85a06b1, type: 3}
+    clip: {fileID: 0}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: LevelFailed
-    clip: {fileID: 8300000, guid: fae48cd1022270b4390cc243f85a06b1, type: 3}
+    clip: {fileID: 0}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: UIButtonHover
-    clip: {fileID: 8300000, guid: fae48cd1022270b4390cc243f85a06b1, type: 3}
+    clip: {fileID: 0}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: UIButtonClicked
-    clip: {fileID: 8300000, guid: fae48cd1022270b4390cc243f85a06b1, type: 3}
+    clip: {fileID: 0}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: Reward
-    clip: {fileID: 8300000, guid: fae48cd1022270b4390cc243f85a06b1, type: 3}
+    clip: {fileID: 0}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
+  triggerIndependentSounds:
+  - name: Ambient1
+    clip: {fileID: 0}
+    output: {fileID: 3505599322356436459, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  minTimeBetweenAmbient: 1
+  maxTimeBetweenAmbient: 3
 --- !u!81 &8305759454335345156
 AudioListener:
   m_ObjectHideFlags: 0
