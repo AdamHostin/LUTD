@@ -149,6 +149,16 @@ namespace Models
         {
             playerState = state;
         }
+
+        public int GetCoins() 
+        {
+            return coins;
+        }
+
+        public int GetVaccines()
+        {
+            return vaccines;
+        }
     }
 }
 
