@@ -34,6 +34,7 @@ public class VaccineButtonUI : MonoBehaviour
 
     public void OnClick()
     {
+        App.audioManager.Play("UIButtonClicked");
         if (isPressed) image.color = normalColor;
         else image.color = highlightColor;
 

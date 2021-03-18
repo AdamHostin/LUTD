@@ -24,6 +24,8 @@ public class UnitCard : MonoBehaviour
 
     public void OnClicked()
     {
+        App.audioManager.Play("UIButtonClicked");
+
         if (App.player.ComparePlayerState(PlayerState.relocating))
             App.player.GetPickedUnit().GetComponent<UnitBehaviour>().DeselectUnit(false);
 

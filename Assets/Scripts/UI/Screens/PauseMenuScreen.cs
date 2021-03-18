@@ -14,6 +14,7 @@ public class PauseMenuScreen : ScreenBase
 
     public override void Hide()
     {
+        App.audioManager.Play("UIButtonClicked");
         App.screenManager.SetGameState(GameState.running);
         App.CameraManager.EnableCamera();
         Time.timeScale = 1;
@@ -22,6 +23,7 @@ public class PauseMenuScreen : ScreenBase
 
     public void HideToMenu()
     {
+        App.audioManager.Play("UIButtonClicked");
         App.screenManager.SetGameState(GameState.menu);
         base.Hide();
         App.screenManager.Hide<InGameScreen>();

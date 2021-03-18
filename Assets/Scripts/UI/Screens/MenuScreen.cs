@@ -22,6 +22,7 @@ public class MenuScreen : ScreenBase
 
     public void PlayButtonClicked()
     {
+        App.audioManager.Play("UIButtonClicked");
         App.gameManager.StartLoadingFirstScene();
         App.gameManager.ReInitPlayer();
         Time.timeScale = 1;
@@ -29,12 +30,14 @@ public class MenuScreen : ScreenBase
 
     public void TestLevelButtonClicked()
     {
+        App.audioManager.Play("UIButtonClicked");
         App.gameManager.StartSceneLoading("TestLevel");
         Time.timeScale = 1;
     }
 
     public void CointinueButtonClicked()
     {
+        App.audioManager.Play("UIButtonClicked");
         App.gameManager.StartCurrentSceneLoading();
         Time.timeScale = 1;
     }
