@@ -14,18 +14,17 @@ public class SettingsScreen : ScreenBase
 
     public override void Show()
     {
+        base.Show();
         LoadValue("masterVol", mainSlider);
         LoadValue("sfxVol", sfxSlider);
         LoadValue("ambientVol", ambientSlider);
-
-        base.Show();
     }
 
     public override void Hide()
     {
-        PlayerPrefs.SetFloat("masterVol", Mathf.Log10(mainSlider.value) * 20);
-        PlayerPrefs.SetFloat("sfxVol", Mathf.Log10(sfxSlider.value) * 20);
-        PlayerPrefs.SetFloat("ambientVol", Mathf.Log10(ambientSlider.value) * 20);
+        PlayerPrefs.SetFloat("masterVol", mainSlider.value);
+        PlayerPrefs.SetFloat("sfxVol", sfxSlider.value);
+        PlayerPrefs.SetFloat("ambientVol", ambientSlider.value);
 
         base.Hide();
     }
@@ -48,6 +47,8 @@ public class SettingsScreen : ScreenBase
     void LoadValue(string key, Slider slider)
     {
         if (PlayerPrefs.HasKey(key))
+        {
             slider.value = PlayerPrefs.GetFloat(key);
+        }
     }
 }
