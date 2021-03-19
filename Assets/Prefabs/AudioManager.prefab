@@ -139,7 +139,7 @@ MonoBehaviour:
     source: {fileID: 0}
   triggerIndependentSounds:
   - name: Ambient1
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: fae48cd1022270b4390cc243f85a06b1, type: 3}
     output: {fileID: 3505599322356436459, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1

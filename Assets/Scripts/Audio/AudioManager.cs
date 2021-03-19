@@ -70,6 +70,8 @@ public class AudioManager : MonoBehaviour
     void LoadValue(string key)
     {
         if (PlayerPrefs.HasKey(key))
-            mainMixer.SetFloat(key, Mathf.Log10(PlayerPrefs.GetFloat(key)) * 20);
+            mainMixer.SetFloat(key, Mathf.Log10(Mathf.Max(PlayerPrefs.GetFloat(key), 0.0001f)) * 20f);
+        else
+            mainMixer.SetFloat(key, Mathf.Log10(0.5f) * 20f);
     }
 }
