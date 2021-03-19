@@ -63,13 +63,13 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     public void Die()
     {
         gameObject.tag = "Untagged";
-        //TODO: play SFX
+        App.audioManager.Play("UnitDeath");
         Destroy(gameObject);
     }
 
     public void GetInfected()
     {
-        //TODO: play SFX
+        App.audioManager.Play("UnitInfected");
         gameObject.tag = "Untagged";
         App.levelManager.AddEnemies();
         GameObject zombie = Instantiate(zombiePrefab,transform.position, Quaternion.identity);

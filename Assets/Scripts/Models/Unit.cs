@@ -104,6 +104,7 @@ namespace Models
             if (target == null) return false;
 
             Addxp(target.GetDamage(attack));
+            App.audioManager.Play("UnitShoot");
 
             return true;
         }

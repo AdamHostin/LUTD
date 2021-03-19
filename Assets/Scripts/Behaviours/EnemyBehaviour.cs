@@ -68,6 +68,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     IEnumerator Die()
     {
+        App.audioManager.Play("EnemyDeath");
         //TODO: do some magic
         //TODO: resolve with animation
         agent.isStopped = true;

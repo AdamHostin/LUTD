@@ -409,5 +409,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScreenManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3665834989726383444, guid: 56d624378afd3324eacbaab4863ba81f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374239891480670495, guid: 56d624378afd3324eacbaab4863ba81f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5429580780271845346, guid: 56d624378afd3324eacbaab4863ba81f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739083425959017372, guid: 56d624378afd3324eacbaab4863ba81f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8454661773407996523, guid: 56d624378afd3324eacbaab4863ba81f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188714268962367281, guid: 56d624378afd3324eacbaab4863ba81f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56d624378afd3324eacbaab4863ba81f, type: 3}

@@ -1,0 +1,157 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8305759454335345154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8305759454335345155}
+  - component: {fileID: 8305759454335345157}
+  - component: {fileID: 8305759454335345156}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8305759454335345155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8305759454335345154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8305759454335345157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8305759454335345154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a05a4e10095f08046ab2ba4bc714f2ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMixer: {fileID: 24100000, guid: e485e27ba9958964dbb05a904ff596ab, type: 2}
+  sounds:
+  - name: UnitSpawn
+    clip: {fileID: 0}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UnitInfected
+    clip: {fileID: 0}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UnitDeath
+    clip: {fileID: 0}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UnitShoot
+    clip: {fileID: 0}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: WaveStart
+    clip: {fileID: 0}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: WaveEnd
+    clip: {fileID: 0}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemySpawn
+    clip: {fileID: 0}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyDeath
+    clip: {fileID: 0}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LevelCompleted
+    clip: {fileID: 0}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LevelFailed
+    clip: {fileID: 0}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UIButtonHover
+    clip: {fileID: 0}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UIButtonClicked
+    clip: {fileID: 0}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Reward
+    clip: {fileID: 0}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  triggerIndependentSounds:
+  - name: Ambient1
+    clip: {fileID: 8300000, guid: fae48cd1022270b4390cc243f85a06b1, type: 3}
+    output: {fileID: 3505599322356436459, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  minTimeBetweenAmbient: 1
+  maxTimeBetweenAmbient: 3
+--- !u!81 &8305759454335345156
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8305759454335345154}
+  m_Enabled: 1
