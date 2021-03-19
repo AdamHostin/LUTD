@@ -41,4 +41,9 @@ public class MenuScreen : ScreenBase
         App.gameManager.StartCurrentSceneLoading();
         Time.timeScale = 1;
     }
+
+    public void SettingsButtonClicked()
+    {
+        App.screenManager.Show<SettingsScreen>();
+    }
 }

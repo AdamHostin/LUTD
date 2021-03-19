@@ -5,6 +5,7 @@ using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
+    public AudioMixer mainMixer;
     public Sound[] sounds;
     public Sound[] triggerIndependentSounds;
     public float minTimeBetweenAmbient;
@@ -35,6 +36,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        LoadVolumeValues();
         StartCoroutine(PlayAmbient());
     }
 
@@ -56,5 +58,18 @@ public class AudioManager : MonoBehaviour
             yield return new WaitForSeconds(UnityEngine.Random.Range(minTimeBetweenAmbient, maxTimeBetweenAmbient));
             triggerIndependentSounds[UnityEngine.Random.Range(0, triggerIndependentSounds.Length)].source.Play();
         }
+    }
+
+    void LoadVolumeValues()
+    {
+        LoadValue("masterVol");
+        LoadValue("sfxVol");
+        LoadValue("ambientVol");
+    }
+
+    void LoadValue(string key)
+    {
+        if (PlayerPrefs.HasKey(key))
+            mainMixer.SetFloat(key, PlayerPrefs.GetFloat(key));
     }
 }
