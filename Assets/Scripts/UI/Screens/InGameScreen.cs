@@ -21,4 +21,9 @@ public class InGameScreen : ScreenBase
         App.CameraManager.DisableCamera();
 
     }
+
+    public void PauseButtonClicked()
+    {
+        App.screenManager.Show<PauseMenuScreen>();
+    }
 }
