@@ -8,6 +8,7 @@ public class PauseMenuScreen : ScreenBase
     {
         App.screenManager.SetGameState(GameState.paused);
         App.CameraManager.DisableCamera();
+        App.audioManager.StopAmbient();
         Time.timeScale = 0;
         base.Show();
     }
@@ -18,6 +19,7 @@ public class PauseMenuScreen : ScreenBase
         App.screenManager.SetGameState(GameState.running);
         App.CameraManager.EnableCamera();
         Time.timeScale = 1;
+        StartCoroutine(App.audioManager.PlayAmbient());
         base.Hide();
     }
 

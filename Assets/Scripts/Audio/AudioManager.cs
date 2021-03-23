@@ -11,6 +11,8 @@ public class AudioManager : MonoBehaviour
     public float minTimeBetweenAmbient;
     public float maxTimeBetweenAmbient;
 
+    Sound currentAmbient;
+
     private void Awake()
     {
         App.audioManager = this;
@@ -37,7 +39,6 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         LoadVolumeValues();
-        StartCoroutine(PlayAmbient());
     }
 
     public void Play(string name)
@@ -51,13 +52,24 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 
-    IEnumerator PlayAmbient()
+    public IEnumerator PlayAmbient()
     {
+        Debug.Log("Ambient played");
+
         while (true)
         {
-            yield return new WaitForSeconds(UnityEngine.Random.Range(minTimeBetweenAmbient, maxTimeBetweenAmbient));
-            triggerIndependentSounds[UnityEngine.Random.Range(0, triggerIndependentSounds.Length)].source.Play();
+            currentAmbient = triggerIndependentSounds[UnityEngine.Random.Range(0, triggerIndependentSounds.Length)];
+            currentAmbient.source.Play();
+            yield return new WaitForSeconds(currentAmbient.source.clip.length + UnityEngine.Random.Range(minTimeBetweenAmbient, maxTimeBetweenAmbient)); 
         }
+    }
+
+    public void StopAmbient()
+    {
+        Debug.Log("Ambient stopped");
+
+        StopCoroutine(PlayAmbient());
+        currentAmbient.source.Stop();
     }
 
     void LoadVolumeValues()
