@@ -13,6 +13,9 @@ public class AudioManager : MonoBehaviour
 
     Sound currentAmbient;
 
+    AudioSource pauseSound;
+    AudioSource menuSound;
+
     private void Awake()
     {
         App.audioManager = this;
@@ -24,6 +27,11 @@ public class AudioManager : MonoBehaviour
             s.source.outputAudioMixerGroup = s.output;
             s.source.volume = s.volume;
             s.source.loop = s.loop;
+
+            if (s.name == "PauseSound")
+                pauseSound = s.source;
+            if (s.name == "MenuSound")
+                menuSound = s.source;
         }
 
         foreach (Sound s in triggerIndependentSounds)
@@ -85,5 +93,25 @@ public class AudioManager : MonoBehaviour
             mainMixer.SetFloat(key, Mathf.Log10(Mathf.Max(PlayerPrefs.GetFloat(key), 0.0001f)) * 20f);
         else
             mainMixer.SetFloat(key, Mathf.Log10(0.5f) * 20f);
+    }
+
+    public void PlayPauseSound()
+    {
+        pauseSound.Play();
+    }
+
+    public void StopPauseSound()
+    {
+        pauseSound.Stop();
+    }
+
+    public void PlayMenuSound()
+    {
+        menuSound.Play();
+    }
+
+    public void StopMenuSound()
+    {
+        menuSound.Stop();
     }
 }
