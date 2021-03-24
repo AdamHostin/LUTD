@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4028756032411428794, guid: 52e5b058a18b7a343801b54d65f27076,
+        type: 3}
+      propertyPath: spawnSound
+      value: EnemySpawn2
+      objectReference: {fileID: 0}
     - target: {fileID: 185837405227817065, guid: 52e5b058a18b7a343801b54d65f27076,
         type: 3}
       propertyPath: m_LocalPosition.x

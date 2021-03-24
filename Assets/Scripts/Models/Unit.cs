@@ -276,6 +276,7 @@ namespace Models
         {
             if (maxToxicityResistance == toxicityResistance) return false;
 
+            App.audioManager.Play("VaccineUsed");
             toxicityResistance += App.player.vaccineEffectivnes;
             toxicityResistance = Mathf.Clamp(toxicityResistance, 0,maxToxicityResistance);
             UpdateToxicityBar();

@@ -9,6 +9,7 @@ public class MenuScreen : ScreenBase
     public override void Show()
     {
         App.screenManager.SetGameState(GameState.menu);
+        App.audioManager.PlayMenuSound();
         base.Show();
         if (App.gameManager.GetSceneIndex() != 0) continnueButton.SetActive(true);
         else continnueButton.SetActive(false);
@@ -17,6 +18,7 @@ public class MenuScreen : ScreenBase
     public override void Hide()
     {
         App.screenManager.SetGameState(GameState.running);
+        App.audioManager.StopMenuSound();
         base.Hide();
     }
 
@@ -26,6 +28,7 @@ public class MenuScreen : ScreenBase
         App.gameManager.StartLoadingFirstScene();
         App.gameManager.ReInitPlayer();
         Time.timeScale = 1;
+        StartCoroutine(App.audioManager.PlayAmbient());
     }
 
     public void TestLevelButtonClicked()
@@ -33,6 +36,7 @@ public class MenuScreen : ScreenBase
         App.audioManager.Play("UIButtonClicked");
         App.gameManager.StartSceneLoading("TestLevel");
         Time.timeScale = 1;
+        StartCoroutine(App.audioManager.PlayAmbient());
     }
 
     public void CointinueButtonClicked()
@@ -40,6 +44,7 @@ public class MenuScreen : ScreenBase
         App.audioManager.Play("UIButtonClicked");
         App.gameManager.StartCurrentSceneLoading();
         Time.timeScale = 1;
+        StartCoroutine(App.audioManager.PlayAmbient());
     }
 
     public void SettingsButtonClicked()

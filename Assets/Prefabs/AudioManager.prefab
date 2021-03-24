@@ -47,14 +47,14 @@ MonoBehaviour:
   mainMixer: {fileID: 24100000, guid: e485e27ba9958964dbb05a904ff596ab, type: 2}
   sounds:
   - name: UnitSpawn
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 92b23f0bea660744da49f46db167b953, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: UnitInfected
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 32435e2c9b88a784bb2dd1cebd1dd4fb, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
@@ -75,7 +75,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: WaveStart
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: d1499c245c7c93741890987d74ccfdd0, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
@@ -88,43 +88,43 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
-  - name: EnemySpawn
-    clip: {fileID: 0}
+  - name: VaccineUsed
+    clip: {fileID: 8300000, guid: c709ef16e5ec0bf4ebb9ca0ad9aaef68, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: EnemyDeath
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 5bbd438b1006abb4cadd07133c456cfb, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: LevelCompleted
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 281c897ddd71b2e47862eff56894e3e8, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: LevelFailed
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 76029cf8499691f42af48a7bfa9b916b, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: UIButtonHover
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 85d077d007c87a14c812fb0ada79c83c, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: UIButtonClicked
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 0d5d1b83531f1f74d8f8d9c8f98c27c5, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
@@ -137,9 +137,65 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
+  - name: PauseSound
+    clip: {fileID: 8300000, guid: c49646fb7238cb748b6da3cf345107cc, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: MenuSound
+    clip: {fileID: 8300000, guid: 6aee1a64f6a75da44ae9f37e09e90c80, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: UnitRemoved
+    clip: {fileID: 8300000, guid: a2d21530189d0924b84c94b216565b31, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemySpawn1
+    clip: {fileID: 8300000, guid: 1974d21df1b7e4e4daa8b151c2b3ca10, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemySpawn2
+    clip: {fileID: 8300000, guid: 5d4d31ab907d7d842a4377297a1d7fdd, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
   triggerIndependentSounds:
   - name: Ambient1
-    clip: {fileID: 8300000, guid: fae48cd1022270b4390cc243f85a06b1, type: 3}
+    clip: {fileID: 8300000, guid: 0696147f51efa664ebb8a9bf310f2e8d, type: 3}
+    output: {fileID: 3505599322356436459, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Ambient2
+    clip: {fileID: 8300000, guid: b355deb903c5b3146a72e8685d0da9e2, type: 3}
+    output: {fileID: 3505599322356436459, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Ambient3
+    clip: {fileID: 8300000, guid: a78c7779eb1fc4d4bbc2a66a24df7c77, type: 3}
+    output: {fileID: 3505599322356436459, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Ambient4
+    clip: {fileID: 8300000, guid: fd7cf056928cd3449ad6fe5829b05501, type: 3}
     output: {fileID: 3505599322356436459, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
