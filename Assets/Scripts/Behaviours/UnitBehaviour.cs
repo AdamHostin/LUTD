@@ -129,6 +129,7 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     public void SelectUnit()
     {
         App.player.SetUnitToRelocate(this.gameObject, model.GetTransparentSelf());
+        App.audioManager.Play("UnitRemoved");
         //TODO: add unit highlight
     }
 

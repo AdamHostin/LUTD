@@ -88,8 +88,8 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
-  - name: EnemySpawn
-    clip: {fileID: 0}
+  - name: VaccineUsed
+    clip: {fileID: 8300000, guid: c709ef16e5ec0bf4ebb9ca0ad9aaef68, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
@@ -150,6 +150,27 @@ MonoBehaviour:
       type: 2}
     volume: 1
     loop: 1
+    source: {fileID: 0}
+  - name: UnitRemoved
+    clip: {fileID: 8300000, guid: a2d21530189d0924b84c94b216565b31, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemySpawn1
+    clip: {fileID: 8300000, guid: 1974d21df1b7e4e4daa8b151c2b3ca10, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemySpawn2
+    clip: {fileID: 8300000, guid: 5d4d31ab907d7d842a4377297a1d7fdd, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
     source: {fileID: 0}
   triggerIndependentSounds:
   - name: Ambient1

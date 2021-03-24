@@ -148,6 +148,7 @@ MonoBehaviour:
   - Unit
   - Base
   - Obstacle
+  spawnSound: EnemySpawn1
   hpBar: {fileID: 65647549029320276}
   target: {fileID: 0}
 --- !u!54 &9040236619484005066

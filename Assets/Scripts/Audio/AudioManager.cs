@@ -57,7 +57,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Audio manager invalid sound name: " + name);
             return;
         }
-        s.source.Play();
+        s.source.PlayOneShot(s.clip);
     }
 
     public IEnumerator PlayAmbient()
