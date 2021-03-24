@@ -126,6 +126,8 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
         }
     }
 
+    
+
     public void SelectUnit()
     {
         App.player.SetUnitToRelocate(this.gameObject, model.GetTransparentSelf());
@@ -144,6 +146,7 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     {
         model.OnUnitPick();
         transform.position = targetPosition;
+        transform.rotation = App.player.GetTransparentUnit().transform.rotation;
         model.OnUnitPlace();
         model.SwitchToTile(tile);
         DeselectUnit(true);

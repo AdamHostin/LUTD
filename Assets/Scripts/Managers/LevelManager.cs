@@ -120,6 +120,7 @@ public class LevelManager : MonoBehaviour
     public void InstatiateUnit(GameObject prefab, Vector3 position, GameObject transparentSelf, TileBehaviour tile)
     {
         GameObject unit = Instantiate(prefab, position, Quaternion.identity);
+        unit.transform.rotation = transparentSelf.transform.rotation; ;
         unit.transform.parent = transform;
         Unit unitModel = unit.GetComponent<UnitBehaviour>().GetModel();
         unitModel.SetTransparentSelf(transparentSelf);
