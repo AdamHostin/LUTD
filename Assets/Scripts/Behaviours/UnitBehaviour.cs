@@ -25,14 +25,14 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     [SerializeField]
     private bool isRelocatable;
 
-    [SerializeField]
-    string deathSound;
+    [SerializeField] string deathSound;
+    [SerializeField] string shootSound;
 
 
     //TODO: add unit to activeUnitList in LevelManager?
     private void Awake()
     {
-        model = new Unit(hp, toxicityResistance, attack, range, transform.position, scaler ,xpToNxtLvl, this);
+        model = new Unit(hp, toxicityResistance, attack, range, transform.position, scaler ,xpToNxtLvl, this, shootSound);
     }
 
     public IDamagable GetDamagableModel()

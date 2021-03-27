@@ -60,13 +60,6 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
-  - name: UnitShoot
-    clip: {fileID: 0}
-    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
-      type: 2}
-    volume: 1
-    loop: 0
-    source: {fileID: 0}
   - name: WaveStart
     clip: {fileID: 8300000, guid: ba3733159befa5b48a1745e092a50f5b, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
@@ -174,6 +167,34 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: SoldierDeath
     clip: {fileID: 8300000, guid: 28c8924a60225b646a41d16c398279c6, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SoldierShoot
+    clip: {fileID: 8300000, guid: df9e8432966311047bcb33e2ff8de22f, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: FlameThrowerShoot
+    clip: {fileID: 8300000, guid: 9a964563291f50e448ac162622016e70, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LaserGunShoot
+    clip: {fileID: 8300000, guid: 65b72e7600407244d9342d12be136c62, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MachineGunShoot
+    clip: {fileID: 8300000, guid: 3898fe5c701eade4a97eaed279c9fadd, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1

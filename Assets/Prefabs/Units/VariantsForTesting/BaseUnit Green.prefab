@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: deathSound
       value: SoldierDeath
       objectReference: {fileID: 0}
+    - target: {fileID: -5225998483232972682, guid: 64a4ebca7bfab974ab1637883b36e31c,
+        type: 3}
+      propertyPath: shootSound
+      value: MachineGunShoot
+      objectReference: {fileID: 0}
     - target: {fileID: 34701392528531614, guid: 64a4ebca7bfab974ab1637883b36e31c,
         type: 3}
       propertyPath: m_LocalPosition.x

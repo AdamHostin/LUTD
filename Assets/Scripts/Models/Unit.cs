@@ -31,6 +31,8 @@ namespace Models
         GameObject transparentSelf;
         TileBehaviour currentTile;
 
+        string shootSound;
+
         public class RangeChangeEvent : UnityEvent<float> { }
         public RangeChangeEvent rangeChangeEvent = new RangeChangeEvent();
         public class DamagableDeathEvent : UnityEvent<IDamagable> { }
@@ -39,7 +41,7 @@ namespace Models
 
         public UnitState state;
 
-        public Unit(int hp, int toxicityResistance, int attack, float range, Vector3 gunPos, float scaler, List<int> xpToNxtLvl, UnitBehaviour behaviour)
+        public Unit(int hp, int toxicityResistance, int attack, float range, Vector3 gunPos, float scaler, List<int> xpToNxtLvl, UnitBehaviour behaviour, string shootSound)
         {
             this.hp = maxHp = hp;
             this.toxicityResistance = maxToxicityResistance = toxicityResistance;
@@ -49,6 +51,7 @@ namespace Models
             this.gunPos = gunPos;
             this.scaler = scaler;
             this.behaviour = behaviour;
+            this.shootSound = shootSound;
             state = UnitState.idle;
 
             behaviour.hpBar.OnUIUpdate(1f, maxHp, maxHp);
@@ -104,7 +107,7 @@ namespace Models
             if (target == null) return false;
 
             Addxp(target.GetDamage(attack));
-            App.audioManager.Play("UnitShoot");
+            App.audioManager.Play(shootSound);
 
             return true;
         }
