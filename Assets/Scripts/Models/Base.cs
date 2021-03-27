@@ -9,6 +9,9 @@ namespace Models
         private BaseBehaviour behaviour;
         public Vector3 pos;
 
+        bool wasHit = false;
+        bool isNearFail = false;
+        float nearFailPoint;
 
         public Base(int hp , Vector3 pos, BaseBehaviour behaviour)
         {
@@ -18,6 +21,7 @@ namespace Models
             this.behaviour = behaviour;
             App.levelManager.SetPlayerBase(this);
             behaviour.hpBar.OnUIUpdate(1f, hp, maxHp);
+            nearFailPoint = App.audioManager.GetNearFailPerCent() * (((float)maxHp) / 100);
         }     
 
         //if base was destroyed return false
@@ -35,6 +39,18 @@ namespace Models
                 behaviour.hpBar.OnUIUpdate(((float)hp / maxHp), hp, maxHp);
             }
 
+            if (!isNearFail && hp < nearFailPoint)
+            {
+                App.audioManager.PlayLoop("BaseNearFailState");
+                isNearFail = true;
+            }
+
+            if (!wasHit)
+            {
+                App.audioManager.Play("BaseUnderAttack");
+                wasHit = true;
+            }
+                
             return true;
         }
 

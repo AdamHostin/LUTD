@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
 
     Sound currentAmbient;
 
+    [SerializeField] [Range(0f, 100f)] float baseNearFailStatePerCent;
+
     private void Awake()
     {
         App.audioManager = this;
@@ -45,6 +47,12 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = FindSound(name);
         s.source.PlayOneShot(s.clip);
+    }
+
+    public void PlayLoop(string name)
+    {
+        Sound s = FindSound(name);
+        s.source.Play();
     }
 
     public void Stop(string name)
@@ -98,5 +106,10 @@ public class AudioManager : MonoBehaviour
             mainMixer.SetFloat(key, Mathf.Log10(Mathf.Max(PlayerPrefs.GetFloat(key), 0.0001f)) * 20f);
         else
             mainMixer.SetFloat(key, Mathf.Log10(0.5f) * 20f);
+    }
+
+    public float GetNearFailPerCent()
+    {
+        return baseNearFailStatePerCent;
     }
 }

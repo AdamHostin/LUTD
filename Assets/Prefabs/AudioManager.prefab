@@ -205,6 +205,13 @@ MonoBehaviour:
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: BaseUnderAttack
+    clip: {fileID: 8300000, guid: a5a023e56d12be24ea15c4598e36b059, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
     loop: 0
     source: {fileID: 0}
   triggerIndependentSounds:
@@ -238,6 +245,7 @@ MonoBehaviour:
     source: {fileID: 0}
   minTimeBetweenAmbient: 1
   maxTimeBetweenAmbient: 3
+  baseNearFailStatePerCent: 90
 --- !u!81 &8305759454335345156
 AudioListener:
   m_ObjectHideFlags: 0

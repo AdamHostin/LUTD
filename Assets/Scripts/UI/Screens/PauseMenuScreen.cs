@@ -9,7 +9,7 @@ public class PauseMenuScreen : ScreenBase
         App.screenManager.SetGameState(GameState.paused);
         App.CameraManager.DisableCamera();
         App.audioManager.StopAmbient();
-        App.audioManager.Play("PauseSound");
+        App.audioManager.PlayLoop("PauseSound");
         Time.timeScale = 0;
         base.Show();
     }
