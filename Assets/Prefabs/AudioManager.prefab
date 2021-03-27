@@ -60,29 +60,15 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
-  - name: UnitDeath
-    clip: {fileID: 0}
-    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
-      type: 2}
-    volume: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: UnitShoot
-    clip: {fileID: 0}
-    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
-      type: 2}
-    volume: 1
-    loop: 0
-    source: {fileID: 0}
   - name: WaveStart
-    clip: {fileID: 8300000, guid: d1499c245c7c93741890987d74ccfdd0, type: 3}
+    clip: {fileID: 8300000, guid: ba3733159befa5b48a1745e092a50f5b, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: WaveEnd
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: cf1e1875e4fffad47a2983b4634a52f7, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
@@ -110,7 +96,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: LevelFailed
-    clip: {fileID: 8300000, guid: 76029cf8499691f42af48a7bfa9b916b, type: 3}
+    clip: {fileID: 8300000, guid: ef303e3cd091cc84590cbe160cb1ba8e, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
@@ -172,6 +158,62 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
+  - name: TowerDeath
+    clip: {fileID: 8300000, guid: b20a76be63629364fbbd965267a01fd1, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SoldierDeath
+    clip: {fileID: 8300000, guid: 28c8924a60225b646a41d16c398279c6, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SoldierShoot
+    clip: {fileID: 8300000, guid: df9e8432966311047bcb33e2ff8de22f, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: FlameThrowerShoot
+    clip: {fileID: 8300000, guid: 9a964563291f50e448ac162622016e70, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LaserGunShoot
+    clip: {fileID: 8300000, guid: 65b72e7600407244d9342d12be136c62, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MachineGunShoot
+    clip: {fileID: 8300000, guid: 3898fe5c701eade4a97eaed279c9fadd, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BaseNearFailState
+    clip: {fileID: 8300000, guid: 648bff66f3f234b42931f224bed1abc9, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: BaseUnderAttack
+    clip: {fileID: 8300000, guid: a5a023e56d12be24ea15c4598e36b059, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
   triggerIndependentSounds:
   - name: Ambient1
     clip: {fileID: 8300000, guid: 0696147f51efa664ebb8a9bf310f2e8d, type: 3}
@@ -203,6 +245,7 @@ MonoBehaviour:
     source: {fileID: 0}
   minTimeBetweenAmbient: 1
   maxTimeBetweenAmbient: 3
+  baseNearFailStatePerCent: 90
 --- !u!81 &8305759454335345156
 AudioListener:
   m_ObjectHideFlags: 0

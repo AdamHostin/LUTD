@@ -13,8 +13,7 @@ public class AudioManager : MonoBehaviour
 
     Sound currentAmbient;
 
-    AudioSource pauseSound;
-    AudioSource menuSound;
+    [SerializeField] [Range(0f, 100f)] float baseNearFailStatePerCent;
 
     private void Awake()
     {
@@ -27,11 +26,6 @@ public class AudioManager : MonoBehaviour
             s.source.outputAudioMixerGroup = s.output;
             s.source.volume = s.volume;
             s.source.loop = s.loop;
-
-            if (s.name == "PauseSound")
-                pauseSound = s.source;
-            if (s.name == "MenuSound")
-                menuSound = s.source;
         }
 
         foreach (Sound s in triggerIndependentSounds)
@@ -51,13 +45,32 @@ public class AudioManager : MonoBehaviour
 
     public void Play(string name)
     {
+        Sound s = FindSound(name);
+        s.source.PlayOneShot(s.clip);
+    }
+
+    public void PlayLoop(string name)
+    {
+        Sound s = FindSound(name);
+        s.source.Play();
+    }
+
+    public void Stop(string name)
+    {
+        Sound s = FindSound(name);
+        s.source.Stop();
+    }
+
+    public Sound FindSound(string name)
+    {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
         {
             Debug.LogWarning("Audio manager invalid sound name: " + name);
-            return;
+            return null;
         }
-        s.source.PlayOneShot(s.clip);
+        else
+            return s;
     }
 
     public IEnumerator PlayAmbient()
@@ -95,23 +108,8 @@ public class AudioManager : MonoBehaviour
             mainMixer.SetFloat(key, Mathf.Log10(0.5f) * 20f);
     }
 
-    public void PlayPauseSound()
+    public float GetNearFailPerCent()
     {
-        pauseSound.Play();
-    }
-
-    public void StopPauseSound()
-    {
-        pauseSound.Stop();
-    }
-
-    public void PlayMenuSound()
-    {
-        menuSound.Play();
-    }
-
-    public void StopMenuSound()
-    {
-        menuSound.Stop();
+        return baseNearFailStatePerCent;
     }
 }
