@@ -30,6 +30,7 @@ namespace Models
             hp -= attack;
             if ( hp <= 0 )
             {
+                App.audioManager.Stop("BaseNearFailState");
                 if (behaviour != null) behaviour.DestroyBase();
                 App.levelManager.EndLevel(false);
                 return false;
