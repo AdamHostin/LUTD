@@ -60,13 +60,6 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
-  - name: UnitDeath
-    clip: {fileID: 0}
-    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
-      type: 2}
-    volume: 1
-    loop: 0
-    source: {fileID: 0}
   - name: UnitShoot
     clip: {fileID: 0}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
@@ -167,6 +160,20 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: EnemySpawn2
     clip: {fileID: 8300000, guid: 5d4d31ab907d7d842a4377297a1d7fdd, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: TowerDeath
+    clip: {fileID: 8300000, guid: b20a76be63629364fbbd965267a01fd1, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SoldierDeath
+    clip: {fileID: 8300000, guid: 28c8924a60225b646a41d16c398279c6, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1

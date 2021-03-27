@@ -25,6 +25,8 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     [SerializeField]
     private bool isRelocatable;
 
+    [SerializeField]
+    string deathSound;
 
 
     //TODO: add unit to activeUnitList in LevelManager?
@@ -63,7 +65,7 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     public void Die()
     {
         gameObject.tag = "Untagged";
-        App.audioManager.Play("UnitDeath");
+        App.audioManager.Play(deathSound);
         Destroy(gameObject);
     }
 
