@@ -103,7 +103,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: LevelFailed
-    clip: {fileID: 8300000, guid: 76029cf8499691f42af48a7bfa9b916b, type: 3}
+    clip: {fileID: 8300000, guid: ef303e3cd091cc84590cbe160cb1ba8e, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1

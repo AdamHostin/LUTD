@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
 
     AudioSource pauseSound;
     AudioSource menuSound;
+    AudioSource levelFailedSound;
 
     private void Awake()
     {
@@ -32,6 +33,8 @@ public class AudioManager : MonoBehaviour
                 pauseSound = s.source;
             if (s.name == "MenuSound")
                 menuSound = s.source;
+            if (s.name == "LevelFailed")
+                levelFailedSound = s.source;
         }
 
         foreach (Sound s in triggerIndependentSounds)
@@ -113,5 +116,11 @@ public class AudioManager : MonoBehaviour
     public void StopMenuSound()
     {
         menuSound.Stop();
+    }
+
+    public void StopLevelFailedSound()
+    {
+        if (levelFailedSound.isPlaying)
+            levelFailedSound.Stop();
     }
 }
