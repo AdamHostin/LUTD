@@ -75,14 +75,14 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: WaveStart
-    clip: {fileID: 8300000, guid: d1499c245c7c93741890987d74ccfdd0, type: 3}
+    clip: {fileID: 8300000, guid: ba3733159befa5b48a1745e092a50f5b, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: WaveEnd
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: cf1e1875e4fffad47a2983b4634a52f7, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
