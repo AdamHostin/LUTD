@@ -1,0 +1,256 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8305759454335345154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8305759454335345155}
+  - component: {fileID: 8305759454335345157}
+  - component: {fileID: 8305759454335345156}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8305759454335345155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8305759454335345154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8305759454335345157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8305759454335345154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a05a4e10095f08046ab2ba4bc714f2ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMixer: {fileID: 24100000, guid: e485e27ba9958964dbb05a904ff596ab, type: 2}
+  sounds:
+  - name: UnitSpawn
+    clip: {fileID: 8300000, guid: 92b23f0bea660744da49f46db167b953, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UnitInfected
+    clip: {fileID: 8300000, guid: 32435e2c9b88a784bb2dd1cebd1dd4fb, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: WaveStart
+    clip: {fileID: 8300000, guid: ba3733159befa5b48a1745e092a50f5b, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: WaveEnd
+    clip: {fileID: 8300000, guid: cf1e1875e4fffad47a2983b4634a52f7, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: VaccineUsed
+    clip: {fileID: 8300000, guid: c709ef16e5ec0bf4ebb9ca0ad9aaef68, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyDeath
+    clip: {fileID: 8300000, guid: 5bbd438b1006abb4cadd07133c456cfb, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LevelCompleted
+    clip: {fileID: 8300000, guid: 281c897ddd71b2e47862eff56894e3e8, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LevelFailed
+    clip: {fileID: 8300000, guid: ef303e3cd091cc84590cbe160cb1ba8e, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UIButtonHover
+    clip: {fileID: 8300000, guid: 85d077d007c87a14c812fb0ada79c83c, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UIButtonClicked
+    clip: {fileID: 8300000, guid: 0d5d1b83531f1f74d8f8d9c8f98c27c5, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Reward
+    clip: {fileID: 0}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PauseSound
+    clip: {fileID: 8300000, guid: c49646fb7238cb748b6da3cf345107cc, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: MenuSound
+    clip: {fileID: 8300000, guid: 6aee1a64f6a75da44ae9f37e09e90c80, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: UnitRemoved
+    clip: {fileID: 8300000, guid: a2d21530189d0924b84c94b216565b31, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemySpawn1
+    clip: {fileID: 8300000, guid: 1974d21df1b7e4e4daa8b151c2b3ca10, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemySpawn2
+    clip: {fileID: 8300000, guid: 5d4d31ab907d7d842a4377297a1d7fdd, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: TowerDeath
+    clip: {fileID: 8300000, guid: b20a76be63629364fbbd965267a01fd1, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SoldierDeath
+    clip: {fileID: 8300000, guid: 28c8924a60225b646a41d16c398279c6, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SoldierShoot
+    clip: {fileID: 8300000, guid: df9e8432966311047bcb33e2ff8de22f, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: FlameThrowerShoot
+    clip: {fileID: 8300000, guid: 9a964563291f50e448ac162622016e70, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LaserGunShoot
+    clip: {fileID: 8300000, guid: 65b72e7600407244d9342d12be136c62, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MachineGunShoot
+    clip: {fileID: 8300000, guid: 3898fe5c701eade4a97eaed279c9fadd, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BaseNearFailState
+    clip: {fileID: 8300000, guid: 648bff66f3f234b42931f224bed1abc9, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: BaseUnderAttack
+    clip: {fileID: 8300000, guid: a5a023e56d12be24ea15c4598e36b059, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  triggerIndependentSounds:
+  - name: Ambient1
+    clip: {fileID: 8300000, guid: 0696147f51efa664ebb8a9bf310f2e8d, type: 3}
+    output: {fileID: 3505599322356436459, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Ambient2
+    clip: {fileID: 8300000, guid: b355deb903c5b3146a72e8685d0da9e2, type: 3}
+    output: {fileID: 3505599322356436459, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Ambient3
+    clip: {fileID: 8300000, guid: a78c7779eb1fc4d4bbc2a66a24df7c77, type: 3}
+    output: {fileID: 3505599322356436459, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Ambient4
+    clip: {fileID: 8300000, guid: fd7cf056928cd3449ad6fe5829b05501, type: 3}
+    output: {fileID: 3505599322356436459, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  minTimeBetweenAmbient: 1
+  maxTimeBetweenAmbient: 3
+  baseNearFailStatePerCent: 90
+--- !u!81 &8305759454335345156
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8305759454335345154}
+  m_Enabled: 1

@@ -58,6 +58,7 @@ public class LevelManager : MonoBehaviour
         prepareWaveStartEvent.Invoke(currentWave);
 
         yield return new WaitForSeconds(timeBetweenWaves);
+        App.audioManager.Play("WaveStart");
         levelState = LevelState.wave;
         App.player.StopRelocating();
         if (countOfEnemiesInCurrentWawe == 0)
@@ -92,6 +93,7 @@ public class LevelManager : MonoBehaviour
 
     private void EndWave()
     {
+        App.audioManager.Play("WaveEnd");
         levelState = LevelState.betweenWave;
         //Heandle end of wave
         currentWave++;
@@ -104,10 +106,12 @@ public class LevelManager : MonoBehaviour
         App.screenManager.SetSceneToUnload(SceneManager.GetSceneAt(2).name);
         if (res) 
         {
+            App.audioManager.Play("LevelCompleted");
             App.screenManager.Show<WinScreen>();
         } 
         else
         {
+            App.audioManager.Play("LevelFailed");
             Time.timeScale = 0f;
             App.screenManager.Show<DeathScreen>();
         }
@@ -116,10 +120,12 @@ public class LevelManager : MonoBehaviour
     public void InstatiateUnit(GameObject prefab, Vector3 position, GameObject transparentSelf, TileBehaviour tile)
     {
         GameObject unit = Instantiate(prefab, position, Quaternion.identity);
+        unit.transform.rotation = transparentSelf.transform.rotation; ;
         unit.transform.parent = transform;
         Unit unitModel = unit.GetComponent<UnitBehaviour>().GetModel();
         unitModel.SetTransparentSelf(transparentSelf);
         unitModel.SetCurrentTile(tile);
+        App.audioManager.Play("UnitSpawn");
     }
 
     public void SetLevelState(LevelState state)

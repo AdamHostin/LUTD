@@ -22,6 +22,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] float attackRange;
     [SerializeField] float awarenessRange;
     [SerializeField] string[] attackableTags;
+    [SerializeField] string spawnSound;
 
    
     [Header("programing stuf")]
@@ -34,6 +35,11 @@ public class EnemyBehaviour : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();        
         model = new Enemy(hp, attack, attackRange, awarenessRange, toxicity , xp, Random.Range(minCoins,maxCoins) ,attackableTags, this);
+    }
+
+    private void Start()
+    {
+        App.audioManager.Play(spawnSound);
     }
 
     public void StartAttack()
@@ -68,6 +74,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     IEnumerator Die()
     {
+        App.audioManager.Play("EnemyDeath");
         //TODO: do some magic
         //TODO: resolve with animation
         agent.isStopped = true;

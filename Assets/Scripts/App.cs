@@ -11,4 +11,6 @@ public class App
     public static Player player;
     public static UnitCardManager unitCardManager;
     public static CameraManager CameraManager;
+    public static SaveSystem SaveSystem = new SaveSystem();
+    public static AudioManager audioManager;
 }

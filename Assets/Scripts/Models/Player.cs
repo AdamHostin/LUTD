@@ -27,6 +27,8 @@ namespace Models
 
         public UnityEvent vaccinationEndedEvent = new UnityEvent();
 
+        [HideInInspector] public PlayerBehaviour behaviour;
+
         public Player(int coins, int vaccines , int vaccineEffectivnes)
         {
             this.coins = coins;
@@ -85,13 +87,13 @@ namespace Models
             pickedUnitPrefab = prefab;
             if (cost <= coins)
             {
-                playerState = PlayerState.placing;
+                ChangeState(PlayerState.placing);
                 tempCost = cost;
                 this.transparentUnit = transparentUnit;
             }
             else
             {
-                playerState = PlayerState.idle;
+                ChangeState(PlayerState.idle);
             }
         }
 
@@ -109,7 +111,7 @@ namespace Models
             DeleteTransparentUnit();
             pickedUnitPrefab = unit;
             this.transparentUnit = transparentUnit;
-            playerState = PlayerState.relocating;
+            ChangeState(PlayerState.relocating);
         }
 
         public void StopRelocating()
@@ -138,6 +140,11 @@ namespace Models
         public void ChangeState(PlayerState targetState)
         {
             playerState = targetState;
+
+            if (playerState == PlayerState.placing || playerState == PlayerState.relocating)
+                behaviour.SetCanRotate(true);
+            else
+                behaviour.SetCanRotate(false);
         }
 
         public bool ComparePlayerState(PlayerState state)
@@ -148,6 +155,26 @@ namespace Models
         public void SetPlayerState(PlayerState state)
         {
             playerState = state;
+        }
+
+        public int GetCoins() 
+        {
+            return coins;
+        }
+
+        public int GetVaccines()
+        {
+            return vaccines;
+        }
+
+        public void Rotate()
+        {
+            transparentUnit.transform.rotation *= Quaternion.Euler(new Vector3(0, 90, 0));
+        }
+
+        public GameObject GetTransparentUnit()
+        {
+            return transparentUnit;
         }
     }
 }

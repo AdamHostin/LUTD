@@ -72,5 +72,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6949548112098042049, guid: 0a35299cfda902f40ab6c6547dde4f47,
+        type: 3}
+      propertyPath: deathSound
+      value: TowerDeath
+      objectReference: {fileID: 0}
+    - target: {fileID: 6949548112098042049, guid: 0a35299cfda902f40ab6c6547dde4f47,
+        type: 3}
+      propertyPath: shootSound
+      value: LaserGunShoot
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a35299cfda902f40ab6c6547dde4f47, type: 3}

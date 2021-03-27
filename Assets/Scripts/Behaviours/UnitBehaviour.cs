@@ -25,12 +25,14 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     [SerializeField]
     private bool isRelocatable;
 
+    [SerializeField] string deathSound;
+    [SerializeField] string shootSound;
 
 
     //TODO: add unit to activeUnitList in LevelManager?
     private void Awake()
     {
-        model = new Unit(hp, toxicityResistance, attack, range, transform.position, scaler ,xpToNxtLvl, this);
+        model = new Unit(hp, toxicityResistance, attack, range, transform.position, scaler ,xpToNxtLvl, this, shootSound);
     }
 
     public IDamagable GetDamagableModel()
@@ -63,13 +65,13 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     public void Die()
     {
         gameObject.tag = "Untagged";
-        //TODO: play SFX
+        App.audioManager.Play(deathSound);
         Destroy(gameObject);
     }
 
     public void GetInfected()
     {
-        //TODO: play SFX
+        App.audioManager.Play("UnitInfected");
         gameObject.tag = "Untagged";
         App.levelManager.AddEnemies();
         GameObject zombie = Instantiate(zombiePrefab,transform.position, Quaternion.identity);
@@ -126,9 +128,12 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
         }
     }
 
+    
+
     public void SelectUnit()
     {
         App.player.SetUnitToRelocate(this.gameObject, model.GetTransparentSelf());
+        App.audioManager.Play("UnitRemoved");
         //TODO: add unit highlight
     }
 
@@ -143,6 +148,7 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     {
         model.OnUnitPick();
         transform.position = targetPosition;
+        transform.rotation = App.player.GetTransparentUnit().transform.rotation;
         model.OnUnitPlace();
         model.SwitchToTile(tile);
         DeselectUnit(true);

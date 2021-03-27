@@ -11,12 +11,25 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private string[] levels;
     private int sceneIndex = 0;
+    private PlayerData saveData;
+    private bool hasSave = false;
 
     private void Start()
     {
         App.gameManager = this;
         StartCoroutine(LoadSelectedScene("UIScene"));
-        App.player = new Player(defaultVals.coins, defaultVals.vaccines, defaultVals.vaccineEffectivnes);
+        saveData = App.SaveSystem.Load();
+        if (saveData != null)
+        {
+            App.player = new Player(saveData.coins, saveData.vaccines, defaultVals.vaccineEffectivnes);
+            sceneIndex = saveData.sceneNumber;
+            hasSave = true;
+        }
+        else
+        {
+            App.player = new Player(defaultVals.coins, defaultVals.vaccines, defaultVals.vaccineEffectivnes);
+        }
+        
     }
 
     IEnumerator LoadSelectedScene(string sceneName)
@@ -55,9 +68,31 @@ public class GameManager : MonoBehaviour
         StartCoroutine(UnloadSelectedScene(sceneName));
     }
 
+    public void StartCurrentSceneLoading()
+    {
+        StartCoroutine(LoadSelectedScene(levels[sceneIndex]));
+    }
+
+    public void StartCurrentSceneUnloading()
+    {
+        StartCoroutine(UnloadSelectedScene(levels[sceneIndex]));
+    }
+
     public string GetNextLevel()
     {
         sceneIndex++;
+        App.SaveSystem.Save();
+        hasSave = true;
         return levels[sceneIndex];
+    }
+
+    public int GetSceneIndex()
+    {
+        return sceneIndex;
+    }
+
+    public void ReInitPlayer()
+    {
+        App.player.ReInitPlayer(defaultVals.coins, defaultVals.vaccines);
     }
 }
