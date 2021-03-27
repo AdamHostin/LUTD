@@ -66,7 +66,6 @@ public class SpawnPointBehaviour : MonoBehaviour
                 else
                 {
                     Instantiate(prefabs[model.GetEnemyIndex()], transform);
-                    App.audioManager.Play("EnemySpawn");
                 }
                 break;
             case SpawnPointState.postwave:
@@ -76,7 +75,6 @@ public class SpawnPointBehaviour : MonoBehaviour
                 else
                 {
                     Instantiate(postWavePrefab, transform);
-                    App.audioManager.Play("EnemySpawn");
                     model.currentTotalCountOfEnemies--;
                 }
                 break;

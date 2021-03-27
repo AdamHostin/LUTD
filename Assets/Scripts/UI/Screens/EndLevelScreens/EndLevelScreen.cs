@@ -7,7 +7,7 @@ public class EndLevelScreen : ScreenBase
     public void RestartLevel()
     {
         App.audioManager.Play("UIButtonClicked");
-        App.audioManager.StopLevelFailedSound();
+        App.audioManager.Stop("LevelFailed");
         App.gameManager.StartSceneUnloading(App.screenManager.GetSceneToUnload());
         App.gameManager.StartSceneLoading(App.screenManager.GetSceneToUnload());
         Time.timeScale = 1;
@@ -17,7 +17,7 @@ public class EndLevelScreen : ScreenBase
     public void Menu()
     {
         App.audioManager.Play("UIButtonClicked");
-        App.audioManager.StopLevelFailedSound();
+        App.audioManager.Stop("LevelFailed");
         App.gameManager.StartSceneUnloading(App.screenManager.GetSceneToUnload());
         App.screenManager.Hide<InGameScreen>();
         App.screenManager.Show<MenuScreen>();

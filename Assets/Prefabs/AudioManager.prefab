@@ -200,6 +200,13 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
+  - name: BaseNearFailState
+    clip: {fileID: 8300000, guid: 648bff66f3f234b42931f224bed1abc9, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
   triggerIndependentSounds:
   - name: Ambient1
     clip: {fileID: 8300000, guid: 0696147f51efa664ebb8a9bf310f2e8d, type: 3}

@@ -13,10 +13,6 @@ public class AudioManager : MonoBehaviour
 
     Sound currentAmbient;
 
-    AudioSource pauseSound;
-    AudioSource menuSound;
-    AudioSource levelFailedSound;
-
     private void Awake()
     {
         App.audioManager = this;
@@ -28,13 +24,6 @@ public class AudioManager : MonoBehaviour
             s.source.outputAudioMixerGroup = s.output;
             s.source.volume = s.volume;
             s.source.loop = s.loop;
-
-            if (s.name == "PauseSound")
-                pauseSound = s.source;
-            if (s.name == "MenuSound")
-                menuSound = s.source;
-            if (s.name == "LevelFailed")
-                levelFailedSound = s.source;
         }
 
         foreach (Sound s in triggerIndependentSounds)
@@ -54,13 +43,26 @@ public class AudioManager : MonoBehaviour
 
     public void Play(string name)
     {
+        Sound s = FindSound(name);
+        s.source.PlayOneShot(s.clip);
+    }
+
+    public void Stop(string name)
+    {
+        Sound s = FindSound(name);
+        s.source.Stop();
+    }
+
+    public Sound FindSound(string name)
+    {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
         {
             Debug.LogWarning("Audio manager invalid sound name: " + name);
-            return;
+            return null;
         }
-        s.source.PlayOneShot(s.clip);
+        else
+            return s;
     }
 
     public IEnumerator PlayAmbient()
@@ -96,31 +98,5 @@ public class AudioManager : MonoBehaviour
             mainMixer.SetFloat(key, Mathf.Log10(Mathf.Max(PlayerPrefs.GetFloat(key), 0.0001f)) * 20f);
         else
             mainMixer.SetFloat(key, Mathf.Log10(0.5f) * 20f);
-    }
-
-    public void PlayPauseSound()
-    {
-        pauseSound.Play();
-    }
-
-    public void StopPauseSound()
-    {
-        pauseSound.Stop();
-    }
-
-    public void PlayMenuSound()
-    {
-        menuSound.Play();
-    }
-
-    public void StopMenuSound()
-    {
-        menuSound.Stop();
-    }
-
-    public void StopLevelFailedSound()
-    {
-        if (levelFailedSound.isPlaying)
-            levelFailedSound.Stop();
     }
 }
