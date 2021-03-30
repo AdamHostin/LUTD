@@ -11,6 +11,7 @@ namespace Models
     {
         private int coins;
         private int vaccines;
+        private int medkits;
         private int tempCost = 0;
         private bool canPlace = false;
 
@@ -18,24 +19,27 @@ namespace Models
         GameObject transparentUnit;
 
         public int vaccineEffectivnes;
+        public int medkitEffectivness;
         public PlayerState playerState = PlayerState.idle;
 
         public class UpdatePlayerUIEvent : UnityEvent<int> { }
         public UpdatePlayerUIEvent updateCoinsUIEvent = new UpdatePlayerUIEvent();
         //from where payer gets theeese???
         public UpdatePlayerUIEvent updateVaccinesUIEvent = new UpdatePlayerUIEvent();
+        public UpdatePlayerUIEvent updateMedkitsUIEvent = new UpdatePlayerUIEvent();
 
         public UnityEvent vaccinationEndedEvent = new UnityEvent();
+        public UnityEvent healingEndedEvent = new UnityEvent();
 
         [HideInInspector] public PlayerBehaviour behaviour;
 
-        public Player(int coins, int vaccines , int vaccineEffectivnes)
+        public Player(int coins, int vaccines , int vaccineEffectivnes, int medkits, int medkitEffectivness)
         {
             this.coins = coins;
             this.vaccines = vaccines;
             this.vaccineEffectivnes = vaccineEffectivnes;
-            
-            
+            this.medkits = medkits;
+            this.medkitEffectivness = medkitEffectivness;
         }
 
         public void ReInitPlayer(int coins, int vaccines)
@@ -52,7 +56,7 @@ namespace Models
             ChangeState(PlayerState.vaccinating);
         }
 
-        public void useVaccine()
+        public void UseVaccine()
         {
             vaccines--;
             updateVaccinesUIEvent.Invoke(vaccines);
@@ -60,12 +64,31 @@ namespace Models
             vaccinationEndedEvent.Invoke();
         }
 
+        public void StartHealing()
+        {
+            if ((medkits < 1) || (playerState == PlayerState.healing)) return;
+            Debug.Log("Heal");
+            DeleteTransparentUnit();
+            ChangeState(PlayerState.healing);
+            Debug.Log("Healing started");
+        }
+
+        public void UseMedkit()
+        {
+            medkits--;
+            ChangeState(PlayerState.idle);
+            updateMedkitsUIEvent.Invoke(medkits);
+            healingEndedEvent.Invoke();
+        }
+
         public void SetPlayerInfoUI(PlayerInfoPanelController playerInfoPanelController)
         {
             updateCoinsUIEvent.AddListener(playerInfoPanelController.UpdateCoinText);
             updateVaccinesUIEvent.AddListener(playerInfoPanelController.UpdateVaccineText);
+            updateMedkitsUIEvent.AddListener(playerInfoPanelController.UpdateMedkitsText);
             updateVaccinesUIEvent.Invoke(this.vaccines);
             updateCoinsUIEvent.Invoke(this.coins);
+            updateMedkitsUIEvent.Invoke(this.medkits);
         }
 
         public void EarnCoins(int coins)
@@ -83,6 +106,7 @@ namespace Models
         public void SetUnitPrefab(GameObject prefab, GameObject transparentUnit, int cost)
         {
             vaccinationEndedEvent.Invoke();
+            healingEndedEvent.Invoke();
             DeleteTransparentUnit();
             pickedUnitPrefab = prefab;
             if (cost <= coins)
@@ -165,6 +189,11 @@ namespace Models
         public int GetVaccines()
         {
             return vaccines;
+        }
+
+        public int GetMedkits()
+        {
+            return medkits;
         }
 
         public void Rotate()
