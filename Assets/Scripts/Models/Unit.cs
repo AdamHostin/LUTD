@@ -292,7 +292,7 @@ namespace Models
         {
             if (hp == maxHp) return false;
 
-            //App.audioManager.Play("MedkitUsed");
+            App.audioManager.Play("MedkitUsed");
             Debug.Log("Medkit used");
             hp += App.player.medkitEffectivness;
             hp = Mathf.Clamp(hp, 0, maxHp);
