@@ -51,4 +51,9 @@ public class MenuScreen : ScreenBase
     {
         App.screenManager.Show<SettingsScreen>();
     }
+
+    public void ExitButtonClicked()
+    {
+        Application.Quit();
+    }
 }
