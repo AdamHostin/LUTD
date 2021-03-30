@@ -110,7 +110,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 10
+  m_Speed: 5
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 1
@@ -136,9 +136,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   hp: 200
-  attack: 20
-  toxicity: 15
-  xp: 25
+  attack: 25
+  toxicity: 5
+  xp: 5
   minCoins: 1
   maxCoins: 5
   attackFrequency: 1.5

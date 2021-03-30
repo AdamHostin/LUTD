@@ -18,7 +18,8 @@ public class UnitTriggerAdapter : MonoBehaviour
 
     private void Start()
     {
-        model = transform.parent.GetComponent<UnitBehaviour>().GetModel();
+        model = transform.parent.GetComponents<UnitBehaviour>()[0].GetModel();
+        Debug.Log(model);
         model.SetAdapter(this);
     }
 

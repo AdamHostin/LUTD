@@ -31,6 +31,8 @@ namespace Models
         GameObject transparentSelf;
         TileBehaviour currentTile;
 
+        public Enemy target;
+
         public class RangeChangeEvent : UnityEvent<float> { }
         public RangeChangeEvent rangeChangeEvent = new RangeChangeEvent();
         public class DamagableDeathEvent : UnityEvent<IDamagable> { }
@@ -49,7 +51,7 @@ namespace Models
             this.gunPos = gunPos;
             this.scaler = scaler;
             this.behaviour = behaviour;
-            state = UnitState.idle;
+            ChangeState(UnitState.idle);
 
             behaviour.hpBar.OnUIUpdate(1f, maxHp, maxHp);
             behaviour.toxicityBar.OnUIUpdate(0f, toxicityResistance, toxicityResistance);
@@ -80,7 +82,28 @@ namespace Models
         {
             enemiesInRange.Remove(enemy);
             enemy.enemyDeathEvent.RemoveListener(SubstractEnemy);
-            if (enemiesInRange.Count == 0) state = UnitState.idle;
+            if (enemiesInRange.Count == 0) ChangeState(UnitState.idle);
+        }
+
+        public void ChangeState(UnitState newState)
+        {
+            if (state == UnitState.dying) return;
+
+            switch (newState)
+            {
+                case UnitState.idle:
+                    break;
+                case UnitState.shooting:
+                    break;
+                case UnitState.dying:
+                    onDamagableDeath.Invoke(this);
+                    behaviour.Die();
+                    break;
+                default:
+                    break;
+            }
+
+            state = newState;
         }
 
         public Enemy GetTarget()
@@ -92,6 +115,7 @@ namespace Models
                 Ray shootingRay = new Ray(gunPos, (e.GetPosition() - gunPos));
                 if (Physics.Raycast(shootingRay, out hit, layerMask))
                 {
+                    
                     if (hit.collider.tag == "Enemy") return e;
                 }
             }
@@ -100,13 +124,20 @@ namespace Models
         // returns true if enemy was hit 
         public bool Shoot()
         {
-            Enemy target = GetTarget();
-            if (target == null) return false;
+            target = GetTarget();
+            if (target == null || target.behaviour==null) return false;
 
             Addxp(target.GetDamage(attack));
             App.audioManager.Play("UnitShoot");
 
             return true;
+        }
+
+        public Vector3 VectorToLookAt()
+        {
+            Vector3 res = target.GetPosition();
+            res.y = behaviour.transform.position.y;
+            return res;
         }
 
         void Addxp(int xp)
@@ -156,10 +187,7 @@ namespace Models
             {
                 if (behaviour != null)
                 {
-                    
-                    onDamagableDeath.Invoke(this);
-                    
-                    behaviour.Die();
+                    ChangeState(UnitState.dying);
                 }
                 return false;
             }

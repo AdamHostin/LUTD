@@ -1210,6 +1210,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4358933358027185720, guid: 095f4f18e28fcc54d8af674e43b4f345,
+        type: 3}
+      propertyPath: m_text
+      value: Soldier
+      objectReference: {fileID: 0}
     - target: {fileID: 8100845907103262421, guid: 095f4f18e28fcc54d8af674e43b4f345,
         type: 3}
       propertyPath: transparentUnitPrefab
@@ -1220,7 +1225,7 @@ PrefabInstance:
         type: 3}
       propertyPath: unitPrefab
       value: 
-      objectReference: {fileID: 1953462346127441965, guid: b48f8c1b03f820140ba8bc7f7f932ea5,
+      objectReference: {fileID: 8553202434952629735, guid: f5ee7c3bb415de349ab7d0cbdb231845,
         type: 3}
     - target: {fileID: 8100845907103262421, guid: 095f4f18e28fcc54d8af674e43b4f345,
         type: 3}
@@ -1352,11 +1357,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4358933358027185720, guid: 095f4f18e28fcc54d8af674e43b4f345,
+        type: 3}
+      propertyPath: m_text
+      value: Scientist
+      objectReference: {fileID: 0}
     - target: {fileID: 8100845907103262421, guid: 095f4f18e28fcc54d8af674e43b4f345,
         type: 3}
       propertyPath: unitPrefab
       value: 
-      objectReference: {fileID: 2672534929354036006, guid: 0a35299cfda902f40ab6c6547dde4f47,
+      objectReference: {fileID: 9198827140699578115, guid: 95673f9b7ddf3814198212dad7d876fc,
         type: 3}
     - target: {fileID: 8100845907103262421, guid: 095f4f18e28fcc54d8af674e43b4f345,
         type: 3}

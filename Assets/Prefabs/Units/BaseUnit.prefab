@@ -69,7 +69,6 @@ GameObject:
   - component: {fileID: 647536929204130301}
   - component: {fileID: 6794945933057900308}
   - component: {fileID: 4858713583628323050}
-  - component: {fileID: -5225998483232972682}
   - component: {fileID: 5744978760603780438}
   m_Layer: 9
   m_Name: BaseUnit
@@ -155,31 +154,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-5225998483232972682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8223158930512319377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99d33c387bd195047b75ad6a4456f559, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 100
-  toxicityResistance: 100
-  attack: 25
-  range: 5
-  scaler: 1.5
-  timeBetweenHits: 0.5
-  zombiePrefab: {fileID: 185837405227817069, guid: 52e5b058a18b7a343801b54d65f27076,
-    type: 3}
-  xpToNxtLvl: 000000003200000064000000f4010000
-  hpBar: {fileID: 7655753303142070188}
-  toxicityBar: {fileID: 3863839995695148864}
-  xpBar: {fileID: 4467901324097212399}
-  isRelocatable: 1
 --- !u!208 &5744978760603780438
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -466,39 +440,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8552410615164852528}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3863839995695148864 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4841187241528489584, guid: 632893f4d69c1b443a79f090a5a38821,
-    type: 3}
-  m_PrefabInstance: {fileID: 8552410615164852528}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d60a926cc539ebe428d22e984e581d61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4467901324097212399 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5238082952107235039, guid: 632893f4d69c1b443a79f090a5a38821,
-    type: 3}
-  m_PrefabInstance: {fileID: 8552410615164852528}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d60a926cc539ebe428d22e984e581d61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7655753303142070188 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2057853888570076828, guid: 632893f4d69c1b443a79f090a5a38821,
-    type: 3}
-  m_PrefabInstance: {fileID: 8552410615164852528}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d60a926cc539ebe428d22e984e581d61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
