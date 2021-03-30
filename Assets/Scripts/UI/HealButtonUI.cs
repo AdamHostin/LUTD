@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VaccineButtonUI : MonoBehaviour
+public class HealButtonUI : MonoBehaviour
 {
     [SerializeField] Color32 highlightColor;
     private bool isPressed = false;
@@ -18,15 +18,15 @@ public class VaccineButtonUI : MonoBehaviour
 
     private void Start()
     {
-        gameObject.GetComponent<Button>().onClick.AddListener(App.player.StartVaccinating);        
+        gameObject.GetComponent<Button>().onClick.AddListener(App.player.StartHealing);
     }
 
     private void OnEnable()
     {
-        App.player.vaccinationEndedEvent.AddListener(CancelVaccination);
+        App.player.healingEndedEvent.AddListener(CancelHealing);
     }
 
-    public void CancelVaccination()
+    public void CancelHealing()
     {
         isPressed = false;
         image.color = normalColor;
@@ -37,7 +37,7 @@ public class VaccineButtonUI : MonoBehaviour
         App.audioManager.Play("UIButtonClicked");
         if (isPressed) image.color = normalColor;
         else image.color = highlightColor;
-        App.player.healingEndedEvent.Invoke();
+        App.player.vaccinationEndedEvent.Invoke();
 
         isPressed = !isPressed;
     }

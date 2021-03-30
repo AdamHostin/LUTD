@@ -214,6 +214,13 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
+  - name: MedkitUsed
+    clip: {fileID: 8300000, guid: 995208950d76ff541abc421464318915, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
   triggerIndependentSounds:
   - name: Ambient1
     clip: {fileID: 8300000, guid: 0696147f51efa664ebb8a9bf310f2e8d, type: 3}

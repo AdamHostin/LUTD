@@ -8,10 +8,12 @@ public class PlayerInfoPanelController : MonoBehaviour
 {
     public string coinPrefix = "coins: ";
     public string vaccinePrefix = "vaccines: ";
+    public string medkitsPrefix = "medkits: ";
 
     [Header("programer stuf")]
     public TextMeshProUGUI coinTMP;
     public TextMeshProUGUI vaccinesTMP;
+    public TextMeshProUGUI medkitsTMP;
 
     private void OnEnable()
     {
@@ -26,5 +28,10 @@ public class PlayerInfoPanelController : MonoBehaviour
     public void UpdateVaccineText(int newVaccineVal)
     {
         vaccinesTMP.text = vaccinePrefix + newVaccineVal;
+    }
+
+    public void UpdateMedkitsText(int newMedkitsVal)
+    {
+        medkitsTMP.text = medkitsPrefix + newMedkitsVal;
     }
 }

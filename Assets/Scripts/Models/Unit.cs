@@ -283,7 +283,21 @@ namespace Models
             toxicityResistance += App.player.vaccineEffectivnes;
             toxicityResistance = Mathf.Clamp(toxicityResistance, 0,maxToxicityResistance);
             UpdateToxicityBar();
-            App.player.useVaccine();
+            App.player.UseVaccine();
+
+            return true;
+        }
+
+        public bool Healing()
+        {
+            if (hp == maxHp) return false;
+
+            App.audioManager.Play("MedkitUsed");
+            Debug.Log("Medkit used");
+            hp += App.player.medkitEffectivness;
+            hp = Mathf.Clamp(hp, 0, maxHp);
+            UpdateHpBar();
+            App.player.UseMedkit();
 
             return true;
         }
