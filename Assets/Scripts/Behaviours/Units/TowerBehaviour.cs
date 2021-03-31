@@ -20,7 +20,12 @@ public class TowerBehaviour : UnitBehaviour
                 }
             }
             yield return new WaitForSeconds(timeBetweenHits);
-        }
-        
+        }       
+    }
+
+    public override void Die()
+    {
+        //TODO: particles
+        Destroy(gameObject);
     }
 }

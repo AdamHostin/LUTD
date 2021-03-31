@@ -11,19 +11,18 @@ public class UnitTriggerAdapter : MonoBehaviour
 
     
 
-    private void Awake()
+    protected virtual void Awake()
     {
         coll = GetComponent<SphereCollider>();        
     }
 
     private void Start()
     {
-        model = transform.parent.GetComponents<UnitBehaviour>()[0].GetModel();
-        Debug.Log(model);
+        model = transform.parent.GetComponent<UnitBehaviour>().GetModel();
         model.SetAdapter(this);
     }
 
-    public void SetNewRange(float range)
+    public virtual void SetNewRange(float range)
     {
         coll.radius = range;
     }

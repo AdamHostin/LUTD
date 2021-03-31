@@ -5,26 +5,25 @@ using Models;
 using UnityEngine.EventSystems;
 using UnityEngine.AI;
 
-public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour 
+public abstract class UnitBehaviour : MonoBehaviour, IDamagableBehaviour 
 {
     protected Unit model;
     [SerializeField] protected int hp;
-    [SerializeField] protected int toxicityResistance;
+
     [SerializeField] protected int attack;
     [SerializeField] protected float range;
     [Tooltip("Value by which is maxhp, maxToxicityResistancce and range multiplyed on level up")]
     [Range(1f, 10f)] [SerializeField] protected float scaler = 1.5f;
     [SerializeField] protected float timeBetweenHits = 0.5f;
     [SerializeField] protected Transform gunPos;
-    [SerializeField] protected GameObject zombiePrefab;
+    
 
 
     [SerializeField] protected List<int> xpToNxtLvl;
 
-    public BarController hpBar;
-    public BarController toxicityBar;
+    public BarController hpBar;    
     public BarController xpBar;
-    public Animator animator;
+
 
     [SerializeField]
     protected bool isRelocatable;
@@ -32,10 +31,9 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
 
 
     //TODO: add unit to activeUnitList in LevelManager?
-    protected void Awake()
+    protected virtual void Awake()
     {
-        Debug.Log(gunPos.position);
-        model = new Unit(hp, toxicityResistance, attack, range, gunPos.position, scaler, xpToNxtLvl, this);
+        model = new Unit(hp , attack, range, gunPos.position, scaler, xpToNxtLvl, this);
     }
 
     public IDamagable GetDamagableModel()
@@ -45,6 +43,7 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
 
     public Unit GetModel()
     {
+        Debug.Log(model);
         return model;
     }
 
@@ -55,56 +54,13 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
         StartCoroutine(Shooting());
     }
 
-    protected virtual IEnumerator Shooting()
-    {
-        model.ChangeState(UnitState.shooting);
-        while (model.state == UnitState.shooting)
-        {
+    protected abstract IEnumerator Shooting();
+    
 
-            if (model.Shoot())
-            {
-                Debug.Log(model.target);
-                if (model.target != null)
-                {
-                    transform.LookAt(model.VectorToLookAt(), gunPos.up);
-                }
-            }
-            yield return new WaitForSeconds(timeBetweenHits);
-        }
-    }
-   
 
-    public void Die()
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Dead")) return;
-        Debug.Log("Dead");
-        Debug.Log(model.state);
-        gameObject.tag = "Untagged";
-        App.audioManager.Play("UnitDeath");
-        
-        animator.SetBool("Die",true);
-        gameObject.GetComponent<NavMeshObstacle>().enabled = false;
-        StartCoroutine(HandleDeath());
-    }
-
-    IEnumerator HandleDeath()
-    {
-        yield return new WaitForSeconds(/*animator.GetCurrentAnimatorClipInfo(0).Length*/ 3f);
-        Destroy(gameObject);
-    }
-
-    public void GetInfected()
-    {
-        App.audioManager.Play("UnitInfected");
-        gameObject.tag = "Untagged";
-        App.levelManager.AddEnemies();
-        GameObject zombie = Instantiate(zombiePrefab, transform.position, Quaternion.identity);
-        zombie.transform.parent = App.levelManager.transform;
-        Debug.Log("I am a zobie now");
-        Destroy(gameObject);
-    }
-
-    protected void OnMouseDown()
+    public abstract void Die();
+    
+    protected virtual void OnMouseDown()
     {
         if (App.levelManager.CompareLevelState(LevelState.betweenWave) && !EventSystem.current.IsPointerOverGameObject())
         {
@@ -146,10 +102,7 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
             }
         }
 
-        if ((App.player.ComparePlayerState(PlayerState.vaccinating) && !EventSystem.current.IsPointerOverGameObject()))
-        {
-            model.Vaccinating();
-        }
+        
     }
 
     public void SelectUnit()
@@ -173,11 +126,5 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
         model.SwitchToTile(tile);
         DeselectUnit(true);
     }
-
-    public void ShootingAnim(bool isShooting)
-    {
-        animator.SetBool("Shoot", isShooting);
-    }
-
 
 }
