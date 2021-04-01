@@ -115,6 +115,8 @@ MonoBehaviour:
   hpBar: {fileID: 7967747520481815002}
   xpBar: {fileID: 4227964859172573593}
   isRelocatable: 0
+  deathSound: SoldierDeath
+  shootSound: SoldierShoot
   zombiePrefab: {fileID: 185837405227817069, guid: 52e5b058a18b7a343801b54d65f27076,
     type: 3}
   toxicityResistance: 100

@@ -22,6 +22,8 @@ MonoBehaviour:
   hpBar: {fileID: 4286432760644002364}
   xpBar: {fileID: 8017507288720464511}
   isRelocatable: 0
+  deathSound: TowerDeath
+  shootSound: MachineGunShoot
 --- !u!1001 &1091634553910105427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52,22 +54,22 @@ PrefabInstance:
     - target: {fileID: 9142213378552471182, guid: cb0d737a6ac0a8745908c71a1137186d,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9142213378552471182, guid: cb0d737a6ac0a8745908c71a1137186d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 9142213378552471182, guid: cb0d737a6ac0a8745908c71a1137186d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9142213378552471182, guid: cb0d737a6ac0a8745908c71a1137186d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 9142213378552471182, guid: cb0d737a6ac0a8745908c71a1137186d,
         type: 3}
@@ -82,7 +84,7 @@ PrefabInstance:
     - target: {fileID: 9142213378552471182, guid: cb0d737a6ac0a8745908c71a1137186d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 9142213378552471182, guid: cb0d737a6ac0a8745908c71a1137186d,
         type: 3}

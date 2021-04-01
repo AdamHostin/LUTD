@@ -13,6 +13,7 @@ public class TowerBehaviour : UnitBehaviour
 
             if (model.Shoot())
             {
+                App.audioManager.Play(shootSound);
                 Debug.Log(model.target);
                 if (model.target != null)
                 {
@@ -25,6 +26,7 @@ public class TowerBehaviour : UnitBehaviour
 
     public override void Die()
     {
+        base.Die();
         //TODO: particles
         Destroy(gameObject);
     }

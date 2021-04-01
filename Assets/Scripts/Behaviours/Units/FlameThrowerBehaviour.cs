@@ -15,7 +15,8 @@ public class FlameThrowerBehaviour : TowerBehaviour
         model.ChangeState(UnitState.shooting);
         while (model.state == UnitState.shooting)
         {
-            ((FlamethrowerTowerUnit)model).Shoot();
+            if (((FlamethrowerTowerUnit)model).Shoot())
+                App.audioManager.Play(shootSound);
             //TODO: spawn particles
             yield return new WaitForSeconds(timeBetweenHits);
         }

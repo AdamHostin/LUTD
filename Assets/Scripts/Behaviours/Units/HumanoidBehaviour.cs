@@ -26,6 +26,7 @@ public class HumanoidBehaviour : UnitBehaviour
 
             if (model.Shoot())
             {
+                App.audioManager.Play(shootSound);
                 Debug.Log(model.target);
                 if (model.target != null)
                 {
@@ -44,10 +45,11 @@ public class HumanoidBehaviour : UnitBehaviour
     }
     public override void Die()
     {
+        base.Die();
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Dead")) return;
 
         gameObject.tag = "Untagged";
-        App.audioManager.Play("UnitDeath");
+        App.audioManager.Play(deathSound);
         
         animator.SetBool("Die",true);
         gameObject.GetComponent<NavMeshObstacle>().enabled = false;

@@ -22,6 +22,8 @@ MonoBehaviour:
   hpBar: {fileID: 6438828476573955328}
   xpBar: {fileID: 965124810006695235}
   isRelocatable: 0
+  deathSound: TowerDeath
+  shootSound: LaserGunShoot
 --- !u!1001 &3703616354496168620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -132,7 +134,7 @@ PrefabInstance:
     - target: {fileID: 8223158930512319377, guid: 64a4ebca7bfab974ab1637883b36e31c,
         type: 3}
       propertyPath: m_Name
-      value: SniperTower
+      value: LaserTower
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64a4ebca7bfab974ab1637883b36e31c, type: 3}

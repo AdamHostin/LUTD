@@ -24,7 +24,7 @@ public class HumanoidUnit : Unit
         toxicityResistance += App.player.vaccineEffectivnes;
         toxicityResistance = Mathf.Clamp(toxicityResistance, 0, maxToxicityResistance);
         UpdateToxicityBar();
-        App.player.useVaccine();
+        App.player.UseVaccine();
 
         return true;
     }

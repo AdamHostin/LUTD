@@ -82,6 +82,8 @@ MonoBehaviour:
   hpBar: {fileID: 1753160578592573376}
   xpBar: {fileID: 5506747607331585923}
   isRelocatable: 0
+  deathSound: TowerDeath
+  shootSound: FlameThrowerShoot
 --- !u!65 &6646202144240847729
 BoxCollider:
   m_ObjectHideFlags: 0

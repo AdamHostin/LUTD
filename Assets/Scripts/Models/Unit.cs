@@ -124,7 +124,6 @@ namespace Models
             if (target == null || target.behaviour==null) return false;
 
             Addxp(target.GetDamage(attack));
-            App.audioManager.Play(shootSound);
 
             return true;
         }

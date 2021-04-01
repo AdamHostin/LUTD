@@ -28,8 +28,8 @@ public abstract class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     [SerializeField]
     protected bool isRelocatable;
 
-    [SerializeField] string deathSound;
-    [SerializeField] string shootSound;
+    [SerializeField] protected string deathSound;
+    [SerializeField] protected string shootSound;
 
 
     //TODO: add unit to activeUnitList in LevelManager?
@@ -59,14 +59,10 @@ public abstract class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     protected abstract IEnumerator Shooting();
     
 
-    public void Die()
+    public virtual void Die()
     {
-        gameObject.tag = "Untagged";
         App.audioManager.Play(deathSound);
-        Destroy(gameObject);
     }
-
-    public abstract void Die();
     
     protected virtual void OnMouseDown()
     {
