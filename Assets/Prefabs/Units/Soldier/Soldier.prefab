@@ -106,20 +106,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
-  toxicityResistance: 100
   attack: 5
   range: 10
   scaler: 1.5
   timeBetweenHits: 0.5
   gunPos: {fileID: 348707420295462632}
-  zombiePrefab: {fileID: 185837405227817069, guid: 52e5b058a18b7a343801b54d65f27076,
-    type: 3}
   xpToNxtLvl: 000000003200000064000000f4010000
   hpBar: {fileID: 7967747520481815002}
-  toxicityBar: {fileID: 3545051127274025270}
   xpBar: {fileID: 4227964859172573593}
-  animator: {fileID: 6475613315808930188}
   isRelocatable: 0
+  zombiePrefab: {fileID: 185837405227817069, guid: 52e5b058a18b7a343801b54d65f27076,
+    type: 3}
+  toxicityResistance: 100
+  animator: {fileID: 6475613315808930188}
+  toxicityBar: {fileID: 3545051127274025270}
 --- !u!1 &445881548439957097
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,7 +848,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048712260791711433}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5503841481523432035}
@@ -2933,7 +2933,12 @@ PrefabInstance:
     - target: {fileID: 4858713583628323050, guid: 64a4ebca7bfab974ab1637883b36e31c,
         type: 3}
       propertyPath: m_Center.y
-      value: 0.19
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5744978760603780438, guid: 64a4ebca7bfab974ab1637883b36e31c,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6275652479048364770, guid: 64a4ebca7bfab974ab1637883b36e31c,
         type: 3}

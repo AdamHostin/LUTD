@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
-  toxicityResistance: 100
   attack: 5
   range: 10
   scaler: 1.5
   timeBetweenHits: 0.5
   gunPos: {fileID: 994454722528521228}
-  zombiePrefab: {fileID: 185837405227817069, guid: 52e5b058a18b7a343801b54d65f27076,
-    type: 3}
   xpToNxtLvl: 000000003200000064000000f4010000
   hpBar: {fileID: 7460486456286657342}
-  toxicityBar: {fileID: 4046860261712290770}
   xpBar: {fileID: 3726560894744101757}
-  animator: {fileID: 7925805829003258709}
   isRelocatable: 0
+  zombiePrefab: {fileID: 185837405227817069, guid: 52e5b058a18b7a343801b54d65f27076,
+    type: 3}
+  toxicityResistance: 100
+  animator: {fileID: 7925805829003258709}
+  toxicityBar: {fileID: 4046860261712290770}
 --- !u!1001 &988060691130371218
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52,7 +52,7 @@ PrefabInstance:
     - target: {fileID: 34701392528531614, guid: 64a4ebca7bfab974ab1637883b36e31c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.442
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 34701392528531614, guid: 64a4ebca7bfab974ab1637883b36e31c,
         type: 3}
@@ -98,6 +98,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 227439658705586849, guid: 64a4ebca7bfab974ab1637883b36e31c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 87
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858713583628323050, guid: 64a4ebca7bfab974ab1637883b36e31c,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5744978760603780438, guid: 64a4ebca7bfab974ab1637883b36e31c,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499644324847901829, guid: 64a4ebca7bfab974ab1637883b36e31c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 6668047890280010317, guid: 64a4ebca7bfab974ab1637883b36e31c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 6794945933057900308, guid: 64a4ebca7bfab974ab1637883b36e31c,
         type: 3}
@@ -504,7 +529,7 @@ PrefabInstance:
     - target: {fileID: 8272038002799426828, guid: d7d9c0929d4693241b17d22b213d17c2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.825
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8272038002799426828, guid: d7d9c0929d4693241b17d22b213d17c2,
         type: 3}
