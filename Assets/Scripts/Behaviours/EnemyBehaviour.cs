@@ -47,23 +47,18 @@ public class EnemyBehaviour : MonoBehaviour
         }
         
     }
-
+    //https://thehangarter.wordpress.com/2017/05/25/rotating-the-character-with-navmeshagent-navigation/
     private void FaceTarget()
     {
         var targetPosition = agent.path.corners[1];
         var targetPoint = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
-        var _direction = (targetPoint - transform.position).normalized;
-        var _lookRotation = Quaternion.LookRotation(_direction);
+        var direction = (targetPoint - transform.position).normalized;
+        var lookRotation = Quaternion.LookRotation(direction);
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, _lookRotation, 360);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * agent.velocity.magnitude);
 
     }
-    /*
-        private void Update()
-        {
-            
-        }
-        */
+
     public void StartAttack()
     {
         StartCoroutine(AproachingTarget());
