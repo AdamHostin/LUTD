@@ -22,6 +22,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] float attackRange;
     [SerializeField] float awarenessRange;
     [SerializeField] string[] attackableTags;
+    [SerializeField] string spawnSound;
 
     public Animator animator;
    
@@ -57,6 +58,11 @@ public class EnemyBehaviour : MonoBehaviour
 
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * agent.velocity.magnitude);
 
+    }
+
+    private void Start()
+    {
+        App.audioManager.Play(spawnSound);
     }
 
     public void StartAttack()

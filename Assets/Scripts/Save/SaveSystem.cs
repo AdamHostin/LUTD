@@ -17,7 +17,8 @@ public class SaveSystem
 
         PlayerData data = new PlayerData(App.gameManager.GetSceneIndex(),
                                          App.player.GetCoins(), 
-                                         App.player.GetVaccines());
+                                         App.player.GetVaccines(),
+                                         App.player.GetMedkits());
 
         binaryFormatter.Serialize(fileStream, data);
         fileStream.Close();

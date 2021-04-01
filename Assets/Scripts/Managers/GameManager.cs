@@ -21,13 +21,13 @@ public class GameManager : MonoBehaviour
         saveData = App.SaveSystem.Load();
         if (saveData != null)
         {
-            App.player = new Player(saveData.coins, saveData.vaccines, defaultVals.vaccineEffectivnes);
+            App.player = new Player(saveData.coins, saveData.vaccines, defaultVals.vaccineEffectivnes, saveData.medkits, defaultVals.medkitEffectivness);
             sceneIndex = saveData.sceneNumber;
             hasSave = true;
         }
         else
         {
-            App.player = new Player(defaultVals.coins, defaultVals.vaccines, defaultVals.vaccineEffectivnes);
+            App.player = new Player(defaultVals.coins, defaultVals.vaccines, defaultVals.vaccineEffectivnes, defaultVals.medkits, defaultVals.medkitEffectivness);
         }
         
     }

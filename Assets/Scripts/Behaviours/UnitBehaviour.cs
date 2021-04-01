@@ -28,6 +28,8 @@ public abstract class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     [SerializeField]
     protected bool isRelocatable;
 
+    [SerializeField] string deathSound;
+    [SerializeField] string shootSound;
 
 
     //TODO: add unit to activeUnitList in LevelManager?
@@ -57,6 +59,12 @@ public abstract class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     protected abstract IEnumerator Shooting();
     
 
+    public void Die()
+    {
+        gameObject.tag = "Untagged";
+        App.audioManager.Play(deathSound);
+        Destroy(gameObject);
+    }
 
     public abstract void Die();
     
@@ -102,12 +110,18 @@ public abstract class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
             }
         }
 
-        
+        if (App.player.ComparePlayerState(PlayerState.healing) && !EventSystem.current.IsPointerOverGameObject())
+        {
+            model.Healing();
+        }
     }
+
+    
 
     public void SelectUnit()
     {
         App.player.SetUnitToRelocate(this.gameObject, model.GetTransparentSelf());
+        App.audioManager.Play("UnitRemoved");
         //TODO: add unit highlight
     }
 
@@ -122,6 +136,7 @@ public abstract class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     {
         model.OnUnitPick();
         transform.position = targetPosition;
+        transform.rotation = App.player.GetTransparentUnit().transform.rotation;
         model.OnUnitPlace();
         model.SwitchToTile(tile);
         DeselectUnit(true);

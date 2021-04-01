@@ -124,7 +124,7 @@ namespace Models
             if (target == null || target.behaviour==null) return false;
 
             Addxp(target.GetDamage(attack));
-            App.audioManager.Play("UnitShoot");
+            App.audioManager.Play(shootSound);
 
             return true;
         }
@@ -273,7 +273,19 @@ namespace Models
             currentTile.SetOccupied(true);
         }
 
-        
+        public bool Healing()
+        {
+            if (hp == maxHp) return false;
+
+            App.audioManager.Play("MedkitUsed");
+            hp += App.player.medkitEffectivness;
+            Debug.Log("Medkit used");
+            hp = Mathf.Clamp(hp, 0, maxHp);
+            UpdateHpBar();
+            App.player.UseMedkit();
+
+            return true;
+        }
     }
 }
 
