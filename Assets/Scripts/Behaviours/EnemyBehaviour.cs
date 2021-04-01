@@ -24,6 +24,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] string[] attackableTags;
     [SerializeField] string spawnSound;
 
+    public Animator animator;
    
     [Header("programing stuf")]
     public BarController hpBar;
@@ -35,6 +36,28 @@ public class EnemyBehaviour : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();        
         model = new Enemy(hp, attack, attackRange, awarenessRange, toxicity , xp, Random.Range(minCoins,maxCoins) ,attackableTags, this);
+        agent.updateUpAxis = true;
+        agent.updateRotation = true;
+    }
+
+    private void Update()
+    {
+        if (!agent.isStopped && agent.path.corners.Length>1)
+        {
+            FaceTarget();
+        }
+        
+    }
+    //https://thehangarter.wordpress.com/2017/05/25/rotating-the-character-with-navmeshagent-navigation/
+    private void FaceTarget()
+    {
+        var targetPosition = agent.path.corners[1];
+        var targetPoint = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
+        var direction = (targetPoint - transform.position).normalized;
+        var lookRotation = Quaternion.LookRotation(direction);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * agent.velocity.magnitude);
+
     }
 
     private void Start()
@@ -76,9 +99,9 @@ public class EnemyBehaviour : MonoBehaviour
     {
         App.audioManager.Play("EnemyDeath");
         //TODO: do some magic
-        //TODO: resolve with animation
+        
         agent.isStopped = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(3f);
         model.behaviour = null;
         Destroy(gameObject);
     }

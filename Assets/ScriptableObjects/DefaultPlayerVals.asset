@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vaccines: 5
   coins: 10
+  medkits: 5
   vaccineEffectivnes: 10
+  medkitEffectivness: 20

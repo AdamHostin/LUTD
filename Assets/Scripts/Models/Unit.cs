@@ -7,31 +7,29 @@ namespace Models
 {
     public class Unit : IDamagable
     {
-        int hp;
-        int maxHp;
-        int toxicityResistance;
-        int maxToxicityResistance;
-        int attack;
-        float range;
-        float scaler;
+        protected int hp;
+        protected int maxHp;        
+        protected int attack;
+        protected float range;
+        protected float scaler;
 
-        int unitLvl = 0;
-        int unitxp = 0;
+        protected int unitLvl = 0;
+        protected int unitxp = 0;
 
-        LayerMask layerMask;
+        protected LayerMask layerMask;
 
-        List<int> xpToNxtLvl;
-        List<Enemy> enemiesInRange = new List<Enemy>();
+        protected List<int> xpToNxtLvl;
+        protected List<Enemy> enemiesInRange = new List<Enemy>();
 
-        Vector3 gunPos;
-        UnitBehaviour behaviour;
+        protected Vector3 gunPos;
+        protected UnitBehaviour behaviour;
         //UnitTriggerAdapter adapter;
 
         //For relocating
         GameObject transparentSelf;
         TileBehaviour currentTile;
 
-        string shootSound;
+        public Enemy target;
 
         public class RangeChangeEvent : UnityEvent<float> { }
         public RangeChangeEvent rangeChangeEvent = new RangeChangeEvent();
@@ -41,35 +39,32 @@ namespace Models
 
         public UnitState state;
 
-        public Unit(int hp, int toxicityResistance, int attack, float range, Vector3 gunPos, float scaler, List<int> xpToNxtLvl, UnitBehaviour behaviour, string shootSound)
+        public Unit(int hp, int attack, float range, Vector3 gunPos, float scaler, List<int> xpToNxtLvl, UnitBehaviour behaviour)
         {
             this.hp = maxHp = hp;
-            this.toxicityResistance = maxToxicityResistance = toxicityResistance;
             this.attack = attack;
             this.range = range;
             this.xpToNxtLvl = xpToNxtLvl;
             this.gunPos = gunPos;
             this.scaler = scaler;
             this.behaviour = behaviour;
-            this.shootSound = shootSound;
-            state = UnitState.idle;
+            ChangeState(UnitState.idle);
 
-            behaviour.hpBar.OnUIUpdate(1f, maxHp, maxHp);
-            behaviour.toxicityBar.OnUIUpdate(0f, toxicityResistance, toxicityResistance);
+            behaviour.hpBar.OnUIUpdate(1f, maxHp, maxHp);            
             behaviour.xpBar.OnUIUpdate(1f, 0, xpToNxtLvl[1]);
 
             layerMask = 0;
             layerMask = (1<<LayerMask.NameToLayer("Default") | 1<<LayerMask.NameToLayer("Enemy"));
         }
 
-        public void SetAdapter(UnitTriggerAdapter adapter)
+        public virtual void SetAdapter(UnitTriggerAdapter adapter)
         {
             rangeChangeEvent.AddListener(adapter.SetNewRange);
             rangeChangeEvent.Invoke(range);
             OnUnitPlace();
         }
 
-        public void AddEnemy(Enemy enemy)
+        public virtual void AddEnemy(Enemy enemy)
         {
             if (!enemiesInRange.Contains(enemy))
             {
@@ -79,11 +74,32 @@ namespace Models
             }            
         }
 
-        public void SubstractEnemy(Enemy enemy)
+        public virtual void SubstractEnemy(Enemy enemy)
         {
             enemiesInRange.Remove(enemy);
             enemy.enemyDeathEvent.RemoveListener(SubstractEnemy);
-            if (enemiesInRange.Count == 0) state = UnitState.idle;
+            if (enemiesInRange.Count == 0) ChangeState(UnitState.idle);
+        }
+
+        public void ChangeState(UnitState newState)
+        {
+            if (state == UnitState.dying) return;
+
+            switch (newState)
+            {
+                case UnitState.idle:
+                    break;
+                case UnitState.shooting:
+                    break;
+                case UnitState.dying:
+                    onDamagableDeath.Invoke(this);
+                    behaviour.Die();
+                    break;
+                default:
+                    break;
+            }
+
+            state = newState;
         }
 
         public Enemy GetTarget()
@@ -95,24 +111,31 @@ namespace Models
                 Ray shootingRay = new Ray(gunPos, (e.GetPosition() - gunPos));
                 if (Physics.Raycast(shootingRay, out hit, layerMask))
                 {
+                    
                     if (hit.collider.tag == "Enemy") return e;
                 }
             }
             return null;
         }
         // returns true if enemy was hit 
-        public bool Shoot()
+        public virtual bool Shoot()
         {
-            Enemy target = GetTarget();
-            if (target == null) return false;
+            target = GetTarget();
+            if (target == null || target.behaviour==null) return false;
 
             Addxp(target.GetDamage(attack));
-            App.audioManager.Play(shootSound);
 
             return true;
         }
 
-        void Addxp(int xp)
+        public Vector3 VectorToLookAt()
+        {
+            Vector3 res = target.GetPosition();
+            res.y = behaviour.transform.position.y;
+            return res;
+        }
+
+        protected void Addxp(int xp)
         {
             if (unitLvl == xpToNxtLvl.Count-1) return;
             unitxp += xp;
@@ -125,21 +148,14 @@ namespace Models
             
         }
 
-        void LevelUp()
+        protected virtual void LevelUp()
         {
             //Improve hp
             int newMaxHp = (int) Mathf.Ceil((scaler * maxHp));
             if (newMaxHp > maxHp) hp += (newMaxHp - maxHp);
             if (hp > newMaxHp) hp = newMaxHp;
             maxHp = newMaxHp;
-            UpdateHpBar();
-
-            //Improve toxicity resistance
-            int newMaxToxicityResistance = (int)Mathf.Ceil((scaler * maxToxicityResistance));
-            if (newMaxToxicityResistance > maxToxicityResistance) hp += (newMaxToxicityResistance - maxToxicityResistance);
-            if (toxicityResistance > newMaxToxicityResistance) toxicityResistance = newMaxToxicityResistance;
-            maxToxicityResistance = newMaxToxicityResistance;
-            UpdateToxicityBar();
+            UpdateHpBar(); 
 
             //Improve range
             range *= scaler;
@@ -150,19 +166,15 @@ namespace Models
             Debug.Log("Current lvl " + unitLvl);
         }
 
-        public bool GetDamage(int damage, int infection = 0)
+        public virtual bool GetDamage(int damage, int infection = 0)
         {
             hp -= damage;
-            toxicityResistance -= infection;
 
             if (hp <= 0)
             {
                 if (behaviour != null)
                 {
-                    
-                    onDamagableDeath.Invoke(this);
-                    
-                    behaviour.Die();
+                    ChangeState(UnitState.dying);
                 }
                 return false;
             }
@@ -170,19 +182,7 @@ namespace Models
             {
                 UpdateHpBar();
             }
-            if (toxicityResistance <= 0)
-            {
-                if (behaviour != null)
-                {                   
-                    onDamagableDeath.Invoke(this);
-                    behaviour.GetInfected();
-                }
-                return false;
-            }
-            else
-            {
-                UpdateToxicityBar();
-            }
+            
             return true;
         }
 
@@ -204,10 +204,7 @@ namespace Models
             }
         }
 
-        void UpdateToxicityBar()
-        {
-            behaviour.toxicityBar.OnUIUpdate(((float)(maxToxicityResistance - toxicityResistance) / maxToxicityResistance), toxicityResistance, maxToxicityResistance);
-        }
+        
 
         public Vector3 GetPosition()
         {
@@ -275,15 +272,16 @@ namespace Models
             currentTile.SetOccupied(true);
         }
 
-        public bool Vaccinating()
+        public bool Healing()
         {
-            if (maxToxicityResistance == toxicityResistance) return false;
+            if (hp == maxHp) return false;
 
-            App.audioManager.Play("VaccineUsed");
-            toxicityResistance += App.player.vaccineEffectivnes;
-            toxicityResistance = Mathf.Clamp(toxicityResistance, 0,maxToxicityResistance);
-            UpdateToxicityBar();
-            App.player.useVaccine();
+            App.audioManager.Play("MedkitUsed");
+            hp += App.player.medkitEffectivness;
+            Debug.Log("Medkit used");
+            hp = Mathf.Clamp(hp, 0, maxHp);
+            UpdateHpBar();
+            App.player.UseMedkit();
 
             return true;
         }
