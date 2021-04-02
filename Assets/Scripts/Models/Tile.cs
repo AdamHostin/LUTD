@@ -10,6 +10,7 @@ public class Tile
     public Tile(Vector3 position, TileBehaviour behaviour)
     {
         this.spawnPosition = position;
+        spawnPosition.y = .5f;
         this.behaviour = behaviour;
     }
 

@@ -3,36 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using Models;
 using UnityEngine.EventSystems;
+using UnityEngine.AI;
 
-public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
+public abstract class UnitBehaviour : MonoBehaviour, IDamagableBehaviour 
 {
-    private Unit model;
-    [SerializeField] int hp;
-    [SerializeField] int toxicityResistance;
-    [SerializeField] int attack;
-    [SerializeField] float range;
+    protected Unit model;
+    [SerializeField] protected int hp;
+
+    [SerializeField] protected int attack;
+    [SerializeField] protected float range;
     [Tooltip("Value by which is maxhp, maxToxicityResistancce and range multiplyed on level up")]
-    [Range(1f,10f)] [SerializeField] float scaler = 1.5f;
-    [SerializeField] float timeBetweenHits = 0.5f;
-    [SerializeField] GameObject zombiePrefab;
+    [Range(1f, 10f)] [SerializeField] protected float scaler = 1.5f;
+    [SerializeField] protected float timeBetweenHits = 0.5f;
+    [SerializeField] protected Transform gunPos;
+    
 
-    [SerializeField] List<int> xpToNxtLvl;
 
-    public BarController hpBar;
-    public BarController toxicityBar;
+    [SerializeField] protected List<int> xpToNxtLvl;
+
+    public BarController hpBar;    
     public BarController xpBar;
 
-    [SerializeField]
-    private bool isRelocatable;
 
-    [SerializeField] string deathSound;
-    [SerializeField] string shootSound;
+    [SerializeField]
+    protected bool isRelocatable;
+
+    [SerializeField] protected string deathSound;
+    [SerializeField] protected string shootSound;
 
 
     //TODO: add unit to activeUnitList in LevelManager?
-    private void Awake()
+    protected virtual void Awake()
     {
-        model = new Unit(hp, toxicityResistance, attack, range, transform.position, scaler ,xpToNxtLvl, this, shootSound);
+        model = new Unit(hp , attack, range, gunPos.position, scaler, xpToNxtLvl, this);
     }
 
     public IDamagable GetDamagableModel()
@@ -42,45 +45,26 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
 
     public Unit GetModel()
     {
+        Debug.Log(model);
         return model;
     }
 
     public void StartShooting()
     {
+        Debug.Log("Start Shooting");
         if (model.state == UnitState.shooting) return;
         StartCoroutine(Shooting());
     }
 
-    //This will change once we'll have some animations 
-    IEnumerator Shooting()
-    {
-        model.state = UnitState.shooting;
-        while (model.state == UnitState.shooting)
-        {
-            model.Shoot();
-            yield return new WaitForSeconds(timeBetweenHits);
-        }
-    }
+    protected abstract IEnumerator Shooting();
+    
 
-    public void Die()
+    public virtual void Die()
     {
-        gameObject.tag = "Untagged";
         App.audioManager.Play(deathSound);
-        Destroy(gameObject);
     }
-
-    public void GetInfected()
-    {
-        App.audioManager.Play("UnitInfected");
-        gameObject.tag = "Untagged";
-        App.levelManager.AddEnemies();
-        GameObject zombie = Instantiate(zombiePrefab,transform.position, Quaternion.identity);
-        zombie.transform.parent = App.levelManager.transform;
-        Debug.Log("I am a zobie now");
-        Destroy(gameObject);
-    }
-
-    private void OnMouseDown()
+    
+    protected virtual void OnMouseDown()
     {
         if (App.levelManager.CompareLevelState(LevelState.betweenWave) && !EventSystem.current.IsPointerOverGameObject())
         {
@@ -107,7 +91,7 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
                     SelectUnit();
                 }
             }
-            else 
+            else
             {
                 if (App.player.ComparePlayerState(PlayerState.relocating))
                 {
@@ -120,11 +104,6 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
                     App.player.ChangeState(PlayerState.idle);
                 }
             }
-        }
-
-        if (App.player.ComparePlayerState(PlayerState.vaccinating) && !EventSystem.current.IsPointerOverGameObject())
-        {
-            model.Vaccinating();
         }
 
         if (App.player.ComparePlayerState(PlayerState.healing) && !EventSystem.current.IsPointerOverGameObject())
@@ -158,6 +137,5 @@ public class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
         model.SwitchToTile(tile);
         DeselectUnit(true);
     }
-
 
 }
