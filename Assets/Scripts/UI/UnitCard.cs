@@ -52,6 +52,7 @@ public class UnitCard : MonoBehaviour
     public void Highlight()
     {
         image.sprite = highlightImage;
+        App.audioManager.Play("UnitSelect");
     }
 
     public void Dehighlight()
