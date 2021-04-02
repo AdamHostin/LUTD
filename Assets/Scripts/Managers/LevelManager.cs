@@ -28,6 +28,7 @@ public class LevelManager : MonoBehaviour
     [Header("Wave setting")]
     [SerializeField] private float timeBetweenWaves = 10f;
     [SerializeField] private int waveCount = 1;
+    [SerializeField] private float startingOffset;
 
     public class PrepareWaveStartEvent : UnityEvent<int>{}
     public PrepareWaveStartEvent prepareWaveStartEvent = new PrepareWaveStartEvent();
@@ -51,8 +52,15 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(StartingOffset());
+    }
+
+    IEnumerator StartingOffset()
+    {
+        yield return new WaitForSeconds(startingOffset);
         StartCoroutine(StartWave());
     }
+
     IEnumerator StartWave()
     {
         prepareWaveStartEvent.Invoke(currentWave);
