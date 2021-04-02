@@ -23,4 +23,15 @@ public class EndLevelScreen : ScreenBase
         App.screenManager.Show<MenuScreen>();
         Hide();
     }
+    public override void Show()
+    {
+        App.audioManager.PlayLoop("MenuSound");
+        base.Show();
+    }
+
+    public override void Hide()
+    {
+        App.audioManager.Stop("MenuSound");
+        base.Hide();
+    }
 }
