@@ -62,6 +62,7 @@ public abstract class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
     public virtual void Die()
     {
         App.audioManager.Play(deathSound);
+        model.GetCurrentTile().SetOccupied(false);
     }
     
     protected virtual void OnMouseDown()
