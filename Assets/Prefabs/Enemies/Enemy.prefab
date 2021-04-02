@@ -148,7 +148,6 @@ MonoBehaviour:
   attackableTags:
   - Unit
   - Base
-  - Obstacle
   spawnSound: EnemySpawn1
   animator: {fileID: 6569422319481474333}
   hpBar: {fileID: 65647549029320276}

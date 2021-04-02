@@ -40,6 +40,11 @@ public class EnemyBehaviour : MonoBehaviour
         agent.updateRotation = true;
     }
 
+    private void Start()
+    {
+        App.audioManager.Play(spawnSound);
+    }
+
     private void Update()
     {
         if (!agent.isStopped && agent.path.corners.Length>1)
@@ -60,10 +65,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-        App.audioManager.Play(spawnSound);
-    }
+    
 
     public void StartAttack()
     {
@@ -74,17 +76,22 @@ public class EnemyBehaviour : MonoBehaviour
     {
         while (model.IsBlocked())
         {
+            Debug.Log("Blocked");
             yield return new WaitForSeconds(0.25f);
             if (target == null) yield break;
         }
+
         model.ChangeState(EnemyState.attacking);
         StartCoroutine(Attacking());
     }
 
     IEnumerator Attacking()
     {
+        Debug.Log("StartAttacking");
         while (model.state == EnemyState.attacking)
         {
+            Debug.Log("attack");
+            
             yield return new WaitForSeconds(attackFrequency);
             if (model.state == EnemyState.attacking) model.Attack();
         }

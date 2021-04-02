@@ -11,7 +11,7 @@ public class FlameThrowerBehaviour : TowerBehaviour
 
     protected override IEnumerator Shooting()
     {
-
+        Debug.Log("flamethrower");
         model.ChangeState(UnitState.shooting);
         while (model.state == UnitState.shooting)
         {

@@ -29,6 +29,7 @@ public class EnemyRangeTriggerAdapter : MonoBehaviour
         {
             if (other.tag == item)
             {
+                
                 model.OnDamagableInattackRange(other.gameObject.GetComponent<IDamagableBehaviour>().GetDamagableModel());
                 break;
             }

@@ -5,7 +5,7 @@ using Models;
 using UnityEngine.EventSystems;
 using UnityEngine.AI;
 
-public abstract class UnitBehaviour : MonoBehaviour, IDamagableBehaviour 
+public abstract class UnitBehaviour : MonoBehaviour, IDamagableBehaviour, IPlacebleBehaviour 
 {
     protected Unit model;
     [SerializeField] protected int hp;
@@ -139,4 +139,8 @@ public abstract class UnitBehaviour : MonoBehaviour, IDamagableBehaviour
         DeselectUnit(true);
     }
 
+    public IPlacebla GetPlaceblaModel()
+    {
+        return (IPlacebla)model;
+    }
 }
