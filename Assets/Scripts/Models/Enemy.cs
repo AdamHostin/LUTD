@@ -148,12 +148,15 @@ namespace Models
                 case EnemyState.moving:
                     SetNewTarget(GetNxtTarget());
                     behaviour.agent.isStopped = false;
+                    behaviour?.animator.SetBool("Attack",false);
                     break;
                 case EnemyState.attacking:
                     behaviour.agent.isStopped = true;
+                    behaviour?.animator.SetBool("Attack", true);
                     break;
                 case EnemyState.dying:
                     behaviour.agent.isStopped = true;
+                    behaviour?.animator.SetTrigger("Die");
                     damagablesInAwarenessRange.Clear();
                     enemyDeathEvent.Invoke(this);
                     target = null;

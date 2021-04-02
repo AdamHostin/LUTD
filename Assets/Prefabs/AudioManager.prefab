@@ -131,7 +131,7 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
   - name: MenuSound
-    clip: {fileID: 8300000, guid: 6aee1a64f6a75da44ae9f37e09e90c80, type: 3}
+    clip: {fileID: 8300000, guid: b7450ac8c159bb841b21b9e2d8e19f45, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1
@@ -216,6 +216,20 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: MedkitUsed
     clip: {fileID: 8300000, guid: 995208950d76ff541abc421464318915, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ScientistShoot
+    clip: {fileID: 8300000, guid: 378999aa4a4e58c4785c486cd48bcf35, type: 3}
+    output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
+      type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UnitSelect
+    clip: {fileID: 8300000, guid: b075c12ea76519c4e96ff8faa5fa8380, type: 3}
     output: {fileID: -8496542089209056768, guid: e485e27ba9958964dbb05a904ff596ab,
       type: 2}
     volume: 1

@@ -11,7 +11,7 @@ public class UnitTriggerAdapter : MonoBehaviour
 
     
 
-    private void Awake()
+    protected virtual void Awake()
     {
         coll = GetComponent<SphereCollider>();        
     }
@@ -22,7 +22,7 @@ public class UnitTriggerAdapter : MonoBehaviour
         model.SetAdapter(this);
     }
 
-    public void SetNewRange(float range)
+    public virtual void SetNewRange(float range)
     {
         coll.radius = range;
     }
