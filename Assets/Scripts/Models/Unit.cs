@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace Models
 {
-    public class Unit : IDamagable
+    public class Unit : IDamagable, IPlacebla
     {
         protected int hp;
         protected int maxHp;        
@@ -51,7 +51,7 @@ namespace Models
             ChangeState(UnitState.idle);
 
             behaviour.hpBar.OnUIUpdate(1f, maxHp, maxHp);            
-            behaviour.xpBar.OnUIUpdate(1f, 0, xpToNxtLvl[1]);
+            behaviour.xpBar?.OnUIUpdate(1f, 0, xpToNxtLvl[1]);
 
             layerMask = 0;
             layerMask = (1<<LayerMask.NameToLayer("Default") | 1<<LayerMask.NameToLayer("Enemy"));
@@ -195,11 +195,11 @@ namespace Models
         {
             if (unitLvl == xpToNxtLvl.Count - 1)
             {
-                behaviour.xpBar.OnUIUpdate(1f, unitxp, xpToNxtLvl[unitLvl]);
+                behaviour.xpBar?.OnUIUpdate(1f, unitxp, xpToNxtLvl[unitLvl]);
             }
             else
             {
-                behaviour.xpBar.OnUIUpdate(((float)(unitxp - xpToNxtLvl[unitLvl]) / (xpToNxtLvl[unitLvl + 1] - xpToNxtLvl[unitLvl])), unitxp, xpToNxtLvl[unitLvl + 1]);
+                behaviour.xpBar?.OnUIUpdate(((float)(unitxp - xpToNxtLvl[unitLvl]) / (xpToNxtLvl[unitLvl + 1] - xpToNxtLvl[unitLvl])), unitxp, xpToNxtLvl[unitLvl + 1]);
 
             }
         }

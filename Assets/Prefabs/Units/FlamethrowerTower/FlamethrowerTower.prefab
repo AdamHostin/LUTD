@@ -76,11 +76,11 @@ MonoBehaviour:
   attack: 50
   range: 5
   scaler: 1.5
-  timeBetweenHits: 0.5
+  timeBetweenHits: 2
   gunPos: {fileID: 1380309480237244879}
   xpToNxtLvl: 000000003200000064000000f4010000
   hpBar: {fileID: 1753160578592573376}
-  xpBar: {fileID: 5506747607331585923}
+  xpBar: {fileID: 0}
   isRelocatable: 0
   deathSound: TowerDeath
   shootSound: FlameThrowerShoot
@@ -250,6 +250,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1731804378685661913, guid: 64a4ebca7bfab974ab1637883b36e31c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4302187143865714584, guid: 64a4ebca7bfab974ab1637883b36e31c,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -275,10 +280,20 @@ PrefabInstance:
       propertyPath: m_Height
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5491864232142559898, guid: 64a4ebca7bfab974ab1637883b36e31c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5744978760603780438, guid: 64a4ebca7bfab974ab1637883b36e31c,
         type: 3}
       propertyPath: m_Center.y
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907846255552033466, guid: 64a4ebca7bfab974ab1637883b36e31c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6275652479048364770, guid: 64a4ebca7bfab974ab1637883b36e31c,
         type: 3}
@@ -317,18 +332,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8244623416661176428}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5506747607331585923 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4467901324097212399, guid: 64a4ebca7bfab974ab1637883b36e31c,
-    type: 3}
-  m_PrefabInstance: {fileID: 8244623416661176428}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d60a926cc539ebe428d22e984e581d61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1753160578592573376 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7655753303142070188, guid: 64a4ebca7bfab974ab1637883b36e31c,
