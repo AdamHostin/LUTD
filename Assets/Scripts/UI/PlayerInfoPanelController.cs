@@ -6,10 +6,6 @@ using UnityEngine.Events;
 
 public class PlayerInfoPanelController : MonoBehaviour
 {
-    public string coinPrefix = "coins: ";
-    public string vaccinePrefix = "vaccines: ";
-    public string medkitsPrefix = "medkits: ";
-
     [Header("programer stuf")]
     public TextMeshProUGUI coinTMP;
     public TextMeshProUGUI vaccinesTMP;
@@ -22,16 +18,16 @@ public class PlayerInfoPanelController : MonoBehaviour
 
     public void UpdateCoinText(int newCoinVal)
     {
-        coinTMP.text = coinPrefix + newCoinVal;
+        coinTMP.text = newCoinVal.ToString();
     }
 
     public void UpdateVaccineText(int newVaccineVal)
     {
-        vaccinesTMP.text = vaccinePrefix + newVaccineVal;
+        vaccinesTMP.text = newVaccineVal.ToString();
     }
 
     public void UpdateMedkitsText(int newMedkitsVal)
     {
-        medkitsTMP.text = medkitsPrefix + newMedkitsVal;
+        medkitsTMP.text = newMedkitsVal.ToString();
     }
 }

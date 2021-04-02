@@ -5,15 +5,16 @@ using UnityEngine.UI;
 
 public class VaccineButtonUI : MonoBehaviour
 {
-    [SerializeField] Color32 highlightColor;
     private bool isPressed = false;
-    private Color32 normalColor;
+
     private Image image;
+    private Sprite originalImage;
+    [SerializeField] private Sprite pressedImage;
 
     private void Awake()
     {
         image = gameObject.GetComponent<Image>();
-        normalColor = image.color;
+        originalImage = image.sprite;
     }
 
     private void Start()
@@ -29,14 +30,14 @@ public class VaccineButtonUI : MonoBehaviour
     public void CancelVaccination()
     {
         isPressed = false;
-        image.color = normalColor;
+        image.sprite = originalImage;
     }
 
     public void OnClick()
     {
         App.audioManager.Play("UIButtonClicked");
-        if (isPressed) image.color = normalColor;
-        else image.color = highlightColor;
+        if (isPressed) image.sprite = originalImage;
+        else image.sprite = pressedImage;
         App.player.healingEndedEvent.Invoke();
 
         isPressed = !isPressed;
