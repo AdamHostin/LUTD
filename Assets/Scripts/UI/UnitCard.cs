@@ -14,12 +14,19 @@ public class UnitCard : MonoBehaviour
 
     GameObject transparentUnit;
 
+    private Image image;
+    private Sprite originalImage;
+    [SerializeField] private Sprite highlightImage;
+
     private void Start()
     {
         if (unitPrefab == null) Debug.LogError("UnitCard: unit prefab not set");
         if (transparentUnitPrefab == null) Debug.LogError("UnitCard: transparent unit prefab not set");
 
         transparentUnit = Instantiate(transparentUnitPrefab, new Vector3(1000, 1000, 1000), Quaternion.identity);
+
+        image = GetComponent<Image>();
+        originalImage = image.sprite;
     }
 
     public void OnClicked()
@@ -44,12 +51,12 @@ public class UnitCard : MonoBehaviour
 
     public void Highlight()
     {
-        GetComponent<Image>().color = new Color32(0, 255, 255, 255);
+        image.sprite = highlightImage;
     }
 
     public void Dehighlight()
     {
-        GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        image.sprite = originalImage;
     }
 
     public GameObject GetTransparentUnit()
