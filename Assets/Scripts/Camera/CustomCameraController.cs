@@ -72,7 +72,7 @@ public class CustomCameraController : MonoBehaviour
                                        newRotation.eulerAngles.x,
                                        newRotation.eulerAngles.y,
                                        0);
-        Debug.Log(newRotation.x);
+
         newRotation.x = Mathf.Clamp(newRotation.x, minXrotation, maxXrotation);
 
         transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * movementTime);

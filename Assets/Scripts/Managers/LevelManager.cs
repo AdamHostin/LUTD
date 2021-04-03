@@ -11,6 +11,8 @@ public class LevelManager : MonoBehaviour
 {
     private Base playerBase;
 
+    public BarController waveBar;
+
     private int currentWave = 1;
     private int countOfEnemiesInCurrentWawe = 0;
 
@@ -65,6 +67,8 @@ public class LevelManager : MonoBehaviour
     IEnumerator StartingOffset()
     {
         yield return new WaitForSeconds(startingOffset);
+        Debug.Log(currentWave / (float)waveCount);
+        waveBar.OnUIUpdate((currentWave / (float)waveCount));
         StartCoroutine(StartWave());
     }
 

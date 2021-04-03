@@ -9,6 +9,7 @@ TagManager:
   - Unit
   - VaccineButton
   - Baricade
+  - WaveBar
   layers:
   - Default
   - TransparentFX
