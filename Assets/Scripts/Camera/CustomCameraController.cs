@@ -117,7 +117,8 @@ public class CustomCameraController : MonoBehaviour
             Vector3 diff = rotateStartPos - rotateCurrentPos;
             rotateStartPos = rotateCurrentPos;
 
-            newRotation *= Quaternion.Euler(Vector3.up * (-diff.x/mouseRotationConst)); 
+            newRotation *= Quaternion.Euler((Vector3.up * (-diff.x/mouseRotationConst) + Vector3.right * (diff.y / mouseRotationConst)));
+            
         }
 
     }
