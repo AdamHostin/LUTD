@@ -132,6 +132,7 @@ namespace Models
             targetPos.y = GetPosition().y;
             //ignore layer 5 (UI), 8 (Enemy), 10 (CUinteractable)
             int mask = ~((1<<5) | (1<<8) | (1<<10));
+            //int mask = (1 << LayerMask.NameToLayer("Default") | 1 << LayerMask.NameToLayer("CInteractable"));
             Ray sight = new Ray(GetPosition(), (targetPos - GetPosition()));
             if (Physics.Raycast(sight, out hit, Mathf.Infinity, mask ))
             {

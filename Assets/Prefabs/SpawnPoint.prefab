@@ -46,7 +46,7 @@ MonoBehaviour:
   startInWave: 1
   activeWaveCount: 1
   difficultyScaler: 1
-  frequency: 3
+  frequency: 10
   preWavePrefab: {fileID: 2161341512742411191, guid: a1e2ec3374456fd42a8642023514faac,
     type: 3}
   preWaveCount: 0

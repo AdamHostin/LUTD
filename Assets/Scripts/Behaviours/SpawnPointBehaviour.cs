@@ -52,7 +52,7 @@ public class SpawnPointBehaviour : MonoBehaviour
                 else
                 {
                     Instantiate(preWavePrefab, transform);
-                    App.audioManager.Play("EnemySpawn");
+                    
                     model.currentTotalCountOfEnemies--;
                 }
                 break;

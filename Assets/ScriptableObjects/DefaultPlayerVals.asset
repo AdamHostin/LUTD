@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DefaultPlayerVals
   m_EditorClassIdentifier: 
   vaccines: 5
-  coins: 200
+  coins: 500
   medkits: 5
   vaccineEffectivnes: 10
   medkitEffectivness: 20

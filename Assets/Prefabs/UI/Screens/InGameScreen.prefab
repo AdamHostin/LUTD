@@ -1440,7 +1440,7 @@ PrefabInstance:
         type: 3}
       propertyPath: unitPrefab
       value: 
-      objectReference: {fileID: 9198827140699578115, guid: 95673f9b7ddf3814198212dad7d876fc,
+      objectReference: {fileID: 81335530020435740, guid: b9f2bf9f38bdf534f92509fcbc5d9471,
         type: 3}
     - target: {fileID: 8100845907103262421, guid: 095f4f18e28fcc54d8af674e43b4f345,
         type: 3}
@@ -1758,7 +1758,7 @@ PrefabInstance:
         type: 3}
       propertyPath: unitPrefab
       value: 
-      objectReference: {fileID: 4718475024465842493, guid: e53c3128b3c6fa7489d0c418e59ff17e,
+      objectReference: {fileID: 4718475024465842493, guid: 44fbe697d6e18f547b65703e0badbdaf,
         type: 3}
     - target: {fileID: 8100845907103262421, guid: 095f4f18e28fcc54d8af674e43b4f345,
         type: 3}

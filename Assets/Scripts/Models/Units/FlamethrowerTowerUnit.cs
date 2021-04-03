@@ -23,7 +23,6 @@ public class FlamethrowerTowerUnit : Unit
             if (target == null || target.behaviour == null) continue;
 
             Addxp(target.GetDamage(attack));
-            App.audioManager.Play("UnitShoot");
         }
         RemoveDeadEnemies();
 
