@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 3205433769915155720}
+  maxXrotation: 0.1
+  minXrotation: -0.3
   movementTime: 5
   normalSpeed: 0.5
   fastSpeed: 3
@@ -131,7 +133,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 19
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

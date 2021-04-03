@@ -16,6 +16,9 @@ public class LevelManager : MonoBehaviour
 
     private LevelState levelState = LevelState.betweenWave;      //Set to betweenWave fot testing
 
+    [SerializeField] Vector3 cameraStartingPos;
+    [SerializeField] Vector3 cameraStartingRotation ;
+
     [Header("Level boundrees setting")]
     [SerializeField] Vector3 maxClampPos;
     [SerializeField] Vector3 minClampPos;
@@ -25,6 +28,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] float minOrtograficSize;
     [SerializeField] float maxOrtograficSize;
 
+    
     [Header("Wave setting")]
     [SerializeField] private float timeBetweenWaves = 10f;
     [SerializeField] private int waveCount = 1;
@@ -52,6 +56,8 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        App.CameraManager.transform.position = cameraStartingPos;
+        App.CameraManager.transform.rotation = Quaternion.Euler(cameraStartingRotation);
         StartCoroutine(StartingOffset());
     }
 
