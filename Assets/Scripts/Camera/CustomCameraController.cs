@@ -63,6 +63,8 @@ public class CustomCameraController : MonoBehaviour
         newZoom =  ClampVector3(newZoom, minClampZoom, maxClampZoom);
         newPos = ClampVector3(newPos, minClampPos, maxClampPos);
 
+        newRotation = Quaternion.Euler(newRotation.eulerAngles.x, newRotation.eulerAngles.y, 0);
+
         transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * movementTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
         if (!Camera.main.orthographic)
