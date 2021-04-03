@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    CustomCameraController cameraController;
+    public CustomCameraController cameraController;
     [HideInInspector]
     public Vector3 maxClampPos, minClampPos, maxClampZoom, minClampZoom;
     [HideInInspector]

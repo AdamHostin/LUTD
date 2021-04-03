@@ -83,6 +83,12 @@ public class CustomCameraController : MonoBehaviour
         
     }
 
+    public void SetNew()
+    {
+        newRotation = transform.rotation;
+        newPos = transform.position;
+    }
+
     private void HandleMouseMovement()
     {
         //pohyb

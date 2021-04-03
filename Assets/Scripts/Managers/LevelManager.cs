@@ -56,8 +56,9 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        App.CameraManager.transform.position = cameraStartingPos;
-        App.CameraManager.transform.rotation = Quaternion.Euler(cameraStartingRotation);
+        App.CameraManager.cameraController.transform.position = cameraStartingPos;
+        App.CameraManager.cameraController.transform.rotation = Quaternion.Euler(cameraStartingRotation);
+        App.CameraManager.cameraController.SetNew();
         StartCoroutine(StartingOffset());
     }
 
