@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   attack: 10
-  range: 5
+  range: 10
   scaler: 1.5
   timeBetweenHits: 0.5
   gunPos: {fileID: 709151267776900661}

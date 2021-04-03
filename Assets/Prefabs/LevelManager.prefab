@@ -51,6 +51,7 @@ MonoBehaviour:
   maxOrtograficSize: 50
   timeBetweenWaves: 1
   waveCount: 1
+  startingOffset: 8
   startWaveEvent:
     m_PersistentCalls:
       m_Calls: []

@@ -136,12 +136,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2596045098598722069}
-  hp: 200
-  attack: 25
+  hp: 150
+  attack: 20
   toxicity: 5
   xp: 5
-  minCoins: 1
-  maxCoins: 5
+  minCoins: 50
+  maxCoins: 70
   attackFrequency: 1.5
   attackRange: 1
   awarenessRange: 10
