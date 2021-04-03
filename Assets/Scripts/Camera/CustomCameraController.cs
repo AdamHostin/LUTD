@@ -12,6 +12,11 @@ public class CustomCameraController : MonoBehaviour
 
     [SerializeField] Transform cameraTransform;
 
+    [Header("rotation boundrees")]
+    [SerializeField] float maxXrotation;
+    [SerializeField] float minXrotation;
+
+
     [SerializeField] float movementTime;
     [SerializeField] float normalSpeed;
     [SerializeField] float fastSpeed;
@@ -63,10 +68,25 @@ public class CustomCameraController : MonoBehaviour
         newZoom =  ClampVector3(newZoom, minClampZoom, maxClampZoom);
         newPos = ClampVector3(newPos, minClampPos, maxClampPos);
 
+        newRotation = Quaternion.Euler(//Mathf.Clamp( newRotation.eulerAngles.x, minXrotation, maxXrotation),
+                                       newRotation.eulerAngles.x,
+                                       newRotation.eulerAngles.y,
+                                       0);
+        Debug.Log(newRotation.x);
+        newRotation.x = Mathf.Clamp(newRotation.x, minXrotation, maxXrotation);
+
         transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * movementTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
         if (!Camera.main.orthographic)
             cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
+
+        
+    }
+
+    public void SetNew()
+    {
+        newRotation = transform.rotation;
+        newPos = transform.position;
     }
 
     private void HandleMouseMovement()
@@ -117,7 +137,8 @@ public class CustomCameraController : MonoBehaviour
             Vector3 diff = rotateStartPos - rotateCurrentPos;
             rotateStartPos = rotateCurrentPos;
 
-            newRotation *= Quaternion.Euler(Vector3.up * (-diff.x/mouseRotationConst)); 
+            newRotation *= Quaternion.Euler((Vector3.up * (-diff.x/mouseRotationConst) + Vector3.right * (diff.y / mouseRotationConst)));
+            
         }
 
     }
