@@ -33,6 +33,7 @@ public class PauseMenuScreen : ScreenBase
         App.screenManager.Hide<InGameScreen>();
         App.screenManager.Show<MenuScreen>();
         App.gameManager.StartCurrentSceneUnloading();
+        App.gameManager.ResetValues();
     }
 
     public void SettingsButtonClicked()

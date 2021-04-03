@@ -114,6 +114,7 @@ public class LevelManager : MonoBehaviour
             App.audioManager.Play("LevelFailed");
             Time.timeScale = 0f;
             App.screenManager.Show<DeathScreen>();
+            App.gameManager.ResetValues();
         }
     }
 

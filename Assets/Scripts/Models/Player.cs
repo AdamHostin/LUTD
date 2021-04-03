@@ -181,6 +181,21 @@ namespace Models
             playerState = state;
         }
 
+        public void SetCoins(int value)
+        {
+            coins = value;
+        }
+
+        public void SetVaccines(int value)
+        {
+            vaccines = value;
+        }
+
+        public void SetMedkits(int value)
+        {
+            medkits = value;
+        }
+
         public int GetCoins() 
         {
             return coins;

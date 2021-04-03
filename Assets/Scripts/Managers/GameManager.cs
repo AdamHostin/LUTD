@@ -86,6 +86,22 @@ public class GameManager : MonoBehaviour
         return levels[sceneIndex];
     }
 
+    public void ResetValues()
+    {
+        if (saveData != null)
+        {
+            App.player.SetCoins(saveData.coins);
+            App.player.SetVaccines(saveData.vaccines);
+            App.player.SetMedkits(saveData.medkits);
+        }
+        else
+        {
+            App.player.SetCoins(defaultVals.coins);
+            App.player.SetVaccines(defaultVals.vaccines);
+            App.player.SetMedkits(defaultVals.medkits);
+        }
+    }
+
     public int GetSceneIndex()
     {
         return sceneIndex;
