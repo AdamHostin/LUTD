@@ -43,6 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5167681de968cc84d98b60d85e012258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveBar: {fileID: 0}
+  cameraStartingPos: {x: 0, y: 0, z: 0}
+  cameraStartingRotation: {x: 0, y: 0, z: 0}
   maxClampPos: {x: 100, y: 100, z: 100}
   minClampPos: {x: -100, y: 0, z: -100}
   minClampZoom: {x: 0, y: 30, z: -30}
@@ -50,7 +53,7 @@ MonoBehaviour:
   minOrtograficSize: 5
   maxOrtograficSize: 50
   timeBetweenWaves: 1
-  waveCount: 1
+  waveCount: 6
   startingOffset: 8
   startWaveEvent:
     m_PersistentCalls:
