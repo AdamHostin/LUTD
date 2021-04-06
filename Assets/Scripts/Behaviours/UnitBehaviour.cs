@@ -86,7 +86,7 @@ public abstract class UnitBehaviour : MonoBehaviour, IDamagableBehaviour, IPlace
                     else
                         DeselectUnit(true);
                 }
-                else
+                else if (App.player.ComparePlayerState(PlayerState.placing))
                 {
                     App.unitCardManager.SwitchToCard(null);
                     SelectUnit();

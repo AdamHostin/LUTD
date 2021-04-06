@@ -141,8 +141,10 @@ namespace Models
         public void StopRelocating()
         {
             if (playerState == PlayerState.relocating)
+            {
                 DeleteTransparentUnit();
-            ChangeState(PlayerState.idle);
+                ChangeState(PlayerState.idle);
+            }
         }
 
         public GameObject GetPickedUnit()
