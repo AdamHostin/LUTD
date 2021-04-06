@@ -67,15 +67,15 @@ public class LevelManager : MonoBehaviour
     IEnumerator StartingOffset()
     {
         yield return new WaitForSeconds(startingOffset);
-        Debug.Log(currentWave / (float)waveCount);
-        waveBar.OnUIUpdate((currentWave / (float)waveCount));
+        
         StartCoroutine(StartWave());
     }
 
     IEnumerator StartWave()
     {
         prepareWaveStartEvent.Invoke(currentWave);
-
+        Debug.Log(currentWave / (float)waveCount);
+        waveBar.OnUIUpdate((currentWave / (float)waveCount));
         yield return new WaitForSeconds(timeBetweenWaves);
         App.audioManager.Play("WaveStart");
         levelState = LevelState.wave;
